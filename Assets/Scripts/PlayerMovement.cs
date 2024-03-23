@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -34,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Move the player based on input
-        MovePlayer(moveDirection);
+        Move(moveDirection);
     }
 
     void GatherInput()
@@ -47,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector3(moveX, 0f, moveY).normalized;
     }
 
-    void MovePlayer(Vector3 direction)
+    void Move(Vector3 direction)
     {
         // Apply movement to rigidbody
         rb.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
