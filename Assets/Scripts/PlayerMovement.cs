@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 5f; // Adjust the speed as needed
-    [SerializeField]
-    private float rotationSpeed = 10f; // Adjust the rotation speed as needed
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 10f;
+
+
 
     private Rigidbody rb;
     private Vector3 moveDirection;
 
     void Start()
-    {
-        // Get the Rigidbody component attached to the player
+    { 
         rb = GetComponent<Rigidbody>();
     }
 
@@ -37,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     void GatherInput()
     {
-        // Get the input from arrow keys or WASD keys
+        // Get the input
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -45,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector3(moveX, 0f, moveY).normalized;
     }
 
+    // Moves player
     void Move(Vector3 direction)
     {
         // Apply movement to rigidbody

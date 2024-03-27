@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private Transform enemy;
-    [SerializeField]
-    private float timeBetweenWaves = 5f;
+    [SerializeField] private Transform enemy;
+    [SerializeField] private float timeBetweenWaves = 5f;
     
     private float countdown = 2f;
     private int waveIndex = 0;
@@ -34,8 +32,10 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    // Spawns enemy as its child
     void SpawnEnemy()
     {
-        Instantiate(enemy, transform.position, transform.rotation);
+        Instantiate(enemy, transform.position, transform.rotation, transform);
     }
+
 }
