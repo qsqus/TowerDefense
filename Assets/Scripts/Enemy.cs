@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float health = 100f;
     [SerializeField] private int damage = 1;
+    [SerializeField] private string playerTag = "Player";
 
     private Transform target;
     private int pathElementIdx = 0;
@@ -64,6 +65,14 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag(playerTag))
+        {
+            Debug.Log("Enemy collided with player");
         }
     }
 }

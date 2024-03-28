@@ -38,12 +38,18 @@ public class Projectile : MonoBehaviour
     // Hits target
     private void HitTarget()
     {
+        Enemy enemy = target.GetComponent<Enemy>();
+
         // Projectile hit visual
         GameObject impactEffectGO = Instantiate(impactEffet, transform.position, transform.rotation);
+        
+        Renderer impactRend = impactEffectGO.GetComponent<Renderer>();
+        Renderer enemyRend = enemy.GetComponent<Renderer>();
+        impactRend.material = enemyRend.material;
+
         Destroy(impactEffectGO, 2f);
 
-
-        Enemy enemy = target.GetComponent<Enemy>();
+        //Enemy enemy = target.GetComponent<Enemy>();
         enemy.TakeDamage(damage);
 
         Destroy(gameObject);
