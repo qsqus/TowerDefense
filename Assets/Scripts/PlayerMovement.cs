@@ -32,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
         Move(moveDirection);
     }
 
-    void GatherInput()
+    // Gathers movement input
+    private void GatherInput()
     {
         // Get the input
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -43,10 +44,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Moves player
-    void Move(Vector3 direction)
+    private void Move(Vector3 direction)
     {
         // Apply movement to rigidbody
         rb.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
 
     }
+
 }

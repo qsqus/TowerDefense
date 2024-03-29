@@ -110,4 +110,6 @@ public class Turret : MonoBehaviour
             firedProjectile.ConstructProjectile(target, damage, projectileSpeed, projectileImpactEffet);
         }
     }
+
+
 }

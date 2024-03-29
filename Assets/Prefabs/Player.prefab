@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 2812202421205732501}
   - component: {fileID: 7728114388620943353}
   - component: {fileID: 5033301496556117889}
-  - component: {fileID: 9180526029875779392}
+  - component: {fileID: 2947334653580648061}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -206,7 +206,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 10
---- !u!114 &9180526029875779392
+--- !u!114 &2947334653580648061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,6 +266,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7120459497843846150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 941dc7491883fdf4ab48840659ed98cc, type: 3}
+  m_Script: {fileID: 11500000, guid: b9ef28a494742864abf9b249fac65a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildPointTag: BuildPoint
+  playerRadius: 0.5

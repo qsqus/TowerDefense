@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.XR.WSA;
 using static UnityEngine.GraphicsBuffer;
 
@@ -6,44 +7,67 @@ public class BuildPoint : MonoBehaviour
 {
     [SerializeField] private float selectedColorAlpha = 0.5f;
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private Turret buildTurret;
+    [SerializeField] private float radius = 0.5f;
 
     private Renderer rend;
     private Color selectedColor;
-    private Color startingColor;
+    private Color startColor;
+
+    private GameObject tower;
+    private PlayerBuild playerBuild;
+
     void Start()
     {
+        playerBuild = GameObject.FindGameObjectWithTag(playerTag).GetComponent<PlayerBuild>();
+        playerBuild.OnInteractPressed += PlayerBuild_OnInteractPressed;
+
         rend = GetComponent<Renderer>();
-        startingColor = rend.material.color;
-        selectedColor = startingColor;
+        startColor = rend.material.color;
+        selectedColor = startColor;
         selectedColor.a = selectedColorAlpha;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void PlayerBuild_OnInteractPressed(GameObject obj)
     {
-        TowerBuildManager playerTowerBuildManager = other.transform.GetComponent<TowerBuildManager>();
-        rend.material.color = selectedColor;
-        HandlePlayerTirggerEnter(other, true, gameObject, buildTurret);
-
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        rend.material.color = startingColor;
-        HandlePlayerTirggerEnter(other, false, null, null);
-
-    }
-
-    private void HandlePlayerTirggerEnter(Collider collider, bool canBuild, GameObject buildPoint, Turret turret)
-    {
-        if (collider.CompareTag(playerTag))
+        if (gameObject == obj)
         {
-            TowerBuildManager playerTowerBuildManager = collider.transform.GetComponent<TowerBuildManager>();
-            
-            playerTowerBuildManager.SetBuildPermission(canBuild);
-            playerTowerBuildManager.SetBuildPoint(buildPoint);
-            playerTowerBuildManager.SetTurret(turret);
-
+            if (tower == null)
+            {
+                BuildTower();
+            }
+            else
+            {
+                Debug.Log("Edit");
+            }
         }
     }
+
+    // Builds tower on build point
+    private void BuildTower()
+    {
+        GameObject tower = TowerManager.instance.GetTowerToBuild();
+        Instantiate(tower, transform.position - new Vector3(0, 0.5f, 0), transform.rotation);   // weird offset here - not okay
+        // Makes rendered not visible
+        rend.enabled = false;
+
+    }
+
+    // Player entered/selected build point
+    public void EnterBuildPoint()
+    {
+        rend.material.color = selectedColor;
+    }
+
+    // Player exited/deselected build point
+    public void ExitBuildPoint()
+    {
+        rend.material.color = startColor;
+    }
+
+    // Returns radius of build point
+    public float GetRadius()
+    {
+        return radius;
+    }
+
 }

@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1964571384763600340}
   m_Layer: 0
   m_Name: BuildPoint
-  m_TagString: Untagged
+  m_TagString: BuildPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedColorAlpha: 0.4
   playerTag: Player
-  buildTurret: {fileID: 4185658405433073512, guid: fc347ee39c53b19499c6d4342cbef3a2, type: 3}
 --- !u!136 &8339710393018833590
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -153,7 +152,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.62
+  m_Radius: 0.5
   m_Height: 2.69
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
