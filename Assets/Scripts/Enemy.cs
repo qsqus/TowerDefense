@@ -11,16 +11,24 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private int pathElementIdx = 0;
 
+    private Animator animator;
+    public bool IsDead { get; private set; } = false;
+
     private void Start()
     {
         SetTarget();
         // Sets initial rotation
         transform.rotation = Quaternion.LookRotation(target.position - transform.position);
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        Move();
+        if(!IsDead)
+        {
+            Move();
+        }
     }
 
     // Moves enemy
@@ -64,7 +72,9 @@ public class Enemy : MonoBehaviour
         // Destroys enemy when runs out of health
         if(health <= 0)
         {
-            Destroy(gameObject);
+            IsDead = true;
+            animator.SetBool("isDead", true);
+            Destroy(gameObject, 2f);
         }
     }
 
@@ -75,4 +85,5 @@ public class Enemy : MonoBehaviour
             Debug.Log("Enemy collided with player");
         }
     }
+
 }

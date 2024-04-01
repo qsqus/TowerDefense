@@ -46,7 +46,7 @@ public class BuildPoint : MonoBehaviour
     private void BuildTower()
     {
         GameObject tower = TowerManager.instance.GetTowerToBuild();
-        Instantiate(tower, transform.position - new Vector3(0, 0.5f, 0), transform.rotation);   // weird offset here - not okay
+        Instantiate(tower, transform.position - new Vector3(0, 1f, 0), transform.rotation);   // weird offset here - not okay
         // Makes rendered not visible
         rend.enabled = false;
 

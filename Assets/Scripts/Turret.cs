@@ -39,8 +39,13 @@ public class Turret : MonoBehaviour
     // Updates/sets nearest enemy in range as target every 0.2 seconds
     private void UpdateTarget()
     {
+        if (target!=null && target.GetComponent<Enemy>().IsDead)
+        {
+            target = null;
+        }
+
         // Does not change target unless has to
-        if(target != null && range >= Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.transform.position.x, target.transform.position.z)))
+        if (target != null && range >= Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.transform.position.x, target.transform.position.z)))
         {
             return;
         }
@@ -51,6 +56,11 @@ public class Turret : MonoBehaviour
 
         foreach(GameObject enemy in enemies)
         {
+            if (enemy.GetComponent<Enemy>().IsDead)
+            {
+                continue;
+            }
+
             float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(enemy.transform.position.x, enemy.transform.position.z));
 
             if(distance < shortestDistance)
