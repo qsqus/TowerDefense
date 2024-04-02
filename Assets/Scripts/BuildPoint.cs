@@ -38,6 +38,7 @@ public class BuildPoint : MonoBehaviour
             else
             {
                 Debug.Log("Edit");
+                Destroy(tower);
             }
         }
     }
@@ -45,8 +46,8 @@ public class BuildPoint : MonoBehaviour
     // Builds tower on build point
     private void BuildTower()
     {
-        GameObject tower = TowerManager.instance.GetTowerToBuild();
-        Instantiate(tower, transform.position - new Vector3(0, 1f, 0), transform.rotation);   // weird offset here - not okay
+        GameObject selectedTower = TowerManager.instance.GetTowerToBuild();
+        tower = Instantiate(selectedTower, transform.position - new Vector3(0, 1f, 0), transform.rotation);   // weird offset here - not okay
         // Makes rendered not visible
         rend.enabled = false;
 
