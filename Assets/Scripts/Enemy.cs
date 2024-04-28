@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
         // Destroys enemy when there is no pathElements left
         if(target == null)
         {
+            WaveSpawner.EnemiesAlive -= 1;
             Destroy(gameObject);
             return;
         }
@@ -70,12 +71,20 @@ public class Enemy : MonoBehaviour
         health -= amount;
 
         // Destroys enemy when runs out of health
-        if(health <= 0)
+        if(health <= 0 && !IsDead)
         {
-            IsDead = true;
-            animator.SetBool("isDead", true);
-            Destroy(gameObject, 2f);
+            Die();
         }
+    }
+
+    // Kills enemy
+    private void Die()
+    {
+        IsDead = true;
+        animator.SetBool("isDead", true);
+        Destroy(gameObject, 2f);
+
+        WaveSpawner.EnemiesAlive -= 1;
     }
 
     private void OnTriggerEnter(Collider other)
