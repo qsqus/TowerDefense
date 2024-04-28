@@ -59,7 +59,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.95, y: -0.01, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.3846154}
+  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5864299128037249515}
@@ -93,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f143d6be907a2604ab712884152defa4, type: 2}
+  - {fileID: 2100000, guid: eda43fdf7117fa14caf258786a0367ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -176,7 +176,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 592af1a53252f13448bb097c0308c220, type: 2}
+  - {fileID: 2100000, guid: eda43fdf7117fa14caf258786a0367ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 6301023377586216147}
   - component: {fileID: 4185658405433073512}
   m_Layer: 0
-  m_Name: Turret
+  m_Name: BallistaTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4294670240491159096}
@@ -286,6 +286,10 @@ MonoBehaviour:
   damage: 25
   projectileSpeed: 35
   projectileImpactEffet: {fileID: 1089262470002020294, guid: e2c4ad2277fff2b49a29e9f28faed79b, type: 3}
+  renderers:
+  - {fileID: 3119290548412256789}
+  - {fileID: 2736444157204618104}
+  - {fileID: 8104307147359026656}
 --- !u!1 &9060443250441043906
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +353,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a336e63093381e4fa2489e53601601d, type: 2}
+  - {fileID: 2100000, guid: d7a5259b2f787d842b69b9d21cc4f332, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

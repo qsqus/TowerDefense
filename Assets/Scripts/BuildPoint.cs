@@ -16,6 +16,11 @@ public class BuildPoint : MonoBehaviour
     private GameObject tower;
     private PlayerBuild playerBuild;
 
+    private Renderer[] towerRenderers;
+    private Color[] towerSelectedColors;
+    private Color[] towerStartColors;
+
+
     void Start()
     {
         playerBuild = GameObject.FindGameObjectWithTag(playerTag).GetComponent<PlayerBuild>();
@@ -48,7 +53,21 @@ public class BuildPoint : MonoBehaviour
     {
         GameObject selectedTower = TowerManager.instance.GetTowerToBuild();
         tower = Instantiate(selectedTower, transform.position - new Vector3(0, 1f, 0), transform.rotation);   // weird offset here - not okay
-        // Makes rendered not visible
+        
+        towerRenderers = tower.GetComponent<Tower>().GetRenderers();
+        towerStartColors = new Color[towerRenderers.Length];
+        towerSelectedColors = new Color[towerRenderers.Length];
+        
+        for (int i = 0; i < towerRenderers.Length; i++)
+        {
+            towerStartColors[i] = towerRenderers[i].material.color;
+            towerSelectedColors[i] = towerStartColors[i];
+            towerSelectedColors[i].a = selectedColorAlpha;
+        }
+
+        EnterBuildPoint();
+
+        // Makes renderer not visible
         rend.enabled = false;
 
     }
@@ -56,13 +75,35 @@ public class BuildPoint : MonoBehaviour
     // Player entered/selected build point
     public void EnterBuildPoint()
     {
+        if(tower != null)
+        {
+            for (int i = 0; i < towerRenderers.Length; i++)
+            {
+                towerRenderers[i].material.color = towerSelectedColors[i];
+            }
+
+            return;
+        }
+
         rend.material.color = selectedColor;
+
     }
 
     // Player exited/deselected build point
     public void ExitBuildPoint()
     {
+        if (tower != null)
+        {
+            for (int i = 0; i < towerRenderers.Length; i++)
+            {
+                towerRenderers[i].material.color = towerStartColors[i];
+            }
+
+            return;
+        }
+
         rend.material.color = startColor;
+
     }
 
     // Returns radius of build point

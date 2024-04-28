@@ -1,45 +1,33 @@
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Tower : MonoBehaviour
 {
+    [SerializeField] private Renderer[] renderers;
     [SerializeField] private string enemyTag = "Enemy";
     [SerializeField] private float range = 10f;
-    [SerializeField] private Transform rotationPoint;
-    [SerializeField] private float rotationSpeed = 7f;
+    [SerializeField] protected Transform rotationPoint;
+    [SerializeField] protected float rotationSpeed = 7f;
     [SerializeField] private float fireRate = 1f;    // 1 projectile gets fired every 1/fireRate seconds
-    [SerializeField] private GameObject projectile;
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private float damage = 5f;
-    [SerializeField] private float projectileSpeed = 30f;
-    [SerializeField] private GameObject projectileImpactEffet;
-    
-    private Transform target;
-    private float fireCountdown = 0f;
+    [SerializeField] protected GameObject projectile;
+    [SerializeField] protected Transform firePoint;
+    [SerializeField] protected float damage = 5f;
+    [SerializeField] protected float projectileSpeed = 30f;
+    [SerializeField] protected GameObject projectileImpactEffet;
+
+    protected Transform target;
+    protected float fireCountdown = 0f;
+
 
     void Start()
     {
         // Calls Update Target every 0.2 seconds
         InvokeRepeating("UpdateTarget", 0f, 0.2f);
     }
-
-    void Update()
-    {
-        // If no target do nothing
-        if(target == null)
-        {
-            return;
-        }
-
-        SetRotation();
-
-        HandleShooting();
-
-    }
-
+    
     // Updates/sets nearest enemy in range as target every 0.2 seconds
     private void UpdateTarget()
     {
-        if (target!=null && target.GetComponent<Enemy>().IsDead)
+        if (target != null && target.GetComponent<Enemy>().IsDead)
         {
             target = null;
         }
@@ -54,7 +42,7 @@ public class Turret : MonoBehaviour
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
-        foreach(GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             if (enemy.GetComponent<Enemy>().IsDead)
             {
@@ -63,14 +51,14 @@ public class Turret : MonoBehaviour
 
             float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(enemy.transform.position.x, enemy.transform.position.z));
 
-            if(distance < shortestDistance)
+            if (distance < shortestDistance)
             {
                 shortestDistance = distance;
                 nearestEnemy = enemy;
             }
         }
 
-        if(nearestEnemy!=null && shortestDistance <= range)
+        if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
         }
@@ -80,25 +68,43 @@ public class Turret : MonoBehaviour
         }
     }
 
-    // Draws a gizmo sphere visual when turret is selected
-    private void OnDrawGizmosSelected()
+    // Draws a gizmo sphere visual
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    // Sets rotation to target - locks on the target
-    private void SetRotation()
+    // Returns renderers
+    public Renderer[] GetRenderers()
     {
-        Vector3 direction = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(rotationPoint.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
-        rotationPoint.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        return renderers;
     }
 
+    void Update()
+    {
+        // If no target do nothing
+        if (target == null)
+        {
+            return;
+        }
+
+        SetRotation();
+
+        HandleShooting();
+
+    }
     // Handles shooting
     private void HandleShooting()
     {
+        // Prevents shooting before tower is looking in enemy direction
+        /*
+        if (Mathf.Abs((Quaternion.LookRotation(target.position - transform.position).eulerAngles - rotationPoint.transform.eulerAngles).x) > 2)
+        {
+            Debug.Log("TOO EARLY");
+        }
+        */
+
         if (fireCountdown <= 0f)
         {
             Shoot();
@@ -109,17 +115,13 @@ public class Turret : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
-    // Shoots target by instantiating projectile
-    private void Shoot()
+    protected virtual void SetRotation()
     {
-        GameObject projectileGO = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        Projectile firedProjectile = projectileGO.GetComponent<Projectile>();
 
-        if(firedProjectile != null)
-        {
-            firedProjectile.ConstructProjectile(target, damage, projectileSpeed, projectileImpactEffet);
-        }
     }
 
+    protected virtual void Shoot()
+    {
 
+    }
 }

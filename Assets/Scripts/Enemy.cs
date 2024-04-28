@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float health = 100f;
     [SerializeField] private int damage = 1;
     [SerializeField] private string playerTag = "Player";
+    [SerializeField] private HealthBar healthBar;
 
     private Transform target;
     private int pathElementIdx = 0;
@@ -16,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        healthBar.SetMaxValue(health);
+
         SetTarget();
         // Sets initial rotation
         transform.rotation = Quaternion.LookRotation(target.position - transform.position);
@@ -69,6 +72,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
+        healthBar.SetValue(health);
 
         // Destroys enemy when runs out of health
         if(health <= 0 && !IsDead)

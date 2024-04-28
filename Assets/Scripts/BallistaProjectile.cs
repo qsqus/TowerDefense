@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class BallistaProjectile : MonoBehaviour
 {
     private float damage;
     private float speed;
     private GameObject impactEffet;
     private Transform target;
+
 
     void Update()
     {
@@ -55,7 +56,7 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Sets target
+    // Projectile constructor
     public void ConstructProjectile(Transform target, float damage, float speed, GameObject impactEffet)
     {
         this.target = target;
