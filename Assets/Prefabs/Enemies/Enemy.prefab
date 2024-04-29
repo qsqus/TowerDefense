@@ -1009,6 +1009,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 1166662426187007597, guid: 4665d6af42c74f543992576afe54504d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1965819216192755739, guid: 4665d6af42c74f543992576afe54504d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1016,6 +1020,10 @@ PrefabInstance:
     - target: {fileID: 1965819216192755739, guid: 4665d6af42c74f543992576afe54504d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167045634089713869, guid: 4665d6af42c74f543992576afe54504d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2634551337644195540, guid: 4665d6af42c74f543992576afe54504d, type: 3}
       propertyPath: m_PresetInfoIsWorld

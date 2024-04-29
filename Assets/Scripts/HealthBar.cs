@@ -30,7 +30,12 @@ public class HealthBar : MonoBehaviour
         slider.value = amount;
 
         fill.color = gradient.Evaluate(slider.normalizedValue);
+
+        if(amount <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+
     }
-    
   
 }

@@ -1,17 +1,14 @@
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.XR.WSA;
-using static UnityEngine.GraphicsBuffer;
 
 public class BuildPoint : MonoBehaviour
 {
     [SerializeField] private float selectedColorAlpha = 0.5f;
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private float radius = 0.5f;
+    [SerializeField] private Renderer[] renderers;
 
-    private Renderer rend;
-    private Color selectedColor;
-    private Color startColor;
+    private Color[] selectedColors;
+    private Color[] startColors;
 
     private GameObject tower;
     private PlayerBuild playerBuild;
@@ -26,38 +23,61 @@ public class BuildPoint : MonoBehaviour
         playerBuild = GameObject.FindGameObjectWithTag(playerTag).GetComponent<PlayerBuild>();
         playerBuild.OnInteractPressed += PlayerBuild_OnInteractPressed;
 
-        rend = GetComponent<Renderer>();
-        startColor = rend.material.color;
-        selectedColor = startColor;
-        selectedColor.a = selectedColorAlpha;
+        TowerManager.instance.OnTowerToBuildSelected += TowerManager_OnTowerToBuildSelected;
+
+        selectedColors = new Color[renderers.Length];
+        startColors = new Color[renderers.Length];
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            startColors[i] = renderers[i].material.color;
+            selectedColors[i] = startColors[i];
+            selectedColors[i].a = selectedColorAlpha;
+        }
+    
     }
 
-    private void PlayerBuild_OnInteractPressed(GameObject obj)
+    private void TowerManager_OnTowerToBuildSelected(GameObject towerToBuild, GameObject buildPoint)
     {
-        if (gameObject == obj)
+        if(gameObject == buildPoint)
         {
-            if (tower == null)
+            BuildTower(towerToBuild);
+        }
+    }
+
+    private void PlayerBuild_OnInteractPressed(GameObject buildPoint)
+    {
+        if (gameObject == buildPoint)
+        {
+            if (!HasTower())
             {
-                BuildTower();
+                Debug.Log("Show tower selector menu");
+                TowerManager.instance.ShowTowerBuildMenu(buildPoint);
+                //BuildTower();
             }
             else
             {
                 Debug.Log("Edit");
                 Destroy(tower);
+
+                // Makes tree stump visible
+                renderers[1].enabled = true;
             }
         }
     }
 
     // Builds tower on build point
-    private void BuildTower()
+    private void BuildTower(GameObject towerToBuild)
     {
-        GameObject selectedTower = TowerManager.instance.GetTowerToBuild();
-        tower = Instantiate(selectedTower, transform.position - new Vector3(0, 1f, 0), transform.rotation);   // weird offset here - not okay
+        tower = Instantiate(towerToBuild, transform.position - new Vector3(0, 1f, 0), transform.rotation);   // weird offset here - not okay
         
         towerRenderers = tower.GetComponent<Tower>().GetRenderers();
         towerStartColors = new Color[towerRenderers.Length];
         towerSelectedColors = new Color[towerRenderers.Length];
-        
+
+        // Makes tree stump not visible
+        renderers[1].enabled = false;
+
         for (int i = 0; i < towerRenderers.Length; i++)
         {
             towerStartColors[i] = towerRenderers[i].material.color;
@@ -67,15 +87,15 @@ public class BuildPoint : MonoBehaviour
 
         EnterBuildPoint();
 
-        // Makes renderer not visible
-        rend.enabled = false;
+        // Makes tree crown renderer not visible
+        renderers[0].enabled = false;
 
     }
 
     // Player entered/selected build point
     public void EnterBuildPoint()
     {
-        if(tower != null)
+        if(HasTower())
         {
             for (int i = 0; i < towerRenderers.Length; i++)
             {
@@ -85,14 +105,19 @@ public class BuildPoint : MonoBehaviour
             return;
         }
 
-        rend.material.color = selectedColor;
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material.color = selectedColors[i];
+        }
 
     }
 
     // Player exited/deselected build point
     public void ExitBuildPoint()
     {
-        if (tower != null)
+        TowerManager.instance.HideTowerBuildMenu();
+
+        if (HasTower())
         {
             for (int i = 0; i < towerRenderers.Length; i++)
             {
@@ -102,7 +127,10 @@ public class BuildPoint : MonoBehaviour
             return;
         }
 
-        rend.material.color = startColor;
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material.color = startColors[i];
+        }
 
     }
 
@@ -110,6 +138,11 @@ public class BuildPoint : MonoBehaviour
     public float GetRadius()
     {
         return radius;
+    }
+
+    public bool HasTower()
+    {
+        return tower != null;
     }
 
 }

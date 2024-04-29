@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    [SerializeField] GameObject towerPrefab;
     public static TowerManager instance { get; private set; }
 
-    private GameObject towerToBuild;
+    public event Action<GameObject, GameObject> OnTowerToBuildSelected;
+
+    private GameObject selectedBuildPoint;
+
     private void Awake()
     {
         if(instance != null)
@@ -22,13 +23,33 @@ public class TowerManager : MonoBehaviour
 
     private void Start()
     {
-        towerToBuild = towerPrefab;
+        HideTowerBuildMenu();
     }
 
-    public GameObject GetTowerToBuild()
+    // Selects tower to build
+    public void SelectTowerToBuild(GameObject tower)
     {
-        return towerToBuild;
+        if(!selectedBuildPoint.GetComponent<BuildPoint>().HasTower())
+        {
+            OnTowerToBuildSelected?.Invoke(tower, selectedBuildPoint);
+        }
+
     }
 
+    // Hides tower build menu
+    public void HideTowerBuildMenu()
+    {
+        gameObject.SetActive(false);
+        selectedBuildPoint = null;
+
+    }
+
+    // Shows tower build menu, buildPoint - selected build point
+    public void ShowTowerBuildMenu(GameObject buildPoint)
+    {
+        gameObject.SetActive(true);
+        selectedBuildPoint = buildPoint;
+
+    }
 
 }
