@@ -1,25 +1,40 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildPoint : MonoBehaviour
 {
-    [SerializeField] private Color selectedColor;
+    [Header("Build point stats")]
+    [SerializeField] private Material selectedMaterial;
     [SerializeField] private float radius = 0.5f;
-    [SerializeField] private string playerTag = "Player";
-    [SerializeField] private Renderer[] renderers;
 
-    private Color[] startColors;
+    [Header("Tags")]
+    [SerializeField] private string playerTag = "Player";
+
+    [Header("References")]
+    [SerializeField] private Renderer buildPointRenderer;
+    [SerializeField] private MeshFilter buildPointMeshFilter;
+    [SerializeField] private Transform modelTransform;
+
+    private Material[] selectedMaterials;
 
     private GameObject tower;
     private PlayerBuild playerBuild;
+    private Material[] startMaterials;
 
     private Renderer[] towerRenderers;
-    private Color[] towerStartColors;
+    private Material[] towerStartMaterials;
 
     private int instanceID;
 
 
     void Start()
     {
+        modelTransform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+        modelTransform.localScale *= Random.Range(0.9f, 1.1f);
+
+        buildPointMeshFilter.mesh = BuildPointVisualManager.instance.GetRandomMesh();
+        buildPointRenderer.materials = BuildPointVisualManager.instance.GetRandomMaterials();
+
         playerBuild = GameObject.FindGameObjectWithTag(playerTag).GetComponent<PlayerBuild>();
         playerBuild.OnInteractPressed += PlayerBuild_OnInteractPressed;
 
@@ -27,13 +42,8 @@ public class BuildPoint : MonoBehaviour
 
         instanceID = gameObject.GetInstanceID();
 
-        startColors = new Color[renderers.Length];
-
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            startColors[i] = renderers[i].material.color;
-        }
-    
+        startMaterials = buildPointRenderer.materials;
+        selectedMaterials = new Material[] { selectedMaterial, selectedMaterial };
     }
 
     private void TowerManager_OnTowerToBuildSelected(GameObject towerToBuild, int buildPointInstanceID)
@@ -60,7 +70,8 @@ public class BuildPoint : MonoBehaviour
                 Destroy(tower);
 
                 // Makes tree stump visible
-                renderers[1].enabled = true;
+                //renderers[1].enabled = true;
+                buildPointRenderer.enabled = true;
             }
         }
     }
@@ -68,43 +79,41 @@ public class BuildPoint : MonoBehaviour
     // Builds tower on build point
     private void BuildTower(GameObject towerToBuild)
     {
-        tower = Instantiate(towerToBuild, transform.position - new Vector3(0, 1f, 0), transform.rotation);   // weird offset here - not okay
+        tower = Instantiate(towerToBuild, transform.position, transform.rotation);
         
         towerRenderers = tower.GetComponent<Tower>().GetRenderers();
-        towerStartColors = new Color[towerRenderers.Length];
+        towerStartMaterials = new Material[towerRenderers.Length];
 
         // Makes tree stump not visible
-        renderers[1].enabled = false;
+        //renderers[1].enabled = false;
 
         for (int i = 0; i < towerRenderers.Length; i++)
         {
-            towerStartColors[i] = towerRenderers[i].material.color;
+            towerStartMaterials[i] = towerRenderers[i].material;
         }
 
         EnterBuildPoint();
 
         // Makes tree crown renderer not visible
-        renderers[0].enabled = false;
+        //renderers[0].enabled = false;
+        buildPointRenderer.enabled = false;
 
     }
 
     // Player entered/selected build point
     public void EnterBuildPoint()
     {
-        if(HasTower())
+        if (HasTower())
         {
             for (int i = 0; i < towerRenderers.Length; i++)
             {
-                towerRenderers[i].material.color = selectedColor;
+                towerRenderers[i].material = selectedMaterial;
             }
 
             return;
         }
 
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            renderers[i].material.color = selectedColor;
-        }
+        buildPointRenderer.materials = selectedMaterials;
 
     }
 
@@ -117,16 +126,13 @@ public class BuildPoint : MonoBehaviour
         {
             for (int i = 0; i < towerRenderers.Length; i++)
             {
-                towerRenderers[i].material.color = towerStartColors[i];
+                towerRenderers[i].material = towerStartMaterials[i];
             }
 
             return;
         }
 
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            renderers[i].material.color = startColors[i];
-        }
+        buildPointRenderer.materials = startMaterials;
 
     }
 

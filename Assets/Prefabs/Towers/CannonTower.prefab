@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 4050336678763509503}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 5472261097662347830}
   serializedVersion: 2
   m_LocalRotation: {x: -0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 8918941855035203082}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -276,19 +276,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df1b6c80ffeeef49aaeb415046e2a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 7
+  damage: 40
+  fireRate: 1
+  projectileSpeed: 30
+  rotationSpeed: 10
+  enemyTag: Enemy
   renderers:
   - {fileID: 3119290548412256789}
   - {fileID: 2736444157204618104}
   - {fileID: 8104307147359026656}
-  enemyTag: Enemy
-  range: 7
   rotationPoint: {fileID: 1135319681321434382}
-  rotationSpeed: 10
-  fireRate: 1
-  projectile: {fileID: 5060073923792895785, guid: b965f57d44e44db4a9a9dc5c2115b3f3, type: 3}
   firePoint: {fileID: 5864299128037249515}
-  damage: 40
-  projectileSpeed: 30
+  projectile: {fileID: 5060073923792895785, guid: b965f57d44e44db4a9a9dc5c2115b3f3, type: 3}
   projectileImpactEffet: {fileID: 1089262470002020294, guid: e2c4ad2277fff2b49a29e9f28faed79b, type: 3}
   projectileExplosionRadius: 3
 --- !u!1 &9060443250441043906

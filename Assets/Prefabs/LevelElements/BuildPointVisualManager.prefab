@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5136168360524945342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7971539417168434789}
+  - component: {fileID: 1498764893569861370}
+  m_Layer: 0
+  m_Name: BuildPointVisualManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7971539417168434789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136168360524945342}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1498764893569861370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136168360524945342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0b5e2a2c75ce3418f6c48cf1aa2300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildPointMeshes:
+  - {fileID: 8686322683334853813, guid: 8ae22425e40800c44b21d84520128c0e, type: 3}
+  - {fileID: -8862029377377273872, guid: 22b3aaa1f9f302b499617039b97cdeca, type: 3}
+  - {fileID: 2033622204986509768, guid: 0dd5b5a2d176ae448a98b86a2854800d, type: 3}
+  - {fileID: -1703776738577441313, guid: 42c4db3969f16354e9ed3b0fe17aa07a, type: 3}
+  - {fileID: 896221231015809553, guid: a11d21a1ad28ec6468990be28dbeec8d, type: 3}
+  - {fileID: 1584745126474419276, guid: d6b7f02ef9877394c928db900104272d, type: 3}
+  - {fileID: 1721751608186037913, guid: 43950ca970afc844e950fadd8159584d, type: 3}
+  - {fileID: -798613621640728851, guid: 6e6afbec410dd5e4f87a5e4a7954eb23, type: 3}
+  - {fileID: 6371176417835483425, guid: fcca08ed22760ea4fb7f8142b1651f5a, type: 3}
+  - {fileID: -7518990948026303695, guid: 60ddad4849e25e5468bdea4298b6a3dc, type: 3}
+  - {fileID: 6809829068606448028, guid: 6e83399a0c9d3df4abec9478fc9aa7a4, type: 3}
+  - {fileID: -2894791406429237724, guid: 3e9b20303c93be24d9daac41f6c210a6, type: 3}
+  - {fileID: 7116689091534007176, guid: 2953d6be550e8bc49aaed5792609aaa8, type: 3}
+  - {fileID: 7557174462171858654, guid: 19f2bd02d4bb7804fa83f6820398043c, type: 3}
+  - {fileID: 3324290279596203714, guid: 9dd3336c75f180849b27aa8c52b19c54, type: 3}
+  - {fileID: -6548614976667701900, guid: e1f504eb8c110cb4da2c51844aba8878, type: 3}
+  leavesMaterials:
+  - {fileID: 2100000, guid: c31e2a5a814adb842b0082ef76a7bb21, type: 2}
+  - {fileID: 2100000, guid: 6fff82dca77e24e49a4e74981ceb60b6, type: 2}
+  - {fileID: 2100000, guid: 1817eb55508088647ae2617f9ae17c10, type: 2}
+  - {fileID: 2100000, guid: 20a173c425de2614c9bcaeccb9f53027, type: 2}
+  - {fileID: 2100000, guid: 2dae50c060ab24a44969470ae8bc3bf1, type: 2}
+  - {fileID: 2100000, guid: 002763284cb779c43ac76bdc0a730c37, type: 2}
+  - {fileID: 2100000, guid: db9bfab9f25dc9547a93fe8e1a9fccc9, type: 2}
+  barkMaterials:
+  - {fileID: 2100000, guid: f06405dece990c6428217cff360c00db, type: 2}
+  - {fileID: 2100000, guid: d52890c04bcea904d921e438b5a22f81, type: 2}
+  - {fileID: 2100000, guid: b1a701cb262abcc45821260e4b63f73c, type: 2}
