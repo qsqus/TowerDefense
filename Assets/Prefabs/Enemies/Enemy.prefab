@@ -341,6 +341,7 @@ MonoBehaviour:
   minCoinDropHeight: 10
   minDropDistance: -3
   maxDropDistance: 4
+  dropRadius: 3.5
   coin: {fileID: 7575831786288409675, guid: 050a4cba8d4368b40b217d7f1806d63c, type: 3}
   diamond: {fileID: 8982039313061057306, guid: cfda08478a3246548908f4231176b117, type: 3}
   collectiblesTag: Collectibles

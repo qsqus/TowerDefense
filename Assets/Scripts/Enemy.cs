@@ -104,8 +104,8 @@ public class Enemy : MonoBehaviour
 
         int coinsAmount = Random.Range(minCoinDrop, maxCoinDrop + 1);
         int diamondsAmount = Random.Range(minDiamondDrop, maxDiamondDrop + 1);
-        dropCollectibles.DropAmountOfCollectibles(dropCollectibles.coin, coinsAmount);
-        dropCollectibles.DropAmountOfCollectibles(dropCollectibles.diamond, diamondsAmount);
+        dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsAmount);
+        dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.diamond, diamondsAmount);
 
         WaveSpawner.EnemiesAlive -= 1;
 
@@ -117,8 +117,18 @@ public class Enemy : MonoBehaviour
     {
         if(other.CompareTag(playerTag) && !IsDead)
         {
-            Debug.Log("Enemy collided with player");
-            other.GetComponent<PlayerMovement>().CollideWithEnemy(transform.rotation);
+            Vector3 direction = other.transform.position - transform.position;
+            direction.y = 0;
+            direction.Normalize();
+
+            if(Vector3.Dot(direction, transform.right) < 0)
+            {
+                other.GetComponent<PlayerMovement>().CollideWithEnemy(-transform.right);
+            }
+            else
+            {
+                other.GetComponent<PlayerMovement>().CollideWithEnemy(transform.right);
+            }
         }
     }
 

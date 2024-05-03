@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     
-    public void CollideWithEnemy(Quaternion enemyRotation)
+    public void CollideWithEnemy(Vector3 pushbackDirection)
     {
         if(isInvincible)
         {
@@ -75,12 +75,12 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(ImmobilizePlayer(immobileTime));
 
         int coinsAmount = LevelManager.instance.GetCoinsAmount();
-        int coinsToDrop = (int)(coinsAmount * Random.Range(0.4f, 0.6f));    // WRONG AMOUNTS OF COINS ARE DROPPING FIX HERE
+        int coinsToDrop = (int)(coinsAmount * Random.Range(0.4f, 0.6f));
 
-        LevelManager.instance.ChangeCoinsAmount(-coinsToDrop);
-        dropCollectibles.DropAmountOfCollectibles(dropCollectibles.coin, coinsToDrop);
+        LevelManager.instance.ChangeCoinsByAmount(-coinsToDrop);
+        dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsToDrop);
 
-        rb.AddForce(new Vector3(3, 0, 1).normalized * pushbackForce, ForceMode.Impulse);
+        rb.AddForce(pushbackDirection.normalized * pushbackForce, ForceMode.Impulse);
     }
 
     private IEnumerator ImmobilizePlayer(float duration)

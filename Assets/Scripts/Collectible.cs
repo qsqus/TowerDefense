@@ -46,13 +46,13 @@ public class Collectible : MonoBehaviour
                 {
                     // Coin collected effect
                     Debug.Log("Coin collected");
-                    LevelManager.instance.ChangeCoinsAmount(worth);
+                    LevelManager.instance.ChangeCoinsByAmount(1);
                 }
                 else if(gameObject.CompareTag(diamondTag))
                 {
                     // Diamond collected effect
                     Debug.Log("Diamond collected");
-                    LevelManager.instance.ChangeDiamondsAmount(worth);
+                    LevelManager.instance.ChangeDiamondsByAmount(1);
 
                 }
 
@@ -84,5 +84,10 @@ public class Collectible : MonoBehaviour
     public void SetCanBeCollected(bool canBeCollected)
     {
         this.canBeCollected = canBeCollected;
+    }
+
+    public int GetWorth()
+    {
+        return worth;
     }
 }

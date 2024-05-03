@@ -259,8 +259,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 10
   immobileTime: 1.5
-  pushbackForce: 6.5
-  enemyTag: Enemy
+  pushbackForce: 6
 --- !u!114 &2947334653580648061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,8 +290,7 @@ MonoBehaviour:
   collectibleMoveDuration: 0.4
   maxCoinDropHeight: 4
   minCoinDropHeight: 8
-  minDropDistance: -5
-  maxDropDistance: 6
+  dropRadius: 5
   coin: {fileID: 7575831786288409675, guid: 050a4cba8d4368b40b217d7f1806d63c, type: 3}
   diamond: {fileID: 8982039313061057306, guid: cfda08478a3246548908f4231176b117, type: 3}
   collectiblesTag: Collectibles

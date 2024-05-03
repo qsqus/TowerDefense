@@ -7,12 +7,7 @@ public class DropCollectibles : MonoBehaviour
     [SerializeField] private float collectibleMoveDuration = 0.5f;
     [SerializeField] private float maxCoinDropHeight = 5f;
     [SerializeField] private float minCoinDropHeight = 10f;
-    [SerializeField] private float minDropDistance = -3f;
-    [SerializeField] private float maxDropDistance = 4f;
-
-    [Header("Collectible types")]
-    public GameObject coin;
-    public GameObject diamond;
+    [SerializeField] private float dropRadius = 3f;
 
     [Header("Tags")]
     [SerializeField] private string collectiblesTag = "Collectibles";
@@ -23,7 +18,7 @@ public class DropCollectibles : MonoBehaviour
     private void Start()
     {
         collectibles = GameObject.FindGameObjectWithTag(collectiblesTag).transform;
-
+        
     }
 
     // Drops given amount of a collectible type
@@ -44,7 +39,13 @@ public class DropCollectibles : MonoBehaviour
         Vector3 controlPointOffset = new Vector3(0, Random.Range(minCoinDropHeight, maxCoinDropHeight), 0);
         
         Vector3 startPosition = collectible.transform.position;
-        Vector3 endPosition = startPosition + new Vector3(Random.Range(minDropDistance, maxDropDistance), 0, Random.Range(minDropDistance, maxDropDistance)); // Random end position
+
+        // Calculate the x and y coordinates using polar coordinates
+        float angle = Random.Range(0f, Mathf.PI * 2);
+        float x = Random.Range(-dropRadius, dropRadius) * Mathf.Cos(angle);
+        float z = Random.Range(-dropRadius, dropRadius) * Mathf.Sin(angle);
+
+        Vector3 endPosition = startPosition + new Vector3(x, 0, z); // Random end position
         Vector3 controlPoint = startPosition + controlPointOffset; // Calculate the control point
 
         float startTime = Time.time;
