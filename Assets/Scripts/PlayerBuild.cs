@@ -3,16 +3,17 @@ using UnityEngine;
 
 public class PlayerBuild : MonoBehaviour
 {
-    [SerializeField] private string buildPointTag = "BuildPoint";
     [SerializeField] private float playerRadius;
     [SerializeField] private float rangeOffset = 0.1f;
+    [SerializeField] private string buildPointTag = "BuildPoint";
 
     private GameObject selectedBuildPoint;
     private bool canEdit = false;
     private GameObject[] buildPoints;
     private float range;
+    private bool canBuild = true;
 
-    public event Action<GameObject> OnInteractPressed;
+    public event Action<int> OnInteractPressed;
 
     void Start()
     {
@@ -71,11 +72,16 @@ public class PlayerBuild : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (canEdit)
+            if (canEdit && canBuild)
             {
-                OnInteractPressed?.Invoke(selectedBuildPoint);
+                OnInteractPressed?.Invoke(selectedBuildPoint.GetInstanceID());
             }
         }
+    }
+
+    public void SetCanBuild(bool canBuild)
+    {
+        this.canBuild = canBuild;
     }
 
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CannonTower : Tower
 {
+    [Header("Projectile stats")]
     [SerializeField] private float projectileExplosionRadius = 5f;
 
 

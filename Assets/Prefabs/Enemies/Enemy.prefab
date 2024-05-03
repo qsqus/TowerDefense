@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 7409900932700162706}
   - component: {fileID: 8244107772609758677}
   - component: {fileID: 7408581148060075732}
+  - component: {fileID: 4256636567926016406}
   - component: {fileID: 8735447252500776977}
   - component: {fileID: 3600262151082502918}
   - component: {fileID: 7731899595074811891}
@@ -317,8 +318,32 @@ MonoBehaviour:
   rotationSpeed: 7
   health: 100
   damage: 1
+  minCoinDrop: 3
+  maxCoinDrop: 6
+  minDiamondDrop: 1
+  maxDiamondDrop: 1
   playerTag: Player
   healthBar: {fileID: 7652069280170840398}
+--- !u!114 &4256636567926016406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4209530578042695879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc1475041800d134fb038ca866568f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibleMoveDuration: 0.5
+  maxCoinDropHeight: 5
+  minCoinDropHeight: 10
+  minDropDistance: -3
+  maxDropDistance: 4
+  coin: {fileID: 7575831786288409675, guid: 050a4cba8d4368b40b217d7f1806d63c, type: 3}
+  diamond: {fileID: 8982039313061057306, guid: cfda08478a3246548908f4231176b117, type: 3}
+  collectiblesTag: Collectibles
 --- !u!95 &8735447252500776977
 Animator:
   serializedVersion: 5

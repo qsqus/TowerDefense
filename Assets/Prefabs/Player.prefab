@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 7728114388620943353}
   - component: {fileID: 5033301496556117889}
   - component: {fileID: 2947334653580648061}
+  - component: {fileID: 3472578923199343075}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -257,6 +258,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rotationSpeed: 10
+  immobileTime: 1.5
+  pushbackForce: 6.5
+  enemyTag: Enemy
 --- !u!114 &2947334653580648061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,5 +273,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ef28a494742864abf9b249fac65a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildPointTag: BuildPoint
   playerRadius: 0.5
+  rangeOffset: 0.1
+  buildPointTag: BuildPoint
+--- !u!114 &3472578923199343075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120459497843846150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc1475041800d134fb038ca866568f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibleMoveDuration: 0.4
+  maxCoinDropHeight: 4
+  minCoinDropHeight: 8
+  minDropDistance: -5
+  maxDropDistance: 6
+  coin: {fileID: 7575831786288409675, guid: 050a4cba8d4368b40b217d7f1806d63c, type: 3}
+  diamond: {fileID: 8982039313061057306, guid: cfda08478a3246548908f4231176b117, type: 3}
+  collectiblesTag: Collectibles

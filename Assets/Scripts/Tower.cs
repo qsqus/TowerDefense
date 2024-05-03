@@ -1,17 +1,22 @@
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public abstract class Tower : MonoBehaviour
 {
-    [SerializeField] private Renderer[] renderers;
-    [SerializeField] private string enemyTag = "Enemy";
+    [Header("Tower stats")]
     [SerializeField] private float range = 10f;
-    [SerializeField] protected Transform rotationPoint;
-    [SerializeField] protected float rotationSpeed = 7f;
-    [SerializeField] private float fireRate = 1f;    // 1 projectile gets fired every 1/fireRate seconds
-    [SerializeField] protected GameObject projectile;
-    [SerializeField] protected Transform firePoint;
     [SerializeField] protected float damage = 5f;
+    [SerializeField] private float fireRate = 1f;    // 1 projectile gets fired every 1/fireRate seconds
     [SerializeField] protected float projectileSpeed = 30f;
+    [SerializeField] protected float rotationSpeed = 7f;
+
+    [Header("Tags")]
+    [SerializeField] private string enemyTag = "Enemy";
+
+    [Header("References")]
+    [SerializeField] private Renderer[] renderers;
+    [SerializeField] protected Transform rotationPoint;
+    [SerializeField] protected Transform firePoint;
+    [SerializeField] protected GameObject projectile;
     [SerializeField] protected GameObject projectileImpactEffet;
 
     protected Transform target;
@@ -115,13 +120,8 @@ public class Tower : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
-    protected virtual void SetRotation()
-    {
+    protected abstract void SetRotation();
 
-    }
+    protected abstract void Shoot();
 
-    protected virtual void Shoot()
-    {
-
-    }
 }

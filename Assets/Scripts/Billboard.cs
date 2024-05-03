@@ -3,6 +3,7 @@ using UnityEngine;
 public class Billboard : MonoBehaviour
 {
     [SerializeField] private string cameraTag = "MainCamera";
+
     private GameObject cam;
 
     private void Start()

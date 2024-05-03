@@ -3,8 +3,8 @@ using UnityEngine;
 public class BuildPoint : MonoBehaviour
 {
     [SerializeField] private float selectedColorAlpha = 0.5f;
-    [SerializeField] private string playerTag = "Player";
     [SerializeField] private float radius = 0.5f;
+    [SerializeField] private string playerTag = "Player";
     [SerializeField] private Renderer[] renderers;
 
     private Color[] selectedColors;
@@ -17,6 +17,8 @@ public class BuildPoint : MonoBehaviour
     private Color[] towerSelectedColors;
     private Color[] towerStartColors;
 
+    private int instanceID;
+
 
     void Start()
     {
@@ -24,6 +26,8 @@ public class BuildPoint : MonoBehaviour
         playerBuild.OnInteractPressed += PlayerBuild_OnInteractPressed;
 
         TowerManager.instance.OnTowerToBuildSelected += TowerManager_OnTowerToBuildSelected;
+
+        instanceID = gameObject.GetInstanceID();
 
         selectedColors = new Color[renderers.Length];
         startColors = new Color[renderers.Length];
@@ -37,22 +41,22 @@ public class BuildPoint : MonoBehaviour
     
     }
 
-    private void TowerManager_OnTowerToBuildSelected(GameObject towerToBuild, GameObject buildPoint)
+    private void TowerManager_OnTowerToBuildSelected(GameObject towerToBuild, int buildPointInstanceID)
     {
-        if(gameObject == buildPoint)
+        if(instanceID == buildPointInstanceID)
         {
             BuildTower(towerToBuild);
         }
     }
 
-    private void PlayerBuild_OnInteractPressed(GameObject buildPoint)
+    private void PlayerBuild_OnInteractPressed(int buildPointInstanceID)
     {
-        if (gameObject == buildPoint)
+        if (instanceID == buildPointInstanceID)
         {
             if (!HasTower())
             {
                 Debug.Log("Show tower selector menu");
-                TowerManager.instance.ShowTowerBuildMenu(buildPoint);
+                TowerManager.instance.ShowTowerBuildMenu(gameObject);
                 //BuildTower();
             }
             else

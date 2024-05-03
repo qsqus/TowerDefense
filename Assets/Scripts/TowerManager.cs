@@ -5,7 +5,7 @@ public class TowerManager : MonoBehaviour
 {
     public static TowerManager instance { get; private set; }
 
-    public event Action<GameObject, GameObject> OnTowerToBuildSelected;
+    public event Action<GameObject, int> OnTowerToBuildSelected;
 
     private GameObject selectedBuildPoint;
 
@@ -31,7 +31,7 @@ public class TowerManager : MonoBehaviour
     {
         if(!selectedBuildPoint.GetComponent<BuildPoint>().HasTower())
         {
-            OnTowerToBuildSelected?.Invoke(tower, selectedBuildPoint);
+            OnTowerToBuildSelected?.Invoke(tower, selectedBuildPoint.GetInstanceID());
         }
 
     }

@@ -1,18 +1,31 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy stats")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float health = 100f;
     [SerializeField] private int damage = 1;
+    
+    [Header("Collectibles")]
+    [SerializeField] private int minCoinDrop = 3;
+    [SerializeField] private int maxCoinDrop = 6;
+    [SerializeField] private int minDiamondDrop = 1;
+    [SerializeField] private int maxDiamondDrop = 1;
+
+    [Header("Tags")]
     [SerializeField] private string playerTag = "Player";
+
+    [Header("References")]
     [SerializeField] private HealthBar healthBar;
 
     private Transform target;
     private int pathElementIdx = 0;
 
     private Animator animator;
+    private DropCollectibles dropCollectibles;
     public bool IsDead { get; private set; } = false;
 
     private void Start()
@@ -24,6 +37,8 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(target.position - transform.position);
 
         animator = GetComponent<Animator>();
+        dropCollectibles = GetComponent<DropCollectibles>();
+
     }
 
     private void Update()
@@ -86,16 +101,24 @@ public class Enemy : MonoBehaviour
     {
         IsDead = true;
         animator.SetBool("isDead", true);
-        Destroy(gameObject, 2f);
+
+        int coinsAmount = Random.Range(minCoinDrop, maxCoinDrop + 1);
+        int diamondsAmount = Random.Range(minDiamondDrop, maxDiamondDrop + 1);
+        dropCollectibles.DropAmountOfCollectibles(dropCollectibles.coin, coinsAmount);
+        dropCollectibles.DropAmountOfCollectibles(dropCollectibles.diamond, diamondsAmount);
 
         WaveSpawner.EnemiesAlive -= 1;
+
+        Destroy(gameObject, 2f);
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(playerTag))
+        if(other.CompareTag(playerTag) && !IsDead)
         {
             Debug.Log("Enemy collided with player");
+            other.GetComponent<PlayerMovement>().CollideWithEnemy(transform.rotation);
         }
     }
 
