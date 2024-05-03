@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defd7e54b2fe7e04bb4c64c1fe9efb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedColorAlpha: 0.4
-  playerTag: Player
+  selectedColor: {r: 0, g: 0.47843137, b: 0.6784314, a: 0.4}
   radius: 0.5
+  playerTag: Player
   renderers:
   - {fileID: 4912868584201638361}
   - {fileID: 7407486264713630152}

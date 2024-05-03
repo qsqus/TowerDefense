@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class BuildPoint : MonoBehaviour
 {
-    [SerializeField] private float selectedColorAlpha = 0.5f;
+    [SerializeField] private Color selectedColor;
     [SerializeField] private float radius = 0.5f;
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private Renderer[] renderers;
 
-    private Color[] selectedColors;
     private Color[] startColors;
 
     private GameObject tower;
     private PlayerBuild playerBuild;
 
     private Renderer[] towerRenderers;
-    private Color[] towerSelectedColors;
     private Color[] towerStartColors;
 
     private int instanceID;
@@ -29,14 +27,11 @@ public class BuildPoint : MonoBehaviour
 
         instanceID = gameObject.GetInstanceID();
 
-        selectedColors = new Color[renderers.Length];
         startColors = new Color[renderers.Length];
 
         for (int i = 0; i < renderers.Length; i++)
         {
             startColors[i] = renderers[i].material.color;
-            selectedColors[i] = startColors[i];
-            selectedColors[i].a = selectedColorAlpha;
         }
     
     }
@@ -77,7 +72,6 @@ public class BuildPoint : MonoBehaviour
         
         towerRenderers = tower.GetComponent<Tower>().GetRenderers();
         towerStartColors = new Color[towerRenderers.Length];
-        towerSelectedColors = new Color[towerRenderers.Length];
 
         // Makes tree stump not visible
         renderers[1].enabled = false;
@@ -85,8 +79,6 @@ public class BuildPoint : MonoBehaviour
         for (int i = 0; i < towerRenderers.Length; i++)
         {
             towerStartColors[i] = towerRenderers[i].material.color;
-            towerSelectedColors[i] = towerStartColors[i];
-            towerSelectedColors[i].a = selectedColorAlpha;
         }
 
         EnterBuildPoint();
@@ -103,7 +95,7 @@ public class BuildPoint : MonoBehaviour
         {
             for (int i = 0; i < towerRenderers.Length; i++)
             {
-                towerRenderers[i].material.color = towerSelectedColors[i];
+                towerRenderers[i].material.color = selectedColor;
             }
 
             return;
@@ -111,7 +103,7 @@ public class BuildPoint : MonoBehaviour
 
         for (int i = 0; i < renderers.Length; i++)
         {
-            renderers[i].material.color = selectedColors[i];
+            renderers[i].material.color = selectedColor;
         }
 
     }
