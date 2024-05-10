@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildPoint : MonoBehaviour
@@ -33,7 +32,24 @@ public class BuildPoint : MonoBehaviour
         modelTransform.localScale *= Random.Range(0.9f, 1.1f);
 
         buildPointMeshFilter.mesh = BuildPointVisualManager.instance.GetRandomMesh();
-        buildPointRenderer.materials = BuildPointVisualManager.instance.GetRandomMaterials();
+        
+        Material[] randomMaterials = BuildPointVisualManager.instance.GetRandomMaterials();
+
+        string meshName = buildPointMeshFilter.mesh.name;
+        if(meshName.Length - 9 >= 0)
+        {
+            meshName = meshName[0..(meshName.Length - 9)];
+        }
+        
+        if (BuildPointVisualManager.instance.IsReversedMesh(meshName))
+        {
+            Material temp = randomMaterials[0];
+            randomMaterials[0] = randomMaterials[1];
+            randomMaterials[1] = temp;
+        }
+
+        buildPointRenderer.materials = randomMaterials;
+
 
         playerBuild = GameObject.FindGameObjectWithTag(playerTag).GetComponent<PlayerBuild>();
         playerBuild.OnInteractPressed += PlayerBuild_OnInteractPressed;

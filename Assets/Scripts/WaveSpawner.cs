@@ -6,11 +6,16 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] private Wave[] waves;
     [SerializeField] private float timeBetweenWaves = 5f;
 
-    public static int EnemiesAlive = 0;
+    public static int EnemiesAlive;
 
     private float countdown = 2f;
     private int waveIndex = 0;
     private int amountOfWaves;
+
+    private void Awake()
+    {
+        EnemiesAlive = 0;
+    }
 
     private void Start()
     {
@@ -20,7 +25,7 @@ public class WaveSpawner : MonoBehaviour
     void Update()
     {
         // Prevents starting new wave when enemies are still alive
-        if(EnemiesAlive > 0)
+        if (EnemiesAlive > 0)
         {
             return;
         }

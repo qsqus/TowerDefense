@@ -31,11 +31,6 @@ public class LevelManager : MonoBehaviour
         coinWorth = coin.GetComponent<Collectible>().GetWorth();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void ChangeCoinsByAmount(int amount)
     {
         coinsAmount += amount;

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildPointVisualManager : MonoBehaviour
@@ -6,6 +5,7 @@ public class BuildPointVisualManager : MonoBehaviour
     [SerializeField] private Mesh[] buildPointMeshes;
     [SerializeField] private Material[] leavesMaterials;
     [SerializeField] private Material[] barkMaterials;
+    [SerializeField] private string[] reversedMeshNames;
 
     public static BuildPointVisualManager instance { get; private set; }
 
@@ -36,4 +36,15 @@ public class BuildPointVisualManager : MonoBehaviour
         return materials;
     }
 
+    public bool IsReversedMesh(string name)
+    {
+        foreach (string rname in reversedMeshNames)
+        {
+            if(rname == name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

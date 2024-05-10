@@ -63,8 +63,16 @@ MonoBehaviour:
   - {fileID: -6548614976667701900, guid: e1f504eb8c110cb4da2c51844aba8878, type: 3}
   leavesMaterials:
   - {fileID: 2100000, guid: c31e2a5a814adb842b0082ef76a7bb21, type: 2}
+  - {fileID: 2100000, guid: c31e2a5a814adb842b0082ef76a7bb21, type: 2}
+  - {fileID: 2100000, guid: c31e2a5a814adb842b0082ef76a7bb21, type: 2}
+  - {fileID: 2100000, guid: 6fff82dca77e24e49a4e74981ceb60b6, type: 2}
+  - {fileID: 2100000, guid: 6fff82dca77e24e49a4e74981ceb60b6, type: 2}
   - {fileID: 2100000, guid: 6fff82dca77e24e49a4e74981ceb60b6, type: 2}
   - {fileID: 2100000, guid: 1817eb55508088647ae2617f9ae17c10, type: 2}
+  - {fileID: 2100000, guid: 1817eb55508088647ae2617f9ae17c10, type: 2}
+  - {fileID: 2100000, guid: 1817eb55508088647ae2617f9ae17c10, type: 2}
+  - {fileID: 2100000, guid: 20a173c425de2614c9bcaeccb9f53027, type: 2}
+  - {fileID: 2100000, guid: 20a173c425de2614c9bcaeccb9f53027, type: 2}
   - {fileID: 2100000, guid: 20a173c425de2614c9bcaeccb9f53027, type: 2}
   - {fileID: 2100000, guid: 2dae50c060ab24a44969470ae8bc3bf1, type: 2}
   - {fileID: 2100000, guid: 002763284cb779c43ac76bdc0a730c37, type: 2}
@@ -73,3 +81,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f06405dece990c6428217cff360c00db, type: 2}
   - {fileID: 2100000, guid: d52890c04bcea904d921e438b5a22f81, type: 2}
   - {fileID: 2100000, guid: b1a701cb262abcc45821260e4b63f73c, type: 2}
+  reversedMeshNames:
+  - tree_pineRoundA
+  - tree_pineRoundB
+  - tree_small
