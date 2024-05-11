@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
@@ -9,6 +10,19 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected float projectileSpeed = 30f;
     [SerializeField] protected float rotationSpeed = 7f;
     [SerializeField] protected int price = 100;
+    [SerializeField] protected float resellPriceMultiplier = 0.8f;
+
+    [Header("Upgrading")]
+    [SerializeField] private float upgradeTime = 40f;
+    [SerializeField] private float upgradeTimeIncrese = 10f;
+    [SerializeField] private int maxLevel = 5;
+
+    [Header("Upgraded stats")]
+    [SerializeField] private float rangeIncrease = 1f;
+    [SerializeField] private float damageIncrease = 1f;
+    [SerializeField] private float fireRateIncrease = 1f;
+    [SerializeField] private int resellPriceIncrease = 20;
+
 
     [Header("Tags")]
     [SerializeField] private string enemyTag = "Enemy";
@@ -23,11 +37,19 @@ public abstract class Tower : MonoBehaviour
     protected Transform target;
     protected float fireCountdown = 0f;
 
+    private bool isUpgrading = false;
+    private float upgradeProgress = 0f;
+    private int currentLevel = 1;
+    private int resellPrice;
+
 
     void Start()
     {
         // Calls Update Target every 0.2 seconds
         InvokeRepeating("UpdateTarget", 0f, 0.2f);
+
+        CalculateResellPrice();
+        Debug.Log($"Resell price: {resellPrice}");
     }
     
     // Updates/sets nearest enemy in range as target every 0.2 seconds
@@ -121,10 +143,105 @@ public abstract class Tower : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
+    private void CalculateResellPrice()
+    {
+        int temp = (int)(price * resellPriceMultiplier);
+        resellPrice = temp - temp % LevelManager.instance.GetCoinWorth();
+    }
+
     public int GetPrice()
     {
         return price;
     }
+
+    public void StartUpgrading()
+    {
+        if(currentLevel < maxLevel)
+        {
+            isUpgrading = true;
+            StartCoroutine(Upgrade(0.2f));
+        }
+
+    }
+
+    public void StopUpgrading()
+    {
+        isUpgrading = false;
+    }
+
+    private IEnumerator Upgrade(float callFrequency)
+    {
+        while (isUpgrading)
+        {
+
+            if (!PauseMenu.IsPaused)
+            {
+                upgradeProgress += callFrequency;
+                Debug.Log($"Tower is upgrading: {upgradeProgress}");
+                if(upgradeProgress >= upgradeTime)
+                {
+                    Debug.Log("Tower upgraded");
+
+                    LevelUp();
+
+                    if (currentLevel >= maxLevel)
+                    {
+                        isUpgrading = false;
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(callFrequency);
+        }
+    }
+
+    // Levels up the tower
+    private void LevelUp()
+    {
+        if(currentLevel >= maxLevel)
+        {
+            return;
+        }
+
+        upgradeTime += upgradeTimeIncrese;
+        upgradeProgress = 0f;
+        currentLevel += 1;
+
+        resellPrice += resellPriceIncrease;
+
+        switch (currentLevel)
+        {
+            case 2:
+                Debug.Log("Level 2 reached");
+                damage *= damageIncrease;
+
+                break;
+            case 3:
+                Debug.Log("Level 3 reached");
+                range *= rangeIncrease;
+
+                break;
+            case 4:
+                Debug.Log("Level 4 reached");
+                damage *= damageIncrease;
+
+                break;
+            case 5:
+                Debug.Log("Level 5 reached");
+                damage *= damageIncrease;
+
+                break;
+
+        }
+
+    }
+    
+    public int GetResellPrice()
+    {
+        return resellPrice;
+    }
+
+
     protected abstract void SetRotation();
 
     protected abstract void Shoot();

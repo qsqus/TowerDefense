@@ -282,6 +282,14 @@ MonoBehaviour:
   projectileSpeed: 30
   rotationSpeed: 10
   price: 120
+  resellPriceMultiplier: 0.7
+  upgradeTime: 40
+  upgradeTimeIncrese: 10
+  maxLevel: 5
+  rangeIncrease: 1.1
+  damageIncrease: 1.1
+  fireRateIncrease: 1
+  resellPriceIncrease: 20
   enemyTag: Enemy
   renderers:
   - {fileID: 3119290548412256789}

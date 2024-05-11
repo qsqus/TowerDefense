@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BuildPoint : MonoBehaviour
@@ -13,10 +14,12 @@ public class BuildPoint : MonoBehaviour
     [SerializeField] private Renderer buildPointRenderer;
     [SerializeField] private MeshFilter buildPointMeshFilter;
     [SerializeField] private Transform modelTransform;
+    [SerializeField] private DropCollectibles dropCollectibles;
 
     private Material[] selectedMaterials;
 
-    private GameObject tower;
+    private GameObject towerObject;
+    private Tower tower;
     private PlayerBuild playerBuild;
     private Material[] startMaterials;
 
@@ -82,8 +85,15 @@ public class BuildPoint : MonoBehaviour
             }
             else
             {
+                tower.StopUpgrading();
+                dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, tower.GetResellPrice() / LevelManager.instance.GetCoinWorth());
+
                 Debug.Log("Edit");
-                Destroy(tower);
+
+
+                Destroy(towerObject);
+                towerObject = null;
+                tower = null;
 
                 // Makes tree stump visible
                 //renderers[1].enabled = true;
@@ -95,9 +105,10 @@ public class BuildPoint : MonoBehaviour
     // Builds tower on build point
     private void BuildTower(GameObject towerToBuild)
     {
-        tower = Instantiate(towerToBuild, transform.position, transform.rotation);
+        towerObject = Instantiate(towerToBuild, transform.position, transform.rotation);
+        tower = towerObject.GetComponent<Tower>();
         
-        towerRenderers = tower.GetComponent<Tower>().GetRenderers();
+        towerRenderers = tower.GetRenderers();
         towerStartMaterials = new Material[towerRenderers.Length];
 
         // Makes tree stump not visible
@@ -125,6 +136,7 @@ public class BuildPoint : MonoBehaviour
             {
                 towerRenderers[i].material = selectedMaterial;
             }
+            tower.StartUpgrading();
 
             return;
         }
@@ -144,6 +156,7 @@ public class BuildPoint : MonoBehaviour
             {
                 towerRenderers[i].material = towerStartMaterials[i];
             }
+            tower.StopUpgrading();
 
             return;
         }
@@ -160,7 +173,7 @@ public class BuildPoint : MonoBehaviour
 
     public bool HasTower()
     {
-        return tower != null;
+        return towerObject != null;
     }
 
 }
