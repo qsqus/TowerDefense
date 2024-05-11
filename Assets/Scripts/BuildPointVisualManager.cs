@@ -40,7 +40,7 @@ public class BuildPointVisualManager : MonoBehaviour
     {
         foreach (string rname in reversedMeshNames)
         {
-            if(rname == name)
+            if(rname + "(Clone) Instance"== name)
             {
                 return true;
             }

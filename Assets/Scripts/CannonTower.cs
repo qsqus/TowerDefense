@@ -27,4 +27,17 @@ public class CannonTower : Tower
         }
     }
 
+    protected override void HandleShooting()
+    {
+
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            // if fire rate is 2 then that means we want to fire 2 bullets each second that means it should countdown from 0.5
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+
 }

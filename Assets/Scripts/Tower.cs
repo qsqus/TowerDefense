@@ -6,7 +6,7 @@ public abstract class Tower : MonoBehaviour
     [Header("Tower stats")]
     [SerializeField] private float range = 10f;
     [SerializeField] protected float damage = 5f;
-    [SerializeField] private float fireRate = 1f;    // 1 projectile gets fired every 1/fireRate seconds
+    [SerializeField] protected float fireRate = 1f;    // 1 projectile gets fired every 1/fireRate seconds
     [SerializeField] protected float projectileSpeed = 30f;
     [SerializeField] protected float rotationSpeed = 7f;
     [SerializeField] protected int price = 100;
@@ -30,6 +30,7 @@ public abstract class Tower : MonoBehaviour
     [Header("References")]
     [SerializeField] private Renderer[] renderers;
     [SerializeField] protected Transform rotationPoint;
+    [SerializeField] protected Transform xAxisRotationPoint;
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected GameObject projectile;
     [SerializeField] protected GameObject projectileImpactEffet;
@@ -123,15 +124,13 @@ public abstract class Tower : MonoBehaviour
 
     }
     // Handles shooting
-    private void HandleShooting()
+    protected virtual void HandleShooting()
     {
         // Prevents shooting before tower is looking in enemy direction
-        /*
-        if (Mathf.Abs((Quaternion.LookRotation(target.position - transform.position).eulerAngles - rotationPoint.transform.eulerAngles).x) > 2)
+        if (Mathf.Abs((Quaternion.LookRotation(target.position - firePoint.position).eulerAngles - xAxisRotationPoint.transform.eulerAngles).x) > 2)
         {
-            Debug.Log("TOO EARLY");
+            return;
         }
-        */
 
         if (fireCountdown <= 0f)
         {

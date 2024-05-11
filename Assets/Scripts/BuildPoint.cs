@@ -17,6 +17,7 @@ public class BuildPoint : MonoBehaviour
     [SerializeField] private DropCollectibles dropCollectibles;
 
     private Material[] selectedMaterials;
+    private Material[] selectedMaterials3;
 
     private GameObject towerObject;
     private Tower tower;
@@ -24,7 +25,7 @@ public class BuildPoint : MonoBehaviour
     private Material[] startMaterials;
 
     private Renderer[] towerRenderers;
-    private Material[] towerStartMaterials;
+    private Material[][] towerStartMaterials;
 
     private int instanceID;
 
@@ -34,17 +35,11 @@ public class BuildPoint : MonoBehaviour
         modelTransform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
         modelTransform.localScale *= Random.Range(0.9f, 1.1f);
 
-        buildPointMeshFilter.mesh = BuildPointVisualManager.instance.GetRandomMesh();
-        
+        buildPointMeshFilter.mesh = Instantiate(BuildPointVisualManager.instance.GetRandomMesh());
+
         Material[] randomMaterials = BuildPointVisualManager.instance.GetRandomMaterials();
 
-        string meshName = buildPointMeshFilter.mesh.name;
-        if(meshName.Length - 9 >= 0)
-        {
-            meshName = meshName[0..(meshName.Length - 9)];
-        }
-        
-        if (BuildPointVisualManager.instance.IsReversedMesh(meshName))
+        if (BuildPointVisualManager.instance.IsReversedMesh(buildPointMeshFilter.mesh.name))
         {
             Material temp = randomMaterials[0];
             randomMaterials[0] = randomMaterials[1];
@@ -63,6 +58,8 @@ public class BuildPoint : MonoBehaviour
 
         startMaterials = buildPointRenderer.materials;
         selectedMaterials = new Material[] { selectedMaterial, selectedMaterial };
+        selectedMaterials3 = new Material[] { selectedMaterial, selectedMaterial, selectedMaterial };
+    
     }
 
     private void TowerManager_OnTowerToBuildSelected(GameObject towerToBuild, int buildPointInstanceID)
@@ -109,14 +106,14 @@ public class BuildPoint : MonoBehaviour
         tower = towerObject.GetComponent<Tower>();
         
         towerRenderers = tower.GetRenderers();
-        towerStartMaterials = new Material[towerRenderers.Length];
+        towerStartMaterials = new Material[towerRenderers.Length][];
 
         // Makes tree stump not visible
         //renderers[1].enabled = false;
 
         for (int i = 0; i < towerRenderers.Length; i++)
         {
-            towerStartMaterials[i] = towerRenderers[i].material;
+            towerStartMaterials[i] = towerRenderers[i].materials;
         }
 
         EnterBuildPoint();
@@ -134,7 +131,20 @@ public class BuildPoint : MonoBehaviour
         {
             for (int i = 0; i < towerRenderers.Length; i++)
             {
-                towerRenderers[i].material = selectedMaterial;
+                int materialsAmount = towerRenderers[i].materials.Length;
+                if(materialsAmount == 1)
+                {
+                    towerRenderers[i].material = selectedMaterial;
+                }
+                else if (materialsAmount == 2)
+                {
+                    towerRenderers[i].materials = selectedMaterials;
+                }
+                else
+                {
+                    towerRenderers[i].materials = selectedMaterials3;
+                }
+
             }
             tower.StartUpgrading();
 
@@ -154,7 +164,7 @@ public class BuildPoint : MonoBehaviour
         {
             for (int i = 0; i < towerRenderers.Length; i++)
             {
-                towerRenderers[i].material = towerStartMaterials[i];
+                towerRenderers[i].materials = towerStartMaterials[i];
             }
             tower.StopUpgrading();
 

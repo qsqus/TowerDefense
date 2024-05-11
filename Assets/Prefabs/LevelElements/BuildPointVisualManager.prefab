@@ -58,9 +58,7 @@ MonoBehaviour:
   - {fileID: 6809829068606448028, guid: 6e83399a0c9d3df4abec9478fc9aa7a4, type: 3}
   - {fileID: -2894791406429237724, guid: 3e9b20303c93be24d9daac41f6c210a6, type: 3}
   - {fileID: 7116689091534007176, guid: 2953d6be550e8bc49aaed5792609aaa8, type: 3}
-  - {fileID: 7557174462171858654, guid: 19f2bd02d4bb7804fa83f6820398043c, type: 3}
   - {fileID: 3324290279596203714, guid: 9dd3336c75f180849b27aa8c52b19c54, type: 3}
-  - {fileID: -6548614976667701900, guid: e1f504eb8c110cb4da2c51844aba8878, type: 3}
   leavesMaterials:
   - {fileID: 2100000, guid: c31e2a5a814adb842b0082ef76a7bb21, type: 2}
   - {fileID: 2100000, guid: c31e2a5a814adb842b0082ef76a7bb21, type: 2}
