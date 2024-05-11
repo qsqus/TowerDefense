@@ -3,11 +3,16 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    public static TowerManager instance { get; private set; }
+    [SerializeField] float displayHeight = 6f;
+    [SerializeField] private string cameraTag = "MainCamera";
 
+    public static TowerManager instance { get; private set; }
+    
     public event Action<GameObject, int> OnTowerToBuildSelected;
 
+    private bool isBuildMenuOpen = false;
     private GameObject selectedBuildPoint;
+    private GameObject cam;
 
     private void Awake()
     {
@@ -23,15 +28,26 @@ public class TowerManager : MonoBehaviour
 
     private void Start()
     {
+        cam = GameObject.FindGameObjectWithTag(cameraTag);
         HideTowerBuildMenu();
     }
 
     // Selects tower to build
     public void SelectTowerToBuild(GameObject tower)
     {
-        if(!selectedBuildPoint.GetComponent<BuildPoint>().HasTower())
+        int towerPrice = tower.GetComponent<Tower>().GetPrice();
+        if (towerPrice <= LevelManager.instance.GetCoinsAmount())
         {
-            OnTowerToBuildSelected?.Invoke(tower, selectedBuildPoint.GetInstanceID());
+            if(!selectedBuildPoint.GetComponent<BuildPoint>().HasTower())
+            {
+                LevelManager.instance.ChangeCoinsByAmount(-towerPrice);
+                OnTowerToBuildSelected?.Invoke(tower, selectedBuildPoint.GetInstanceID());
+                HideTowerBuildMenu();
+            }
+        }
+        else
+        {
+            Debug.Log("Not enough coins");
         }
 
     }
@@ -41,15 +57,26 @@ public class TowerManager : MonoBehaviour
     {
         gameObject.SetActive(false);
         selectedBuildPoint = null;
-
+        isBuildMenuOpen = false;
     }
 
     // Shows tower build menu, buildPoint - selected build point
     public void ShowTowerBuildMenu(GameObject buildPoint)
     {
+        if(isBuildMenuOpen)
+        {
+            HideTowerBuildMenu();
+            return;
+        }
+
+        transform.position = buildPoint.transform.position + new Vector3(0, displayHeight, 0); 
+        
+        // Looks at camera
+        transform.LookAt(transform.position + cam.transform.forward);
+
         gameObject.SetActive(true);
         selectedBuildPoint = buildPoint;
-
+        isBuildMenuOpen = true;
     }
 
 }

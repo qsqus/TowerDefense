@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
         if(target == null)
         {
             WaveSpawner.EnemiesAlive -= 1;
+            LevelManager.instance.ChangeLivesByAmount(-1);
             Destroy(gameObject);
             return;
         }

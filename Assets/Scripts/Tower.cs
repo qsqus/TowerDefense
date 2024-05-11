@@ -8,6 +8,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] private float fireRate = 1f;    // 1 projectile gets fired every 1/fireRate seconds
     [SerializeField] protected float projectileSpeed = 30f;
     [SerializeField] protected float rotationSpeed = 7f;
+    [SerializeField] protected int price = 100;
 
     [Header("Tags")]
     [SerializeField] private string enemyTag = "Enemy";
@@ -120,6 +121,10 @@ public abstract class Tower : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
+    public int GetPrice()
+    {
+        return price;
+    }
     protected abstract void SetRotation();
 
     protected abstract void Shoot();

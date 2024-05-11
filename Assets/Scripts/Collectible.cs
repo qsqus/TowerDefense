@@ -45,12 +45,12 @@ public class Collectible : MonoBehaviour
                 if(gameObject.CompareTag(coinTag))
                 {
                     // TO DO: Add coin collected effect
-                    LevelManager.instance.ChangeCoinsByAmount(1);
+                    LevelManager.instance.ChangeCoinsByAmount(worth);
                 }
                 else if(gameObject.CompareTag(diamondTag))
                 {
                     // TO DO: Add diamond collected effect
-                    LevelManager.instance.ChangeDiamondsByAmount(1);
+                    LevelManager.instance.ChangeDiamondsByAmount(worth);
 
                 }
 

@@ -76,9 +76,10 @@ public class PlayerMovement : MonoBehaviour
 
         int coinsAmount = LevelManager.instance.GetCoinsAmount();
         int coinsToDrop = (int)(coinsAmount * Random.Range(0.4f, 0.6f));
+        coinsToDrop -= coinsToDrop % 5;
 
         LevelManager.instance.ChangeCoinsByAmount(-coinsToDrop);
-        dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsToDrop);
+        dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsToDrop / LevelManager.instance.GetCoinWorth());
 
         rb.AddForce(pushbackDirection.normalized * pushbackForce, ForceMode.Impulse);
     }

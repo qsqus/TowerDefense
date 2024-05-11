@@ -281,6 +281,7 @@ MonoBehaviour:
   fireRate: 1
   projectileSpeed: 35
   rotationSpeed: 20
+  price: 90
   enemyTag: Enemy
   renderers:
   - {fileID: 3119290548412256789}
