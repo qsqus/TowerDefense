@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - Diamond
   - Collectibles
+  - UICamera
   layers:
   - Default
   - TransparentFX

@@ -79,6 +79,11 @@ public class Collectible : MonoBehaviour
 
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        OnTriggerEnter(other);
+    }
+
     public void SetCanBeCollected(bool canBeCollected)
     {
         this.canBeCollected = canBeCollected;
@@ -88,4 +93,5 @@ public class Collectible : MonoBehaviour
     {
         return worth;
     }
+
 }

@@ -52,6 +52,14 @@ public class TowerManager : MonoBehaviour
 
     }
 
+    public void AttemptHideTowerBuildMenu()
+    {
+        if(isBuildMenuOpen)
+        {
+            HideTowerBuildMenu();
+        }
+    }
+
     // Hides tower build menu
     public void HideTowerBuildMenu()
     {

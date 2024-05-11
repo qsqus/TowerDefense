@@ -7,8 +7,8 @@ public class LevelStatsDisplay : MonoBehaviour
     [SerializeField] private TMP_Text diamods;
     [SerializeField] private TMP_Text lives;
 
-
-    private void Start()
+    // Execution order: Awake, OnEnable, Start
+    private void OnEnable()
     {
         LevelManager.instance.OnCoinsAmountChanged += LevelManager_OnCoinsAmountChanged;
         LevelManager.instance.OnDiamondsAmountChanged += LevelManager_OnDiamondsAmountChanged;

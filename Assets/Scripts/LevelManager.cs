@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -39,9 +40,8 @@ public class LevelManager : MonoBehaviour
         OnCoinsAmountChanged?.Invoke(coinsAmount);
         OnDiamondsAmountChanged?.Invoke(diamondsAmount);
         OnLivesAmountChanged?.Invoke(livesAmount);
-
     }
-
+    
     public void ChangeCoinsByAmount(int amount)
     {
         coinsAmount += amount;

@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float immobileTime = 1.5f;
     [SerializeField] private float pushbackForce = 6.5f;
 
+
     private Rigidbody rb;
     private PlayerBuild playerBuild;
     private DropCollectibles dropCollectibles;
@@ -62,6 +63,10 @@ public class PlayerMovement : MonoBehaviour
         // Apply movement to rigidbody
         rb.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
 
+        if(direction != Vector3.zero)
+        {
+            TowerManager.instance.AttemptHideTowerBuildMenu();
+        }
     }
 
     
