@@ -14,6 +14,12 @@ public class CannonProjectile : MonoBehaviour
 
     private void Update()
     {
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (transform.position.y <= target.position.y)
         {
             HitTarget();

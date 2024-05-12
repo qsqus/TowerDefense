@@ -23,7 +23,6 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] private float fireRateIncrease = 1f;
     [SerializeField] private int resellPriceIncrease = 20;
 
-
     [Header("Tags")]
     [SerializeField] private string enemyTag = "Enemy";
 
