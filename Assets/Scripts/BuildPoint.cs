@@ -84,6 +84,7 @@ public class BuildPoint : MonoBehaviour
             {
                 tower.StopUpgrading();
                 dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, tower.GetResellPrice() / LevelManager.instance.GetCoinWorth());
+                TowerRangeDisplayManager.instance.HideTowerRange();
 
                 Debug.Log("Edit");
 
@@ -148,6 +149,8 @@ public class BuildPoint : MonoBehaviour
             }
             tower.StartUpgrading();
 
+            TowerRangeDisplayManager.instance.ShowTowerRange(towerObject.transform.position, tower.GetTowerRange());
+
             return;
         }
 
@@ -167,6 +170,8 @@ public class BuildPoint : MonoBehaviour
                 towerRenderers[i].materials = towerStartMaterials[i];
             }
             tower.StopUpgrading();
+
+            TowerRangeDisplayManager.instance.HideTowerRange();
 
             return;
         }

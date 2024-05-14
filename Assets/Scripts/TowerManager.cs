@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
-    [SerializeField] float displayHeight = 6f;
+    [SerializeField] private float displayHeight = 6f;
     [SerializeField] private string cameraTag = "MainCamera";
+    [SerializeField] private Transform buttonContainer;
 
     public static TowerManager instance { get; private set; }
     
@@ -13,6 +14,8 @@ public class TowerManager : MonoBehaviour
     private bool isBuildMenuOpen = false;
     private GameObject selectedBuildPoint;
     private GameObject cam;
+    private TowerMenuButton[] buttons;
+    private int currentButtonIdx;
 
     private void Awake()
     {
@@ -24,12 +27,52 @@ public class TowerManager : MonoBehaviour
             return;
         }
         instance = this;
+
     }
 
     private void Start()
     {
+        buttons = new TowerMenuButton[buttonContainer.childCount];
+
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i] = buttonContainer.GetChild(i).GetComponent<TowerMenuButton>();
+        }
+
         cam = GameObject.FindGameObjectWithTag(cameraTag);
+        
         HideTowerBuildMenu();
+    }
+
+    private void Update()
+    {
+        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
+        if(scrollWheel > 0)
+        {
+            buttons[currentButtonIdx].NormalVisual();
+            currentButtonIdx += 1;
+            if(currentButtonIdx > buttons.Length - 1)
+            {
+                currentButtonIdx = 0;
+            }
+            buttons[currentButtonIdx].HighlightedVisual();
+
+        }
+        else if(scrollWheel < 0)
+        {
+            buttons[currentButtonIdx].NormalVisual();
+            currentButtonIdx -= 1;
+            if (currentButtonIdx < 0)
+            {
+                currentButtonIdx = buttons.Length - 1;
+            }
+            buttons[currentButtonIdx].HighlightedVisual();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            SelectTowerToBuild(buttons[currentButtonIdx].GetTower());
+        }
     }
 
     // Selects tower to build
@@ -66,6 +109,8 @@ public class TowerManager : MonoBehaviour
         gameObject.SetActive(false);
         selectedBuildPoint = null;
         isBuildMenuOpen = false;
+
+        buttons[currentButtonIdx].NormalVisual();
     }
 
     // Shows tower build menu, buildPoint - selected build point
@@ -85,6 +130,13 @@ public class TowerManager : MonoBehaviour
         gameObject.SetActive(true);
         selectedBuildPoint = buildPoint;
         isBuildMenuOpen = true;
+
+        currentButtonIdx = (int)(buttons.Length / 2f);
+        buttons[currentButtonIdx].HighlightedVisual();
     }
 
+    public Vector3 GetSelectedBuildPointPosition()
+    {
+        return selectedBuildPoint.transform.position;
+    }
 }

@@ -43,6 +43,8 @@ public class PauseMenu : MonoBehaviour
             button.SetNormalColor();
         }
 
+        TowerManager.instance.AttemptHideTowerBuildMenu();
+
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         IsPaused = true;

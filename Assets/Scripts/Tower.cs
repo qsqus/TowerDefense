@@ -218,6 +218,9 @@ public abstract class Tower : MonoBehaviour
                 Debug.Log("Level 3 reached");
                 range *= rangeIncrease;
 
+                TowerRangeDisplayManager.instance.HideTowerRange();
+                TowerRangeDisplayManager.instance.ShowTowerRange(transform.position, range);
+
                 break;
             case 4:
                 Debug.Log("Level 4 reached");
@@ -239,6 +242,10 @@ public abstract class Tower : MonoBehaviour
         return resellPrice;
     }
 
+    public float GetTowerRange()
+    {
+        return range;
+    }
 
     protected abstract void SetRotation();
 

@@ -535,9 +535,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df1b6c80ffeeef49aaeb415046e2a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 7
-  damage: 40
-  fireRate: 1
+  range: 4
+  damage: 30
+  fireRate: 0.5
   projectileSpeed: 30
   rotationSpeed: 10
   price: 120
@@ -561,4 +561,4 @@ MonoBehaviour:
   firePoint: {fileID: 3685754724096363717}
   projectile: {fileID: 5060073923792895785, guid: b965f57d44e44db4a9a9dc5c2115b3f3, type: 3}
   projectileImpactEffet: {fileID: 1089262470002020294, guid: e2c4ad2277fff2b49a29e9f28faed79b, type: 3}
-  projectileExplosionRadius: 3
+  projectileExplosionRadius: 2.5
