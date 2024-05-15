@@ -6,6 +6,7 @@ public class BallistaProjectile : MonoBehaviour
     private float speed;
     private GameObject impactEffet;
     private Transform target;
+    private Tower attackingTower;
 
 
     void Update()
@@ -51,18 +52,19 @@ public class BallistaProjectile : MonoBehaviour
         Destroy(impactEffectGO, 2f);
 
         //Enemy enemy = target.GetComponent<Enemy>();
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(damage, attackingTower);
 
         Destroy(gameObject);
     }
 
     // Projectile constructor
-    public void ConstructProjectile(Transform target, float damage, float speed, GameObject impactEffet)
+    public void ConstructProjectile(Transform target, float damage, float speed, GameObject impactEffet, Tower attackingTower)
     {
         this.target = target;
         this.damage = damage;
         this.speed = speed;
         this.impactEffet = impactEffet;
+        this.attackingTower = attackingTower;
     }
 
 }

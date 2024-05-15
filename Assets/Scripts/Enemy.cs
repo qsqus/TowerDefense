@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float health = 100f;
     [SerializeField] private int damage = 1;
+    [SerializeField] private float towerExperienceAmount = 0.4f;
     
     [Header("Collectibles")]
     [SerializeField] private int minCoinDrop = 3;
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
 
     [Header("References")]
-    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private ProgressBar healthBar;
 
     private Transform target;
     private int pathElementIdx = 0;
@@ -85,7 +86,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Takes damage
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Tower attackingTower)
     {
         health -= amount;
         healthBar.SetValue(health);
@@ -93,13 +94,15 @@ public class Enemy : MonoBehaviour
         // Destroys enemy when runs out of health
         if(health <= 0 && !IsDead)
         {
-            Die();
+            Die(attackingTower);
         }
     }
 
     // Kills enemy
-    private void Die()
+    private void Die(Tower attackingTower)
     {
+        attackingTower.AddUpgradeProgress(towerExperienceAmount);
+
         IsDead = true;
         animator.SetBool("isDead", true);
 

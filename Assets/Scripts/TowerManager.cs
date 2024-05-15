@@ -106,6 +106,11 @@ public class TowerManager : MonoBehaviour
     // Hides tower build menu
     public void HideTowerBuildMenu()
     {
+        if(selectedBuildPoint != null && !selectedBuildPoint.GetComponent<BuildPoint>().HasTower())
+        {
+            TowerRangeDisplayManager.instance.HideTowerRange();
+        }
+
         gameObject.SetActive(false);
         selectedBuildPoint = null;
         isBuildMenuOpen = false;

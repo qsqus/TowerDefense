@@ -47,7 +47,6 @@ public class LevelManager : MonoBehaviour
         coinsAmount += amount;
         OnCoinsAmountChanged?.Invoke(coinsAmount);
 
-        Debug.Log(coinsAmount);
     }
 
     public int GetCoinsAmount()

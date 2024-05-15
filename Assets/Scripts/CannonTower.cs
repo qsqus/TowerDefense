@@ -23,7 +23,7 @@ public class CannonTower : Tower
 
         if(firedProjectile != null)
         {
-            firedProjectile.ConstructProjectile(target, damage, projectileImpactEffet, projectileExplosionRadius);
+            firedProjectile.ConstructProjectile(target, damage, projectileImpactEffet, projectileExplosionRadius, this);
         }
     }
 

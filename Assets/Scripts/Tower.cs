@@ -1,5 +1,7 @@
+using Palmmedia.ReportGenerator.Core;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public abstract class Tower : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public abstract class Tower : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Renderer[] renderers;
+    [SerializeField] private ProgressBar progressBar;
     [SerializeField] protected Transform rotationPoint;
     [SerializeField] protected Transform xAxisRotationPoint;
     [SerializeField] protected Transform firePoint;
@@ -50,8 +53,12 @@ public abstract class Tower : MonoBehaviour
 
         CalculateResellPrice();
         Debug.Log($"Resell price: {resellPrice}");
+
+        progressBar.SetMaxValue(upgradeTime);
+        progressBar.SetValue(upgradeProgress);
+
     }
-    
+
     // Updates/sets nearest enemy in range as target every 0.2 seconds
     private void UpdateTarget()
     {
@@ -174,22 +181,35 @@ public abstract class Tower : MonoBehaviour
 
             if (!PauseMenu.IsPaused)
             {
-                upgradeProgress += callFrequency;
-                Debug.Log($"Tower is upgrading: {upgradeProgress}");
-                if(upgradeProgress >= upgradeTime)
-                {
-                    Debug.Log("Tower upgraded");
-
-                    LevelUp();
-
-                    if (currentLevel >= maxLevel)
-                    {
-                        isUpgrading = false;
-                    }
-                }
+                AddUpgradeProgress(callFrequency);
             }
 
             yield return new WaitForSeconds(callFrequency);
+        }
+    }
+
+    // Adds progress to upgrade
+    public void AddUpgradeProgress(float amount)
+    {
+        if(gameObject == null || Object.ReferenceEquals(gameObject, null))
+        {
+            return;
+        }
+
+        upgradeProgress += amount;
+        progressBar.SetValue(upgradeProgress);
+
+        Debug.Log($"Tower is upgrading: {upgradeProgress}");
+        if (upgradeProgress >= upgradeTime)
+        {
+            Debug.Log("Tower upgraded");
+
+            LevelUp();
+
+            if (currentLevel >= maxLevel)
+            {
+                isUpgrading = false;
+            }
         }
     }
 
@@ -206,6 +226,9 @@ public abstract class Tower : MonoBehaviour
         currentLevel += 1;
 
         resellPrice += resellPriceIncrease;
+
+        progressBar.SetMaxValue(upgradeTime);
+        progressBar.SetValue(upgradeProgress);
 
         switch (currentLevel)
         {
@@ -245,6 +268,11 @@ public abstract class Tower : MonoBehaviour
     public float GetTowerRange()
     {
         return range;
+    }
+
+    public void ToggleProgressBar(bool isActive)
+    {
+        progressBar.gameObject.SetActive(isActive);
     }
 
     protected abstract void SetRotation();

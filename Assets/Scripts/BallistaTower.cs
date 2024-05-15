@@ -24,7 +24,7 @@ public class BallistaTower : Tower
 
         if(firedProjectile != null)
         {
-            firedProjectile.ConstructProjectile(target, damage, projectileSpeed, projectileImpactEffet);
+            firedProjectile.ConstructProjectile(target, damage, projectileSpeed, projectileImpactEffet, this);
         }
     }
 

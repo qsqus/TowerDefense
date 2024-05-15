@@ -1,8 +1,9 @@
-using TMPro;
 using UnityEngine;
 
 public class CannonProjectile : MonoBehaviour
 {
+    [SerializeField] private string enemyTag = "Enemy";
+    
     private float damage;
     private GameObject impactEffet;
     private Transform target;
@@ -10,7 +11,7 @@ public class CannonProjectile : MonoBehaviour
     private float peakHeight;
     private float gravity = 9.81f;
     private float explosionRadius;
-    private string enemyTag = "Enemy";
+    private Tower attackingTower;
 
     private void Update()
     {
@@ -55,7 +56,7 @@ public class CannonProjectile : MonoBehaviour
             if (col.CompareTag(enemyTag))
             {
                 Enemy enemy = col.GetComponent<Enemy>();
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, attackingTower);
             }
 
         }
@@ -74,12 +75,14 @@ public class CannonProjectile : MonoBehaviour
     }
 
     // Projectile constructor
-    public void ConstructProjectile(Transform target, float damage, GameObject impactEffet, float explosionRadius)
+    public void ConstructProjectile(Transform target, float damage, GameObject impactEffet, float explosionRadius, Tower attackingTower)
     {
         this.target = target;
         this.damage = damage;
         this.impactEffet = impactEffet;
         this.explosionRadius = explosionRadius;
+        this.attackingTower = attackingTower;
+
         peakHeight = transform.position.y + target.position.y / 1.5f;
 
         rb = GetComponent<Rigidbody>();

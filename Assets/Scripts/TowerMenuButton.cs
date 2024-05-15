@@ -34,7 +34,6 @@ public class TowerMenuButton : MonoBehaviour
     public void NormalVisual()
     {
         highlightedFrame.enabled = false;
-        TowerRangeDisplayManager.instance.HideTowerRange();
     }
 
 }

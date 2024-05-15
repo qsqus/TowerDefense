@@ -82,9 +82,9 @@ public class BuildPoint : MonoBehaviour
             }
             else
             {
-                tower.StopUpgrading();
+                ExitBuildPoint();
+
                 dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, tower.GetResellPrice() / LevelManager.instance.GetCoinWorth());
-                TowerRangeDisplayManager.instance.HideTowerRange();
 
                 Debug.Log("Edit");
 
@@ -148,6 +148,7 @@ public class BuildPoint : MonoBehaviour
 
             }
             tower.StartUpgrading();
+            tower.ToggleProgressBar(true);
 
             TowerRangeDisplayManager.instance.ShowTowerRange(towerObject.transform.position, tower.GetTowerRange());
 
@@ -161,7 +162,7 @@ public class BuildPoint : MonoBehaviour
     // Player exited/deselected build point
     public void ExitBuildPoint()
     {
-        TowerManager.instance.HideTowerBuildMenu();
+        TowerManager.instance.AttemptHideTowerBuildMenu();
 
         if (HasTower())
         {
@@ -170,6 +171,7 @@ public class BuildPoint : MonoBehaviour
                 towerRenderers[i].materials = towerStartMaterials[i];
             }
             tower.StopUpgrading();
+            tower.ToggleProgressBar(false);
 
             TowerRangeDisplayManager.instance.HideTowerRange();
 
