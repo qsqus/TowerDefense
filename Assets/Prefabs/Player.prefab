@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 5033301496556117889}
   - component: {fileID: 2947334653580648061}
   - component: {fileID: 3472578923199343075}
+  - component: {fileID: -388473186397723143}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -260,6 +261,7 @@ MonoBehaviour:
   rotationSpeed: 10
   immobileTime: 1.5
   pushbackForce: 6
+  materialFlash: {fileID: -388473186397723143}
 --- !u!114 &2947334653580648061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +293,19 @@ MonoBehaviour:
   maxCoinDropHeight: 4
   minCoinDropHeight: 8
   dropRadius: 5
-  coin: {fileID: 7575831786288409675, guid: 050a4cba8d4368b40b217d7f1806d63c, type: 3}
-  diamond: {fileID: 8982039313061057306, guid: cfda08478a3246548908f4231176b117, type: 3}
   collectiblesTag: Collectibles
+--- !u!114 &-388473186397723143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7120459497843846150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a939924d63ea89e4b81090cf7cc17ae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashAmount: 9
+  flashColor: {r: 0.7924528, g: 0.1981132, b: 0.1981132, a: 0}
+  rend: {fileID: 7326190216451181211}

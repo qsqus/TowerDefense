@@ -6,17 +6,22 @@ public class Collectible : MonoBehaviour
     [SerializeField] private float moveTowardsPlayerSpeed = 10f;
     [SerializeField] private int worth  = 10;
     [SerializeField] private float maxLifeSpan = 15f;
-    
+    [SerializeField] private float flashWhenTimeLeft = 3f;
+
     [Header("Tags")]
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private string coinTag = "Coin";
     [SerializeField] private string diamondTag = "Diamond";
+
+    [Header("References")]
+    [SerializeField] private MaterialFlash materialFlash;
 
     private Transform player;
     private bool canMove = false;
     private float playerRadius;
     private float elapsedTime = 0f;
     private bool canBeCollected = false;
+    private bool hasFlashingStarted = false;
 
     void Start()
     {
@@ -28,11 +33,17 @@ public class Collectible : MonoBehaviour
     {
         elapsedTime += Time.deltaTime;
 
-        if(elapsedTime >= maxLifeSpan)
+        // Colletible lifespan has ended
+        if(materialFlash.HasFinishedFlashing())
         {
-            // TO DO: Start pulsing when 3 seconds left
-            Debug.Log("Collectible lifespan has ended");
             Destroy(gameObject);
+            return;
+        }
+
+        if(elapsedTime >= maxLifeSpan - flashWhenTimeLeft && !hasFlashingStarted)
+        {
+            hasFlashingStarted = true;
+            materialFlash.StartFlashing(flashWhenTimeLeft);
             return;
         }
 

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float immobileTime = 1.5f;
     [SerializeField] private float pushbackForce = 6.5f;
-
+    [SerializeField] private MaterialFlash materialFlash;
 
     private Rigidbody rb;
     private PlayerBuild playerBuild;
@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        materialFlash.StartFlashing(immobileTime);
         StartCoroutine(ImmobilizePlayer(immobileTime));
 
         int coinsAmount = LevelManager.instance.GetCoinsAmount();
