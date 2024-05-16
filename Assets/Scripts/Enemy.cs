@@ -9,25 +9,35 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float health = 100f;
     [SerializeField] private int damage = 1;
     [SerializeField] private float towerExperienceAmount = 0.4f;
+    [SerializeField] private float afterDeathSinkDepth = 2f;
+    [SerializeField] private float sinkingDuration = 8f;
+    [SerializeField] private float animatorSpeed = 1f;
     
     [Header("Collectibles")]
     [SerializeField] private int minCoinDrop = 3;
     [SerializeField] private int maxCoinDrop = 6;
     [SerializeField] private int minDiamondDrop = 1;
     [SerializeField] private int maxDiamondDrop = 1;
+    [SerializeField] private float chanceOfDiamondDrop = 0.15f;
 
     [Header("Tags")]
     [SerializeField] private string playerTag = "Player";
 
     [Header("References")]
     [SerializeField] private ProgressBar healthBar;
+    [SerializeField] private Animator animator;
 
     private Transform target;
     private int pathElementIdx = 0;
 
-    private Animator animator;
     private DropCollectibles dropCollectibles;
     public bool IsDead { get; private set; } = false;
+
+
+    private void Awake()
+    {
+        dropCollectibles = GetComponent<DropCollectibles>();
+    }
 
     private void Start()
     {
@@ -36,10 +46,8 @@ public class Enemy : MonoBehaviour
         SetTarget();
         // Sets initial rotation
         transform.rotation = Quaternion.LookRotation(target.position - transform.position);
-
-        animator = GetComponent<Animator>();
-        dropCollectibles = GetComponent<DropCollectibles>();
-
+        
+        animator.speed = animatorSpeed;
     }
 
     private void Update()
@@ -107,15 +115,43 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isDead", true);
 
         int coinsAmount = Random.Range(minCoinDrop, maxCoinDrop + 1);
-        int diamondsAmount = Random.Range(minDiamondDrop, maxDiamondDrop + 1);
         dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsAmount);
-        dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.diamond, diamondsAmount);
+        
+        bool isDiamondDrop = (Random.Range(0f, 1f) <= chanceOfDiamondDrop) ? true : false;
+        if(isDiamondDrop)
+        {
+            int diamondsAmount = Random.Range(minDiamondDrop, maxDiamondDrop + 1);
+            dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.diamond, diamondsAmount);
+        }
 
         WaveSpawner.EnemiesAlive -= 1;
 
-        Destroy(gameObject, 2f);
+        //Destroy(gameObject, 2f);
+        StartCoroutine(SinkUnderground(sinkingDuration));
 
     }
+
+    private IEnumerator SinkUnderground(float sinkingDuration)
+    {
+        Vector3 startPosition = transform.position;
+        Vector3 targetPosition = transform.position - new Vector3(0, afterDeathSinkDepth, 0);
+        float elapsedTime = 0f;
+
+        while(elapsedTime < sinkingDuration)
+        {
+            float t = elapsedTime / sinkingDuration;
+            
+            transform.position = Vector3.Lerp(transform.position, targetPosition, t);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+        transform.position = targetPosition;
+
+        Destroy(gameObject);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

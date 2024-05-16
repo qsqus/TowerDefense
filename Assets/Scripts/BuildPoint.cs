@@ -90,8 +90,7 @@ public class BuildPoint : MonoBehaviour
 
                 Debug.Log("Edit");
 
-
-                Destroy(towerObject);
+                tower.DestroyTower();
                 towerObject = null;
                 tower = null;
 
@@ -209,6 +208,12 @@ public class BuildPoint : MonoBehaviour
         float elapsedTime = 0;
         while (elapsedTime < time)
         {
+            // Prevents an error when object is destroyed during couroutine
+            if(Object.ReferenceEquals(obj, null) || obj == null)
+            {
+                yield break;
+            }
+
             obj.transform.localScale = Vector3.Lerp(startScale, endScale, elapsedTime / time);
             elapsedTime += Time.deltaTime;
             yield return null;

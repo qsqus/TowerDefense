@@ -20,9 +20,9 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] private int maxLevel = 5;
 
     [Header("Upgraded stats")]
-    [SerializeField] private float rangeIncrease = 1f;
-    [SerializeField] private float damageIncrease = 1f;
-    [SerializeField] private float fireRateIncrease = 1f;
+    [SerializeField] private float rangeUpgradeMultiplier = 1f;
+    [SerializeField] private float damageUpgradeMultiplier = 1f;
+    [SerializeField] private float fireRateUpgradeMultiplier = 1f;
     [SerializeField] private int resellPriceIncrease = 20;
 
     [Header("Tags")]
@@ -44,6 +44,7 @@ public abstract class Tower : MonoBehaviour
     private float upgradeProgress = 0f;
     private int currentLevel = 1;
     private int resellPrice;
+    private bool isDestroyed = false;
 
 
     void Start()
@@ -191,7 +192,7 @@ public abstract class Tower : MonoBehaviour
     // Adds progress to upgrade
     public void AddUpgradeProgress(float amount)
     {
-        if(gameObject == null || Object.ReferenceEquals(gameObject, null))
+        if(isDestroyed || gameObject == null || Object.ReferenceEquals(gameObject, null))
         {
             return;
         }
@@ -234,25 +235,25 @@ public abstract class Tower : MonoBehaviour
         {
             case 2:
                 Debug.Log("Level 2 reached");
-                damage *= damageIncrease;
+                damage *= damageUpgradeMultiplier;
 
                 break;
             case 3:
                 Debug.Log("Level 3 reached");
-                range *= rangeIncrease;
+                range *= rangeUpgradeMultiplier;
 
-                TowerRangeDisplayManager.instance.HideTowerRange();
                 TowerRangeDisplayManager.instance.ShowTowerRange(transform.position, range);
 
                 break;
             case 4:
                 Debug.Log("Level 4 reached");
-                damage *= damageIncrease;
+                damage *= damageUpgradeMultiplier;
 
                 break;
             case 5:
                 Debug.Log("Level 5 reached");
-                damage *= damageIncrease;
+                damage *= damageUpgradeMultiplier;
+                ToggleProgressBar(false);
 
                 break;
 
@@ -272,7 +273,16 @@ public abstract class Tower : MonoBehaviour
 
     public void ToggleProgressBar(bool isActive)
     {
+        isActive = (currentLevel < maxLevel) ? isActive : false;
+
         progressBar.gameObject.SetActive(isActive);
+        
+    }
+
+    public void DestroyTower()
+    {
+        isDestroyed = true;
+        Destroy(gameObject);
     }
 
     protected abstract void SetRotation();

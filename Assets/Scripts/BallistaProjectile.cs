@@ -8,7 +8,6 @@ public class BallistaProjectile : MonoBehaviour
     private Transform target;
     private Tower attackingTower;
 
-
     void Update()
     {
         if (target == null)
@@ -47,11 +46,10 @@ public class BallistaProjectile : MonoBehaviour
         
         Renderer impactRend = impactEffectGO.GetComponent<Renderer>();
         Renderer enemyRend = enemy.GetComponent<Renderer>();
-        impactRend.material = enemyRend.material;
+        //impactRend.material = enemyRend.material;
 
         Destroy(impactEffectGO, 2f);
 
-        //Enemy enemy = target.GetComponent<Enemy>();
         enemy.TakeDamage(damage, attackingTower);
 
         Destroy(gameObject);
