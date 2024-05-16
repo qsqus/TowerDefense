@@ -6,6 +6,8 @@ public class BuildPoint : MonoBehaviour
     [Header("Build point stats")]
     [SerializeField] private Material selectedMaterial;
     [SerializeField] private float radius = 0.5f;
+    [SerializeField] private float popDuration = 0.1f;
+    [SerializeField] private float popMultiplier = 1.1f;
 
     [Header("Tags")]
     [SerializeField] private string playerTag = "Player";
@@ -93,6 +95,8 @@ public class BuildPoint : MonoBehaviour
                 towerObject = null;
                 tower = null;
 
+                EnterBuildPoint();
+
                 // Makes tree stump visible
                 //renderers[1].enabled = true;
                 buildPointRenderer.enabled = true;
@@ -103,6 +107,7 @@ public class BuildPoint : MonoBehaviour
     // Builds tower on build point
     private void BuildTower(GameObject towerToBuild)
     {
+        ExitBuildPoint();
         towerObject = Instantiate(towerToBuild, transform.position, transform.rotation);
         tower = towerObject.GetComponent<Tower>();
         
@@ -152,10 +157,13 @@ public class BuildPoint : MonoBehaviour
 
             TowerRangeDisplayManager.instance.ShowTowerRange(towerObject.transform.position, tower.GetTowerRange());
 
+            StartCoroutine(MakeObjectPop(towerObject, popMultiplier, popDuration));
+
             return;
         }
 
         buildPointRenderer.materials = selectedMaterials;
+        StartCoroutine(MakeObjectPop(gameObject, popMultiplier, popDuration));
 
     }
 
@@ -180,6 +188,32 @@ public class BuildPoint : MonoBehaviour
 
         buildPointRenderer.materials = startMaterials;
 
+    }
+
+    // Makes object pop
+    private IEnumerator MakeObjectPop(GameObject obj, float multiplier, float time)
+    {
+        Vector3 startScale = obj.transform.localScale;
+        Vector3 targetScale = startScale * multiplier;
+
+        // Scale up
+        yield return StartCoroutine(ScaleOverTime(obj, startScale, targetScale, time));
+
+        // Scale down
+        yield return StartCoroutine(ScaleOverTime(obj, targetScale, startScale, time));
+    }
+
+    // Scales object over time
+    private IEnumerator ScaleOverTime(GameObject obj, Vector3 startScale, Vector3 endScale, float time)
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < time)
+        {
+            obj.transform.localScale = Vector3.Lerp(startScale, endScale, elapsedTime / time);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        obj.transform.localScale = endScale;
     }
 
     // Returns radius of build point
