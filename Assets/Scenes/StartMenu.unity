@@ -151,7 +151,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1973337616}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,8 +182,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PLAY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4192ce39f2b2b948a99e6e909ceb879, type: 2}
+  m_sharedMaterial: {fileID: -5537447611912924413, guid: f4192ce39f2b2b948a99e6e909ceb879, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -944,8 +944,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SETTINGS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4192ce39f2b2b948a99e6e909ceb879, type: 2}
+  m_sharedMaterial: {fileID: -5537447611912924413, guid: f4192ce39f2b2b948a99e6e909ceb879, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1165,7 +1165,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 163.86, y: 132.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &875175508
 MonoBehaviour:
@@ -1813,10 +1813,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343fa52bf39c604eb391f9bf1823b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {fileID: 11400000, guid: e2047de4c10f2ff4ba731dec4869822a, type: 2}
-  selectedColor: {fileID: 11400000, guid: 8f3bade0095e02645a7d4736c2c7a851, type: 2}
+  hoverColor: {fileID: 11400000, guid: 8f3bade0095e02645a7d4736c2c7a851, type: 2}
+  selectedColor: {fileID: 11400000, guid: e2047de4c10f2ff4ba731dec4869822a, type: 2}
   normalColor: {fileID: 11400000, guid: f9015d6896da3a744ae08879f4ed8236, type: 2}
   buttonText: {fileID: 1336234783}
+  scaleMultiplier: 1.2
 --- !u!1 &1215398913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,8 +2093,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: QUIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4192ce39f2b2b948a99e6e909ceb879, type: 2}
+  m_sharedMaterial: {fileID: -5537447611912924413, guid: f4192ce39f2b2b948a99e6e909ceb879, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2332,10 +2333,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343fa52bf39c604eb391f9bf1823b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {fileID: 11400000, guid: e2047de4c10f2ff4ba731dec4869822a, type: 2}
-  selectedColor: {fileID: 11400000, guid: 8f3bade0095e02645a7d4736c2c7a851, type: 2}
+  hoverColor: {fileID: 11400000, guid: 8f3bade0095e02645a7d4736c2c7a851, type: 2}
+  selectedColor: {fileID: 11400000, guid: e2047de4c10f2ff4ba731dec4869822a, type: 2}
   normalColor: {fileID: 11400000, guid: f9015d6896da3a744ae08879f4ed8236, type: 2}
   buttonText: {fileID: 379730895}
+  scaleMultiplier: 1.2
 --- !u!1 &1392462011
 GameObject:
   m_ObjectHideFlags: 0
@@ -3710,10 +3712,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e343fa52bf39c604eb391f9bf1823b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {fileID: 11400000, guid: e2047de4c10f2ff4ba731dec4869822a, type: 2}
-  selectedColor: {fileID: 11400000, guid: 8f3bade0095e02645a7d4736c2c7a851, type: 2}
+  hoverColor: {fileID: 11400000, guid: 8f3bade0095e02645a7d4736c2c7a851, type: 2}
+  selectedColor: {fileID: 11400000, guid: e2047de4c10f2ff4ba731dec4869822a, type: 2}
   normalColor: {fileID: 11400000, guid: f9015d6896da3a744ae08879f4ed8236, type: 2}
   buttonText: {fileID: 178569742}
+  scaleMultiplier: 1.2
 --- !u!1 &1984886480
 GameObject:
   m_ObjectHideFlags: 0
@@ -3773,8 +3776,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TOWER DEFENSE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f4192ce39f2b2b948a99e6e909ceb879, type: 2}
+  m_sharedMaterial: {fileID: -5537447611912924413, guid: f4192ce39f2b2b948a99e6e909ceb879, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3798,8 +3801,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 71
-  m_fontSizeBase: 71
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 72

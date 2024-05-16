@@ -469,3 +469,4 @@ MonoBehaviour:
   highlightedFrame: {fileID: 64669776881770391}
   frame: {fileID: 5282327734325925944}
   towerPrice: {fileID: 6076343857249707145}
+  scaleMultiplier: 1.1

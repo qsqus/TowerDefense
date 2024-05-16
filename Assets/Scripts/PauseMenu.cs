@@ -34,6 +34,11 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
+
+        foreach(ButtonTextVisual button in buttons)
+        {
+            button.OnPointerExit();
+        }
     }
 
     private void Pause()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: YellowHover
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 1, g: 0.9857281, b: 0.7216981, a: 0.47058824}
-  topRight: {r: 1, g: 0.9843137, b: 0.72156864, a: 0.47058824}
-  bottomLeft: {r: 0.990566, g: 0.9641436, b: 0.5093005, a: 0.47058824}
-  bottomRight: {r: 0.99215686, g: 0.9647059, b: 0.50980395, a: 0.47058824}
+  topLeft: {r: 1, g: 1, b: 1, a: 0.78431374}
+  topRight: {r: 1, g: 1, b: 1, a: 0.78431374}
+  bottomLeft: {r: 1, g: 0.9873104, b: 0.7688679, a: 0.78431374}
+  bottomRight: {r: 1, g: 0.9882353, b: 0.76862746, a: 0.78431374}

@@ -29,6 +29,11 @@ public class TowerRangeDisplayManager : MonoBehaviour
     // Shows tower range in given position with given range
     public void ShowTowerRange(Vector3 towerPosition, float towerRange)
     {
+        if(PauseMenu.IsPaused)
+        {
+            return;
+        }
+
         for (int i = 0; i < groundRenderers.Length; i++)
         {
             groundRenderers[i].sharedMaterial.SetVector("_Center", towerPosition);
@@ -40,6 +45,11 @@ public class TowerRangeDisplayManager : MonoBehaviour
     // Hides tower range
     public void HideTowerRange()
     {
+        if (PauseMenu.IsPaused)
+        {
+            return;
+        }
+
         for (int i = 0; i < groundRenderers.Length; i++)
         {
             groundRenderers[i].sharedMaterial.SetFloat("_Border", 0f);
