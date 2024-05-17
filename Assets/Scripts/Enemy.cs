@@ -46,12 +46,14 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         healthBar.SetMaxValue(health);
+        healthBar.gameObject.SetActive(false);
 
         SetTarget();
         // Sets initial rotation
         transform.rotation = Quaternion.LookRotation(target.position - transform.position);
         
         animator.speed = animatorSpeed;
+
     }
 
     private void Update()
@@ -100,6 +102,11 @@ public class Enemy : MonoBehaviour
     // Takes damage
     public void TakeDamage(float amount, Tower attackingTower)
     {
+        if(!healthBar.gameObject.activeInHierarchy)
+        {
+            healthBar.gameObject.SetActive(true);
+        }
+
         health -= amount;
         healthBar.SetValue(health);
 

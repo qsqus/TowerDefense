@@ -86,13 +86,17 @@ MonoBehaviour:
   towerExperienceAmount: 0.4
   afterDeathSinkDepth: 2
   sinkingDuration: 35
+  deadBodyLifespan: 2
   animatorSpeed: 1
+  enemyGroundLevel: 0
   minCoinDrop: 3
   maxCoinDrop: 6
   minDiamondDrop: 1
   maxDiamondDrop: 1
   chanceOfDiamondDrop: 0.15
   playerTag: Player
+  deathAnimationName: Die
+  enemyType: 0
   healthBar: {fileID: 3622176380979542812}
   animator: {fileID: 0}
 --- !u!114 &4256636567926016406
