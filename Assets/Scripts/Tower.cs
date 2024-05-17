@@ -27,6 +27,7 @@ public abstract class Tower : MonoBehaviour
 
     [Header("Tags")]
     [SerializeField] private string enemyTag = "Enemy";
+    [SerializeField] private string playerTag = "Player";
 
     [Header("References")]
     [SerializeField] private Renderer[] renderers;
@@ -45,7 +46,14 @@ public abstract class Tower : MonoBehaviour
     private int currentLevel = 1;
     private int resellPrice;
     private bool isDestroyed = false;
+    
+    private PlayerBuild playerBuild;
 
+    private void Awake()
+    {
+        playerBuild = GameObject.FindGameObjectWithTag(playerTag).GetComponent<PlayerBuild>();
+
+    }
 
     void Start()
     {
@@ -165,6 +173,7 @@ public abstract class Tower : MonoBehaviour
         if(currentLevel < maxLevel)
         {
             isUpgrading = true;
+            playerBuild.ToggleBuildingAnimation(isUpgrading);
             StartCoroutine(Upgrade(0.2f));
         }
 
@@ -173,6 +182,7 @@ public abstract class Tower : MonoBehaviour
     public void StopUpgrading()
     {
         isUpgrading = false;
+        playerBuild.ToggleBuildingAnimation(isUpgrading);
     }
 
     private IEnumerator Upgrade(float callFrequency)
@@ -254,6 +264,9 @@ public abstract class Tower : MonoBehaviour
                 Debug.Log("Level 5 reached");
                 damage *= damageUpgradeMultiplier;
                 ToggleProgressBar(false);
+
+                isUpgrading = false;
+                playerBuild.ToggleBuildingAnimation(isUpgrading);
 
                 break;
 

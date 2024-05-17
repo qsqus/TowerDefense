@@ -5,7 +5,7 @@ public class MaterialFlash : MonoBehaviour
 {
     [SerializeField] private int flashAmount = 9;
     [SerializeField] private Color flashColor;
-    [SerializeField] private Renderer rend;
+    [SerializeField] private Renderer[] renderers;
 
     private bool hasFinishedFlashing = false;
 
@@ -16,7 +16,13 @@ public class MaterialFlash : MonoBehaviour
 
     private IEnumerator Flash(float duration, Color flashColor, int flashAmount)
     {
-        Color startColor = rend.material.color;
+        Color[] startColors = new Color[renderers.Length];
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            startColors[i] = renderers[i].material.color;
+        }
+
         float elapsedFlashTime = 0f;
         float elapsedFlashPercentage = 0f;
 
@@ -28,7 +34,11 @@ public class MaterialFlash : MonoBehaviour
             elapsedFlashPercentage = (elapsedFlashPercentage > 1) ? 1 : elapsedFlashPercentage;
             
             float pingPongPercentage = Mathf.PingPong(elapsedFlashPercentage * 2 * flashAmount, 1);
-            rend.material.color = Color.Lerp(startColor, flashColor, pingPongPercentage);
+
+            for(int i= 0; i < renderers.Length; i++)
+            {
+                renderers[i].material.color = Color.Lerp(startColors[i], flashColor, pingPongPercentage);
+            }
 
             yield return null;
         }

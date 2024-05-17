@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float immobileTime = 1.5f;
     [SerializeField] private float pushbackForce = 6.5f;
     [SerializeField] private MaterialFlash materialFlash;
+    [SerializeField] private Animator animator;
 
     private Rigidbody rb;
     private PlayerBuild playerBuild;
@@ -66,6 +67,12 @@ public class PlayerMovement : MonoBehaviour
         if(direction != Vector3.zero)
         {
             TowerManager.instance.AttemptHideTowerBuildMenu();
+            
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
         }
     }
 
@@ -88,6 +95,9 @@ public class PlayerMovement : MonoBehaviour
         dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsToDrop / LevelManager.instance.GetCoinWorth());
 
         rb.AddForce(pushbackDirection.normalized * pushbackForce, ForceMode.Impulse);
+
+        animator.SetBool("IsStunned", true);
+
     }
 
     private IEnumerator ImmobilizePlayer(float duration)
@@ -106,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         isInvincible = false;
         playerBuild.SetCanBuild(true);
+        animator.SetBool("IsStunned", false);
 
     }
 

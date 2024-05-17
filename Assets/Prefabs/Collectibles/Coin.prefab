@@ -70,7 +70,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashAmount: 9
   flashColor: {r: 1, g: 1, b: 1, a: 0}
-  rend: {fileID: 2517973126108270579}
+  renderers:
+  - {fileID: 2517973126108270579}
 --- !u!95 &5466367450828727045
 Animator:
   serializedVersion: 5

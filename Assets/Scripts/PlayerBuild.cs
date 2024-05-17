@@ -6,6 +6,7 @@ public class PlayerBuild : MonoBehaviour
     [SerializeField] private float playerRadius;
     [SerializeField] private float rangeOffset = 0.1f;
     [SerializeField] private string buildPointTag = "BuildPoint";
+    [SerializeField] private Animator animator;
 
     private GameObject selectedBuildPoint;
     private bool canEdit = false;
@@ -84,4 +85,14 @@ public class PlayerBuild : MonoBehaviour
         this.canBuild = canBuild;
     }
 
+    // Toggles building animation and plays random animation
+    public void ToggleBuildingAnimation(bool isPlaying)
+    {
+        if(isPlaying)
+        {
+            animator.SetInteger("BuildIdx", UnityEngine.Random.Range(0, 2));
+        }
+
+        animator.SetBool("IsBuilding", isPlaying);
+    }
 }
