@@ -551,6 +551,8 @@ MonoBehaviour:
   fireRateUpgradeMultiplier: 1
   resellPriceIncrease: 20
   enemyTag: Enemy
+  playerTag: Player
+  targetedEnemyTypes: 00000000
   renderers:
   - {fileID: 2421125824928923322}
   - {fileID: 1619097156401164203}

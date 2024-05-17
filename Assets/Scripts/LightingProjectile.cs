@@ -3,7 +3,8 @@ using UnityEngine;
 public class LightingProjectile : MonoBehaviour
 {
     [SerializeField] private string enemyTag = "Enemy";
-    
+    [SerializeField] private EnemyType[] targetedEnemyTypes = new EnemyType[] { EnemyType.Ground };
+
     private float damage;
     private GameObject attackEffect;
     private Transform target;
@@ -35,7 +36,15 @@ public class LightingProjectile : MonoBehaviour
             if (col.CompareTag(enemyTag))
             {
                 Enemy enemy = col.GetComponent<Enemy>();
-                enemy.TakeDamage(damage, attackingTower);
+
+                for (int i = 0; i < targetedEnemyTypes.Length; i++)
+                {
+                    if (targetedEnemyTypes[i] == enemy.GetEnemyType())
+                    {
+                        enemy.TakeDamage(damage, attackingTower);
+                        break;
+                    }
+                }
             }
 
         }

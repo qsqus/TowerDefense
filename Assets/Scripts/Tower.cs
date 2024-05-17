@@ -1,7 +1,5 @@
-using Palmmedia.ReportGenerator.Core;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public abstract class Tower : MonoBehaviour
 {
@@ -28,6 +26,7 @@ public abstract class Tower : MonoBehaviour
     [Header("Tags")]
     [SerializeField] private string enemyTag = "Enemy";
     [SerializeField] private string playerTag = "Player";
+    [SerializeField] private EnemyType[] targetedEnemyTypes = new EnemyType[] {EnemyType.Ground, EnemyType.Air};
 
     [Header("References")]
     [SerializeField] private Renderer[] renderers;
@@ -88,7 +87,23 @@ public abstract class Tower : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
-            if (enemy.GetComponent<Enemy>().IsDead)
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            if (enemyScript.IsDead)
+            {
+                continue;
+            }
+
+            bool isCorrectType = false;
+            for (int i = 0; i < targetedEnemyTypes.Length; i++)
+            {
+                if (targetedEnemyTypes[i] == enemyScript.GetEnemyType())
+                {
+                    isCorrectType = true;
+                    break;
+                }
+            }
+
+            if(!isCorrectType)
             {
                 continue;
             }

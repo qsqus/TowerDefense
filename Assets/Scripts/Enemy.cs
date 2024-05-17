@@ -11,7 +11,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float towerExperienceAmount = 0.4f;
     [SerializeField] private float afterDeathSinkDepth = 2f;
     [SerializeField] private float sinkingDuration = 8f;
+    [SerializeField] private float deadBodyLifespan = 1f;
     [SerializeField] private float animatorSpeed = 1f;
+    [SerializeField] private float enemyGroundLevel = 0f;
     
     [Header("Collectibles")]
     [SerializeField] private int minCoinDrop = 3;
@@ -22,6 +24,8 @@ public class Enemy : MonoBehaviour
 
     [Header("Tags")]
     [SerializeField] private string playerTag = "Player";
+    [SerializeField] private string deathAnimationName = "Die";
+    [SerializeField] private EnemyType enemyType = EnemyType.Ground;
 
     [Header("References")]
     [SerializeField] private ProgressBar healthBar;
@@ -112,7 +116,7 @@ public class Enemy : MonoBehaviour
         attackingTower.AddUpgradeProgress(towerExperienceAmount);
 
         IsDead = true;
-        animator.SetBool("isDead", true);
+        animator.SetBool("IsDead", true);
 
         int coinsAmount = Random.Range(minCoinDrop, maxCoinDrop + 1);
         dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsAmount);
@@ -126,15 +130,37 @@ public class Enemy : MonoBehaviour
 
         WaveSpawner.EnemiesAlive -= 1;
 
-        //Destroy(gameObject, 2f);
-        StartCoroutine(SinkUnderground(sinkingDuration));
+        StartCoroutine(WaitForDeathAnimationFinished());
 
     }
 
-    private IEnumerator SinkUnderground(float sinkingDuration)
+    // Waits for death animation to be finishaed then sinks
+    private IEnumerator WaitForDeathAnimationFinished()
+    {
+        bool isSinking = false;
+
+        while(!animator.GetCurrentAnimatorStateInfo(0).IsName(deathAnimationName))
+        {
+            yield return null;
+        }
+        if(!isSinking)
+        {
+            if(transform.position.y != enemyGroundLevel)
+            {
+                StartCoroutine(Sink(0.5f, new Vector3(transform.position.x, enemyGroundLevel, transform.position.z), false));
+            }
+
+            yield return new WaitForSeconds(deadBodyLifespan);
+            isSinking = true;
+        }
+
+        StartCoroutine(Sink(sinkingDuration, transform.position - new Vector3(0, afterDeathSinkDepth, 0)));
+    }
+
+    // Sinks enemy body underground
+    private IEnumerator Sink(float sinkingDuration, Vector3 targetPosition, bool destroyAfter = true)
     {
         Vector3 startPosition = transform.position;
-        Vector3 targetPosition = transform.position - new Vector3(0, afterDeathSinkDepth, 0);
         float elapsedTime = 0f;
 
         while(elapsedTime < sinkingDuration)
@@ -149,7 +175,10 @@ public class Enemy : MonoBehaviour
         }
         transform.position = targetPosition;
 
-        Destroy(gameObject);
+        if(destroyAfter)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -170,6 +199,11 @@ public class Enemy : MonoBehaviour
                 other.GetComponent<PlayerMovement>().CollideWithEnemy(transform.right);
             }
         }
+    }
+
+    public EnemyType GetEnemyType()
+    {
+        return enemyType;
     }
 
 }

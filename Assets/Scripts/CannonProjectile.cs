@@ -3,7 +3,8 @@ using UnityEngine;
 public class CannonProjectile : MonoBehaviour
 {
     [SerializeField] private string enemyTag = "Enemy";
-    
+    [SerializeField] private EnemyType[] targetedEnemyTypes = new EnemyType[] { EnemyType.Ground };
+
     private float damage;
     private GameObject impactEffet;
     private Transform target;
@@ -56,7 +57,16 @@ public class CannonProjectile : MonoBehaviour
             if (col.CompareTag(enemyTag))
             {
                 Enemy enemy = col.GetComponent<Enemy>();
-                enemy.TakeDamage(damage, attackingTower);
+
+                for (int i = 0; i < targetedEnemyTypes.Length; i++)
+                {
+                    if (targetedEnemyTypes[i] == enemy.GetEnemyType())
+                    {
+                        enemy.TakeDamage(damage, attackingTower);
+                        break;
+                    }
+                }
+
             }
 
         }
