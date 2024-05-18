@@ -36,6 +36,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected GameObject projectile;
     [SerializeField] protected GameObject projectileImpactEffet;
+    [SerializeField] protected GameObject shootEffect;
 
     protected Transform target;
     protected float fireCountdown = 0f;
@@ -159,6 +160,7 @@ public abstract class Tower : MonoBehaviour
         // Prevents shooting before tower is looking in enemy direction
         if (Mathf.Abs((Quaternion.LookRotation(target.position - firePoint.position).eulerAngles - xAxisRotationPoint.transform.eulerAngles).x) > 2)
         {
+            fireCountdown -= Time.deltaTime;
             return;
         }
 
@@ -311,6 +313,31 @@ public abstract class Tower : MonoBehaviour
     {
         isDestroyed = true;
         Destroy(gameObject);
+    }
+    
+    protected void InstantiateShootEffect(Transform targetTransform, float scaleMultiplier)
+    {
+        GameObject shootEffectSO = Instantiate(shootEffect, targetTransform.position, targetTransform.rotation);
+        shootEffectSO.transform.localScale *= scaleMultiplier;
+        Destroy(shootEffectSO, 1.5f);
+    }
+
+    // Checks if firePoint is kinda facing the target
+    protected bool IsFacingTarget()
+    {
+        // Calculate the direction vector from this GameObject to the target
+        Vector3 directionToTarget = target.position - firePoint.position;
+
+        // Project direction onto the plane ignoring the y-axis to only consider the x and z axes
+        Vector3 directionToTargetXZ = new Vector3(directionToTarget.x, 0, directionToTarget.z).normalized;
+
+        // Calculate the forward direction of this GameObject, ignoring the y-axis
+        Vector3 forwardXZ = new Vector3(firePoint.forward.x, 0, firePoint.forward.z).normalized;
+
+        // Calculate the angle between the forward vector and the direction vector
+        float angle = Vector3.Angle(forwardXZ, directionToTargetXZ);
+
+        return angle <= 6f;
     }
 
     protected abstract void SetRotation();

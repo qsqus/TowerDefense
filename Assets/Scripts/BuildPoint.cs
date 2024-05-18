@@ -218,7 +218,10 @@ public class BuildPoint : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        obj.transform.localScale = endScale;
+        if (!(Object.ReferenceEquals(obj, null) || obj == null))
+        {
+            obj.transform.localScale = endScale;
+        }
     }
 
     // Returns radius of build point

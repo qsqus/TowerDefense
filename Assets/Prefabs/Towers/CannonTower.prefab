@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 1465454967362491921}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.37, z: -0}
+  m_LocalPosition: {x: 0, y: 0.441, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -565,6 +565,7 @@ MonoBehaviour:
   firePoint: {fileID: 3685754724096363717}
   projectile: {fileID: 5060073923792895785, guid: b965f57d44e44db4a9a9dc5c2115b3f3, type: 3}
   projectileImpactEffet: {fileID: 1089262470002020294, guid: e2c4ad2277fff2b49a29e9f28faed79b, type: 3}
+  shootEffect: {fileID: 0}
   projectileExplosionRadius: 2.5
 --- !u!1001 &5383885160216335858
 PrefabInstance:
