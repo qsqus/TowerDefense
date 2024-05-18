@@ -5,12 +5,14 @@ public class BallistaProjectile : MonoBehaviour
     private float damage;
     private float speed;
     private GameObject impactEffet;
-    private Transform target;
+    private Transform targetEnemy;
+    private Transform targetBody;
     private Tower attackingTower;
+    private Enemy enemy;
 
     void Update()
     {
-        if (target == null)
+        if (targetEnemy == null)
         {
             Destroy(gameObject);
             return;
@@ -23,7 +25,7 @@ public class BallistaProjectile : MonoBehaviour
     // Follows target until it is hit
     private void FollowTarget()
     {
-        Vector3 direction = target.position - transform.position;
+        Vector3 direction = targetBody.position - transform.position;
         float distanceThisFrame = Time.deltaTime * speed;    // Amount of distance traveled in current frame
 
         // direction.magnitude is current distance to target
@@ -39,10 +41,7 @@ public class BallistaProjectile : MonoBehaviour
     // Hits target
     private void HitTarget()
     {
-        Enemy enemy = target.GetComponent<Enemy>();
-
-        // Projectile hit visual
-        GameObject impactEffectGO = Instantiate(impactEffet, transform.position, transform.rotation);
+        GameObject impactEffectGO = Instantiate(impactEffet, transform.position, transform.rotation, targetBody);
         Destroy(impactEffectGO, 2f);
 
         enemy.TakeDamage(damage, attackingTower);
@@ -53,7 +52,10 @@ public class BallistaProjectile : MonoBehaviour
     // Projectile constructor
     public void ConstructProjectile(Transform target, float damage, float speed, GameObject impactEffet, Tower attackingTower)
     {
-        this.target = target;
+        this.targetEnemy = target;
+        enemy = targetEnemy.GetComponent<Enemy>();
+        targetBody = enemy.GetEnemyBody();
+
         this.damage = damage;
         this.speed = speed;
         this.impactEffet = impactEffet;

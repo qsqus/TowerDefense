@@ -7,18 +7,12 @@ public class LightingProjectile : MonoBehaviour
 
     private float damage;
     private GameObject attackEffect;
-    private Transform target;
+    private Vector3 targetPosition;
     private Tower attackingTower;
 
     private void Update()
     {
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        if (transform.position.y <= target.position.y)
+        if (transform.position.y <= targetPosition.y)
         {
             HitTarget();
             return;
@@ -65,7 +59,7 @@ public class LightingProjectile : MonoBehaviour
     // Projectile constructor
     public void ConstructProjectile(Transform target, float damage, GameObject attackEffect, Tower attackingTower)
     {
-        this.target = target;
+        targetPosition = target.position;
         this.damage = damage;
         this.attackEffect = attackEffect;
         this.attackingTower = attackingTower;

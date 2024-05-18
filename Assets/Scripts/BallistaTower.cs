@@ -5,7 +5,7 @@ public class BallistaTower : Tower
     // Sets rotation to target - locks on the target
     protected override void SetRotation()
     {
-        Vector3 direction = target.position - firePoint.position;
+        Vector3 direction = targetBody.position - firePoint.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         
         Vector3 rotationY = Quaternion.Lerp(rotationPoint.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;

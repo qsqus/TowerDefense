@@ -12,9 +12,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 4.213
       objectReference: {fileID: 0}
+    - target: {fileID: 1884122356521777195, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.98
+      objectReference: {fileID: 0}
     - target: {fileID: 4209530578042695879, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: m_Name
-      value: Enemy2
+      value: EnemyGroundClown
       objectReference: {fileID: 0}
     - target: {fileID: 4286804271025962233, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: m_AnchorMax.x

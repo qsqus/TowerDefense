@@ -74,7 +74,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Radius: 7
+    - _Radius: 6.05
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -82,7 +82,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AreaColor: {r: 1, g: 0, b: 0.0077323914, a: 1}
-    - _Center: {r: -1.36, g: 0, b: 8.13, a: 0}
+    - _Center: {r: -4.99, g: 0, b: -3.95, a: 0}
     - _Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

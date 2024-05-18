@@ -40,6 +40,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected float shootEffectScale = 1f;
 
     protected Transform target;
+    protected Transform targetBody;
     protected float fireCountdown = 0f;
 
     private bool isUpgrading = false;
@@ -122,6 +123,7 @@ public abstract class Tower : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            targetBody = target.GetComponent<Enemy>().GetEnemyBody();
         }
         else
         {
@@ -159,7 +161,7 @@ public abstract class Tower : MonoBehaviour
     protected virtual void HandleShooting()
     {
         // Prevents shooting before tower is looking in enemy direction
-        if (Mathf.Abs((Quaternion.LookRotation(target.position - firePoint.position).eulerAngles - xAxisRotationPoint.transform.eulerAngles).x) > 2)
+        if (Mathf.Abs((Quaternion.LookRotation(targetBody.position - firePoint.position).eulerAngles - xAxisRotationPoint.transform.eulerAngles).x) > 2)
         {
             fireCountdown -= Time.deltaTime;
             return;
@@ -332,7 +334,7 @@ public abstract class Tower : MonoBehaviour
     protected bool IsFacingTarget()
     {
         // Calculate the direction vector from this GameObject to the target
-        Vector3 directionToTarget = target.position - firePoint.position;
+        Vector3 directionToTarget = targetBody.position - firePoint.position;
 
         // Project direction onto the plane ignoring the y-axis to only consider the x and z axes
         Vector3 directionToTargetXZ = new Vector3(directionToTarget.x, 0, directionToTarget.z).normalized;

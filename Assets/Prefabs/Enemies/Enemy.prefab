@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1884122356521777195}
   m_Layer: 0
-  m_Name: ProjectileTarget
+  m_Name: EnemyBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   enemyType: 0
   healthBar: {fileID: 3622176380979542812}
   animator: {fileID: 0}
+  body: {fileID: 1884122356521777195}
 --- !u!114 &4256636567926016406
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
     [Header("References")]
     [SerializeField] private ProgressBar healthBar;
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform body;
 
     private Transform target;
     private int pathElementIdx = 0;
@@ -188,7 +189,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(playerTag) && !IsDead)
@@ -211,6 +211,11 @@ public class Enemy : MonoBehaviour
     public EnemyType GetEnemyType()
     {
         return enemyType;
+    }
+
+    public Transform GetEnemyBody()
+    {
+        return body;
     }
 
 }

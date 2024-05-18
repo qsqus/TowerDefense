@@ -7,7 +7,7 @@ public class CannonProjectile : MonoBehaviour
 
     private float damage;
     private GameObject impactEffet;
-    private Transform target;
+    private Vector3 targetPosition;
     private Rigidbody rb;
     private float peakHeight;
     private float gravity = 9.81f;
@@ -16,13 +16,7 @@ public class CannonProjectile : MonoBehaviour
 
     private void Update()
     {
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        if (transform.position.y <= target.position.y)
+        if (transform.position.y <= targetPosition.y)
         {
             HitTarget();
             return;
@@ -32,7 +26,7 @@ public class CannonProjectile : MonoBehaviour
     // Launches the projectile
     void Launch()
     {
-        Vector3 displacement = target.position - transform.position;
+        Vector3 displacement = targetPosition - transform.position;
 
         // Calculate time to reach target position
         float timeToTarget = Mathf.Sqrt(2 * peakHeight / gravity) + Mathf.Sqrt(2 * peakHeight / gravity);
@@ -87,13 +81,13 @@ public class CannonProjectile : MonoBehaviour
     // Projectile constructor
     public void ConstructProjectile(Transform target, float damage, GameObject impactEffet, float explosionRadius, Tower attackingTower)
     {
-        this.target = target;
+        targetPosition = target.position;
         this.damage = damage;
         this.impactEffet = impactEffet;
         this.explosionRadius = explosionRadius;
         this.attackingTower = attackingTower;
 
-        peakHeight = transform.position.y + target.position.y / 1.5f;
+        peakHeight = transform.position.y + targetPosition.y / 1.5f;
 
         rb = GetComponent<Rigidbody>();
         Launch();

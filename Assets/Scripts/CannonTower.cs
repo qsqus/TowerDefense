@@ -9,7 +9,7 @@ public class CannonTower : Tower
     // Sets rotation to target - locks on the target
     protected override void SetRotation()
     {
-        Vector3 direction = target.position - transform.position;
+        Vector3 direction = targetBody.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
         Vector3 rotation = Quaternion.Lerp(rotationPoint.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
         rotationPoint.rotation = Quaternion.Euler(rotationPoint.eulerAngles.x, rotation.y, 0f);
