@@ -425,8 +425,9 @@ MonoBehaviour:
   xAxisRotationPoint: {fileID: 0}
   firePoint: {fileID: 7313407564256474176}
   projectile: {fileID: 5060073923792895785, guid: e7ee4f54d1e73644199bff91c9fc3a13, type: 3}
-  projectileImpactEffet: {fileID: 1089262470002020294, guid: e2c4ad2277fff2b49a29e9f28faed79b, type: 3}
-  shootEffect: {fileID: 0}
+  projectileImpactEffet: {fileID: 4006418781942204646, guid: 0bd4678697149f540a0723083f214e51, type: 3}
+  shootEffect: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+  shootEffectScale: 0.9
   bulletsInBurst: 3
   burstFireRate: 8
   firePoint2: {fileID: 7811506617538578867}

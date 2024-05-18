@@ -37,6 +37,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected GameObject projectile;
     [SerializeField] protected GameObject projectileImpactEffet;
     [SerializeField] protected GameObject shootEffect;
+    [SerializeField] protected float shootEffectScale = 1f;
 
     protected Transform target;
     protected float fireCountdown = 0f;
@@ -315,11 +316,16 @@ public abstract class Tower : MonoBehaviour
         Destroy(gameObject);
     }
     
-    protected void InstantiateShootEffect(Transform targetTransform, float scaleMultiplier)
+    protected void InstantiateShootEffect(Transform targetTransform)
     {
         GameObject shootEffectSO = Instantiate(shootEffect, targetTransform.position, targetTransform.rotation);
-        shootEffectSO.transform.localScale *= scaleMultiplier;
-        Destroy(shootEffectSO, 1.5f);
+        
+        if (shootEffectScale != 1f)
+        {
+            shootEffectSO.transform.localScale *= shootEffectScale;
+        }
+
+        Destroy(shootEffectSO, 2f);
     }
 
     // Checks if firePoint is kinda facing the target

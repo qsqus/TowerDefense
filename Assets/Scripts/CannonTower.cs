@@ -18,6 +18,8 @@ public class CannonTower : Tower
     // Shoots target by instantiating projectile
     protected override void Shoot()
     {
+        InstantiateShootEffect(firePoint);
+
         GameObject projectileGO = Instantiate(projectile, firePoint.position, rotationPoint.rotation);
         CannonProjectile firedProjectile = projectileGO.GetComponent<CannonProjectile>();
 

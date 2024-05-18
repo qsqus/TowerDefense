@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class LightningTower : Tower
 {
+    [SerializeField] private Transform weaponTransform;
     protected override void SetRotation() {}
 
     protected override void Shoot()
     {
+        InstantiateShootEffect(weaponTransform);
+
         GameObject projectileGO = Instantiate(projectile, firePoint.position, transform.rotation);
         LightingProjectile firedProjectile = projectileGO.GetComponent<LightingProjectile>();
 

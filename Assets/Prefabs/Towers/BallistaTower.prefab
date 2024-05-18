@@ -634,6 +634,8 @@ MonoBehaviour:
   fireRateUpgradeMultiplier: 1
   resellPriceIncrease: 20
   enemyTag: Enemy
+  playerTag: Player
+  targetedEnemyTypes: 0000000001000000
   renderers:
   - {fileID: 5736048497754415283}
   - {fileID: 223711402041591353}
@@ -646,7 +648,9 @@ MonoBehaviour:
   xAxisRotationPoint: {fileID: 1361358977700178949}
   firePoint: {fileID: 6410190516823278308}
   projectile: {fileID: 5060073923792895785, guid: e1b93b73748a7b747a5028b7c59fad4b, type: 3}
-  projectileImpactEffet: {fileID: 1089262470002020294, guid: e2c4ad2277fff2b49a29e9f28faed79b, type: 3}
+  projectileImpactEffet: {fileID: 4006418781942204646, guid: 0bd4678697149f540a0723083f214e51, type: 3}
+  shootEffect: {fileID: 0}
+  shootEffectScale: 1
 --- !u!1001 &4958178601973953810
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -50,6 +50,8 @@ public class BlasterTower : Tower
             currentFirepoint = firePoint;
         }
 
+        InstantiateShootEffect(currentFirepoint);
+
         GameObject projectileGO = Instantiate(projectile, currentFirepoint.position, rotationPoint.rotation);
         // Used BallistaProjectilecode for BlasterProjectile prefab
         BallistaProjectile firedProjectile = projectileGO.GetComponent<BallistaProjectile>();

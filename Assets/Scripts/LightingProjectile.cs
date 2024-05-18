@@ -50,8 +50,8 @@ public class LightingProjectile : MonoBehaviour
         }
 
         GameObject impactEffectGO = Instantiate(attackEffect, transform.position, transform.rotation);
-        impactEffectGO.transform.localScale = new Vector3(attackingTower.GetTowerRange(), 1f, attackingTower.GetTowerRange());
-        Destroy(impactEffectGO, 2f);
+        float towerRange = attackingTower.GetTowerRange() * 0.7f;
+        impactEffectGO.transform.localScale = new Vector3(towerRange, towerRange * 0.7f, towerRange);
 
         Destroy(gameObject);
     }

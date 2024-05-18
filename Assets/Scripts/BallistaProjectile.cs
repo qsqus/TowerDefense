@@ -43,11 +43,6 @@ public class BallistaProjectile : MonoBehaviour
 
         // Projectile hit visual
         GameObject impactEffectGO = Instantiate(impactEffet, transform.position, transform.rotation);
-        
-        Renderer impactRend = impactEffectGO.GetComponent<Renderer>();
-        Renderer enemyRend = enemy.GetComponent<Renderer>();
-        //impactRend.material = enemyRend.material;
-
         Destroy(impactEffectGO, 2f);
 
         enemy.TakeDamage(damage, attackingTower);
