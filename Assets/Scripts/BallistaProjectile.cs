@@ -41,9 +41,6 @@ public class BallistaProjectile : MonoBehaviour
     // Hits target
     private void HitTarget()
     {
-        GameObject impactEffectGO = Instantiate(impactEffet, transform.position, transform.rotation, targetBody);
-        Destroy(impactEffectGO, 2f);
-
         enemy.TakeDamage(damage, attackingTower);
 
         Destroy(gameObject);

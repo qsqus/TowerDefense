@@ -348,6 +348,11 @@ public abstract class Tower : MonoBehaviour
         return angle <= 6f;
     }
 
+    public EnemyType[] GetTargetedEnemyTypes()
+    {
+        return targetedEnemyTypes;
+    }
+
     protected abstract void SetRotation();
 
     protected abstract void Shoot();

@@ -1,11 +1,18 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
     [SerializeField] private float displayHeight = 6f;
-    [SerializeField] private string cameraTag = "MainCamera";
+    [SerializeField] private float radius = 5f;
+    [SerializeField] private float wheelRotationSpeed = 10f;
+    [SerializeField] private int rotationDirection = 1;
     [SerializeField] private Transform buttonContainer;
+    [SerializeField] private TMP_Text priceDisplay;
+    [SerializeField] private TMP_Text targetedEnemyTypeDisplay;
+    [SerializeField] private string cameraTag = "MainCamera";
 
     public static TowerManager instance { get; private set; }
     
@@ -16,6 +23,10 @@ public class TowerManager : MonoBehaviour
     private GameObject cam;
     private TowerMenuButton[] buttons;
     private int currentButtonIdx;
+
+    private float angle;
+    private RectTransform buttonContainerRect;
+    private float targetRotation;
 
     private void Awake()
     {
@@ -28,16 +39,13 @@ public class TowerManager : MonoBehaviour
         }
         instance = this;
 
+        buttonContainerRect = buttonContainer.GetComponent<RectTransform>();
+
     }
 
     private void Start()
     {
-        buttons = new TowerMenuButton[buttonContainer.childCount];
-
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i] = buttonContainer.GetChild(i).GetComponent<TowerMenuButton>();
-        }
+        RadialArrange();
 
         cam = GameObject.FindGameObjectWithTag(cameraTag);
         
@@ -46,19 +54,16 @@ public class TowerManager : MonoBehaviour
 
     private void Update()
     {
-        float scrollWheel = Input.GetAxis("Mouse ScrollWheel");
-        if(scrollWheel > 0)
+        // Smoothly rotates the wheel
+        if(targetRotation != 0f)
         {
-            buttons[currentButtonIdx].NormalVisual();
-            currentButtonIdx += 1;
-            if(currentButtonIdx > buttons.Length - 1)
-            {
-                currentButtonIdx = 0;
-            }
-            buttons[currentButtonIdx].HighlightedVisual();
-
+            float currentAngle = targetRotation * Time.deltaTime * wheelRotationSpeed;
+            RotateWheel(currentAngle);
+            targetRotation -= currentAngle;
         }
-        else if(scrollWheel < 0)
+
+        float scrollWheel = Input.GetAxis("Mouse ScrollWheel") * rotationDirection;
+        if(scrollWheel > 0)
         {
             buttons[currentButtonIdx].NormalVisual();
             currentButtonIdx -= 1;
@@ -67,11 +72,66 @@ public class TowerManager : MonoBehaviour
                 currentButtonIdx = buttons.Length - 1;
             }
             buttons[currentButtonIdx].HighlightedVisual();
+            targetRotation += angle;
+        }
+        else if(scrollWheel < 0)
+        {
+            buttons[currentButtonIdx].NormalVisual();
+            currentButtonIdx += 1;
+            if (currentButtonIdx > buttons.Length - 1)
+            {
+                currentButtonIdx = 0;
+            }
+            buttons[currentButtonIdx].HighlightedVisual();
+            targetRotation -= angle;
         }
 
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             SelectTowerToBuild(buttons[currentButtonIdx].GetTower());
+        }
+    }
+
+    private void RotateWheel(float rotationAngle)
+    {
+        rotationAngle *= Mathf.Rad2Deg;
+
+        Vector3 currentRotation = buttonContainerRect.localEulerAngles;
+        currentRotation.z += rotationAngle;
+        buttonContainerRect.localEulerAngles = currentRotation;
+
+        foreach (TowerMenuButton button in buttons)
+        {
+            button.RotateByAngle(-rotationAngle);
+        }
+
+    }
+
+    private void RestartRotation()
+    {
+        buttonContainerRect.localEulerAngles = Vector3.zero;
+
+        foreach (TowerMenuButton button in buttons)
+        {
+            button.RestartRotation();
+        }
+    }
+
+    // Arranges children of buttonContainer in circle
+    private void RadialArrange()
+    {
+        int amountOfButtons = buttonContainer.childCount;
+        buttons = new TowerMenuButton[amountOfButtons];
+        angle = 2f * Mathf.PI / amountOfButtons;
+
+        for (int i = 0; i < amountOfButtons; i++)
+        {
+            buttons[i] = buttonContainer.GetChild(i).GetComponent<TowerMenuButton>();
+
+            float newAngle = (i + 1) * angle;
+            RectTransform buttonRect = buttons[i].GetComponent<RectTransform>();
+            buttonRect.anchoredPosition = new Vector2(radius * Mathf.Cos(newAngle), radius * (float)Math.Sin(newAngle));
+
         }
     }
 
@@ -116,6 +176,7 @@ public class TowerManager : MonoBehaviour
         isBuildMenuOpen = false;
 
         buttons[currentButtonIdx].NormalVisual();
+        RestartRotation();
     }
 
     // Shows tower build menu, buildPoint - selected build point
@@ -136,7 +197,7 @@ public class TowerManager : MonoBehaviour
         selectedBuildPoint = buildPoint;
         isBuildMenuOpen = true;
 
-        currentButtonIdx = (int)(buttons.Length / 2f);
+        currentButtonIdx = 0;
         buttons[currentButtonIdx].HighlightedVisual();
     }
 
@@ -144,4 +205,19 @@ public class TowerManager : MonoBehaviour
     {
         return selectedBuildPoint.transform.position;
     }
+
+    public void UpdateTowerInfo(int price, EnemyType[] enemyType)
+    {
+        priceDisplay.text = price.ToString();
+
+        if (enemyType.Length > 1)
+        {
+            targetedEnemyTypeDisplay.text = "All";
+        }
+        else
+        {
+            targetedEnemyTypeDisplay.text = enemyType[0].ToString();
+        }
+    }
+
 }

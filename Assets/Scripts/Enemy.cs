@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ProgressBar healthBar;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform body;
+    [SerializeField] private GameObject hitEffect;
 
     private Transform target;
     private int pathElementIdx = 0;
@@ -108,6 +109,8 @@ public class Enemy : MonoBehaviour
             healthBar.gameObject.SetActive(true);
         }
 
+        InstantiateHitEffect();
+
         health -= amount;
         healthBar.SetValue(health);
 
@@ -116,6 +119,13 @@ public class Enemy : MonoBehaviour
         {
             Die(attackingTower);
         }
+    }
+
+    // Instantiates hite effect visual
+    private void InstantiateHitEffect()
+    {
+        GameObject hitEffectGO = Instantiate(hitEffect, body.position, body.rotation, body);
+        Destroy(hitEffectGO, 2f);
     }
 
     // Kills enemy
