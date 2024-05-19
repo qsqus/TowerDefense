@@ -143,6 +143,8 @@ public class TowerManager : MonoBehaviour
         {
             if(!selectedBuildPoint.GetComponent<BuildPoint>().HasTower())
             {
+                SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.towerToBuildSelected, selectedBuildPoint.transform);
+
                 LevelManager.instance.ChangeCoinsByAmount(-towerPrice);
                 OnTowerToBuildSelected?.Invoke(tower, selectedBuildPoint.GetInstanceID());
                 HideTowerBuildMenu();
@@ -188,6 +190,7 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
+
         transform.position = buildPoint.transform.position + new Vector3(0, displayHeight, 0); 
         
         // Looks at camera
@@ -196,6 +199,8 @@ public class TowerManager : MonoBehaviour
         gameObject.SetActive(true);
         selectedBuildPoint = buildPoint;
         isBuildMenuOpen = true;
+
+        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.towerMenuOpened, selectedBuildPoint.transform);
 
         currentButtonIdx = 0;
         buttons[currentButtonIdx].HighlightedVisual();

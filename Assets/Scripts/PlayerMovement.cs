@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float immobileTime = 1.5f;
     [SerializeField] private float pushbackForce = 6.5f;
+    [SerializeField] private float walkSoundInterval = 0.5f;
     [SerializeField] private MaterialFlash materialFlash;
     [SerializeField] private Animator animator;
 
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canCollect = true;
     private bool canMove = true;
     private bool isInvincible = false;
+    private float walkSoundTimer = 0f;
 
     void Start()
     { 
@@ -67,16 +69,25 @@ public class PlayerMovement : MonoBehaviour
         if(direction != Vector3.zero)
         {
             TowerManager.instance.AttemptHideTowerBuildMenu();
-            
+
             animator.SetBool("IsMoving", true);
+            
+            if(walkSoundTimer >= walkSoundInterval)
+            {
+                SoundEffectsManager.instance.PlayRandomSoundEffectClip(SoundEffectsManager.instance.playerWalk, transform, 0.05f);
+                walkSoundTimer = 0f;
+            }
         }
         else
         {
             animator.SetBool("IsMoving", false);
         }
+
+        walkSoundTimer += Time.deltaTime;
+
     }
 
-    
+
     public void CollideWithEnemy(Vector3 pushbackDirection)
     {
         if(isInvincible)

@@ -154,6 +154,9 @@ public class BuildPoint : MonoBehaviour
             tower.StartUpgrading();
             tower.ToggleProgressBar(true);
 
+            SoundEffectsManager.instance.PlayRandomSoundEffectClip(SoundEffectsManager.instance.towerEntered, transform);
+
+
             TowerRangeDisplayManager.instance.ShowTowerRange(towerObject.transform.position, tower.GetTowerRange());
 
             StartCoroutine(MakeObjectPop(towerObject, popMultiplier, popDuration));
@@ -161,6 +164,7 @@ public class BuildPoint : MonoBehaviour
             return;
         }
 
+        SoundEffectsManager.instance.PlayRandomSoundEffectClip(SoundEffectsManager.instance.buildPointEntered, transform);
         buildPointRenderer.materials = selectedMaterials;
         StartCoroutine(MakeObjectPop(gameObject, popMultiplier, popDuration));
 

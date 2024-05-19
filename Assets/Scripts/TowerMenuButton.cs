@@ -38,6 +38,8 @@ public class TowerMenuButton : MonoBehaviour
 
     public void HighlightedVisual()
     {
+        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.towerMenuSwitched, transform);
+
         highlightedFrame.enabled = true;
         transform.localScale *= scaleMultiplier;
         TowerRangeDisplayManager.instance.ShowTowerRange(TowerManager.instance.GetSelectedBuildPointPosition(), towerScript.GetTowerRange());

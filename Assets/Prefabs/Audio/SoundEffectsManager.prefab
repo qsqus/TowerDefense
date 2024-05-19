@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8913622757726132808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6549091804001439010}
+  - component: {fileID: 8492818032097788201}
+  m_Layer: 0
+  m_Name: SoundEffectsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6549091804001439010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913622757726132808}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8492818032097788201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8913622757726132808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2979a8739f8aa9742a5713984be69768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixerGroup: {fileID: 5497757141665112328, guid: 3b6c52704f3a0f8469b41aee6c4ad413, type: 2}
+  soundEffectsObject: {fileID: 5129162838815485792, guid: 5ef6f7a1207e4024bae0e81d61bf7703, type: 3}
+  playerHurt: []
+  playerWalk:
+  - {fileID: 8300000, guid: d135361eb78a124438acaa4ae5b6a99a, type: 3}
+  - {fileID: 8300000, guid: 140dc4291bb8afb4c833f6dfc5b2004b, type: 3}
+  - {fileID: 8300000, guid: fd6dd57c944720e4c9658fe012c20f0d, type: 3}
+  - {fileID: 8300000, guid: 9a653e15935a52d48b17990263f2fc96, type: 3}
+  - {fileID: 8300000, guid: 45a265270947f5548a27d2bfb684b2a2, type: 3}
+  enemyHit: []
+  enemyWalk: []
+  enemyDeath: []
+  towerShot: []
+  towerShotImpact: []
+  towerBuild: []
+  buildPointEntered:
+  - {fileID: 8300000, guid: 1817a22fca73d5b4bac844637f5d4397, type: 3}
+  - {fileID: 8300000, guid: d12b2eec1b41d464dafe439eeca0941e, type: 3}
+  - {fileID: 8300000, guid: 8b1274a8550330143bba3e66cab0067d, type: 3}
+  - {fileID: 8300000, guid: 1caea9c007cfe7141a627186d4683c31, type: 3}
+  - {fileID: 8300000, guid: 6364c8456a06a8f46b8cda11727cd6ce, type: 3}
+  - {fileID: 8300000, guid: 3d9863e40db4d0f46970d0c7602a37b7, type: 3}
+  - {fileID: 8300000, guid: b1e21e18b3ead2c41a1861e6cb8e1ad4, type: 3}
+  - {fileID: 8300000, guid: f99496d17caf0854cb6952b6e07e583f, type: 3}
+  - {fileID: 8300000, guid: 5eb23dbea4957c44e942c77e1654d56f, type: 3}
+  - {fileID: 8300000, guid: 046822af38a07df4ca49d9116cee7537, type: 3}
+  towerEntered:
+  - {fileID: 8300000, guid: 5cf518c1304e6444fabbfda914e97d8d, type: 3}
+  - {fileID: 8300000, guid: f7790c2f1488df64d83466f4b2c1937e, type: 3}
+  - {fileID: 8300000, guid: ad0a0140627c7514985fb3b17a06a1ea, type: 3}
+  - {fileID: 8300000, guid: ed478f15e20b2024dbe8a80d95a10b0f, type: 3}
+  - {fileID: 8300000, guid: 3f9abac9cc4b74c469b47684cc8f74f3, type: 3}
+  towerMenuOpened: {fileID: 8300000, guid: c0ed7092d8560fe4aa0c7a716ac09a30, type: 3}
+  towerMenuSwitched: {fileID: 8300000, guid: 0b5d6187f27fb0b4e92a3c5142b0bc36, type: 3}
+  towerToBuildSelected: {fileID: 8300000, guid: 76cd81afe1ae928488d92170e5602d84, type: 3}
+  buttonHover: {fileID: 8300000, guid: 34aa8ebdfe17ebd4580c67eaa2942800, type: 3}
+  buttonClick: {fileID: 8300000, guid: f62ee591863fa434890861fda3330df1, type: 3}

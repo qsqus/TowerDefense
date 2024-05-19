@@ -18,6 +18,8 @@ public class ButtonTextVisual : MonoBehaviour
 
     public void OnPointerEnter()
     {
+        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonHover, transform);
+
         buttonText.colorGradientPreset = hoverColor;
         buttonText.transform.localScale *= scaleMultiplier;
     }
@@ -31,6 +33,7 @@ public class ButtonTextVisual : MonoBehaviour
 
     public void OnPointerDown()
     {
+        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonClick, transform);
         buttonText.colorGradientPreset = selectedColor;
     }
 

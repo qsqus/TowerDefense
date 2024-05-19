@@ -210,6 +210,7 @@ MonoBehaviour:
   rotationSpeed: 10
   immobileTime: 2.5
   pushbackForce: 6
+  walkSoundInterval: 0.275
   materialFlash: {fileID: -388473186397723143}
   animator: {fileID: 6050454954302212314}
 --- !u!114 &2947334653580648061
