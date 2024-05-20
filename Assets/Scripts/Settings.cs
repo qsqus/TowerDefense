@@ -22,4 +22,18 @@ public class Settings : MonoBehaviour
         audioMixer.SetFloat("musicVolume", Mathf.Log10(level) * 20);
     }
 
+
+    /* Key rebinding
+    private void Update()
+    {
+        foreach (KeyCode keyCode in System.Enum.GetValues(typeof(KeyCode)))
+        {
+            if (Input.GetKey(keyCode))
+            {
+                Debug.Log(keyCode);
+            }
+        }
+    }
+    */
+
 }

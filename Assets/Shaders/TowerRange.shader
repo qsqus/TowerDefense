@@ -16,7 +16,7 @@ Shader "Custom/TowerRange"
         #pragma surface surf Lambert
 
         sampler2D _MainTex;
-        fixed3 _AreaColor;
+        float3 _AreaColor;
         float3 _Center;
         float _Radius;
         float _Border;

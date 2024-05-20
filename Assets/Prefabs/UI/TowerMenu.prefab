@@ -226,6 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayHeight: 1.5
   radius: 200
+  wheelRotationSpeed: 10
+  rotationDirection: 1
   buttonContainer: {fileID: 5401943957391130999}
   priceDisplay: {fileID: 1039880795311650080}
   targetedEnemyTypeDisplay: {fileID: 6090620505196012692}
@@ -608,7 +610,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &959399129078560510
 MonoBehaviour:
   m_ObjectHideFlags: 0

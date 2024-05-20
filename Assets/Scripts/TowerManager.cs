@@ -109,6 +109,7 @@ public class TowerManager : MonoBehaviour
 
     private void RestartRotation()
     {
+        targetRotation = 0f;
         buttonContainerRect.localEulerAngles = Vector3.zero;
 
         foreach (TowerMenuButton button in buttons)
@@ -143,6 +144,8 @@ public class TowerManager : MonoBehaviour
         {
             if(!selectedBuildPoint.GetComponent<BuildPoint>().HasTower())
             {
+                buttons[currentButtonIdx].NormalVisual();
+
                 SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.towerToBuildSelected, selectedBuildPoint.transform);
 
                 LevelManager.instance.ChangeCoinsByAmount(-towerPrice);

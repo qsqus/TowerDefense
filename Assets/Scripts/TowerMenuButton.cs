@@ -5,15 +5,16 @@ using UnityEngine.UI;
 public class TowerMenuButton : MonoBehaviour
 {
     [SerializeField] private GameObject tower;
-    [SerializeField] private Image highlightedFrame;
     [SerializeField] private Image frame;
     [SerializeField] private TMP_Text towerPrice;
+    [SerializeField] private Color selectedColor;
     [SerializeField] private float scaleMultiplier = 1.1f;
 
 
     private RectTransform rectTransform;
     private Tower towerScript;
     private Vector3 startScale;
+    private Color startColor;
 
     private void Awake()
     {
@@ -24,15 +25,14 @@ public class TowerMenuButton : MonoBehaviour
 
     private void Start()
     {
-        highlightedFrame.enabled = false;
         towerPrice.text = towerScript.GetPrice().ToString();
         startScale = transform.localScale;
+        startColor = frame.color;
     }
 
     // Returns selected tower
     public GameObject GetTower()
     {
-        NormalVisual();
         return tower;
     }
 
@@ -40,15 +40,15 @@ public class TowerMenuButton : MonoBehaviour
     {
         SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.towerMenuSwitched, transform);
 
-        highlightedFrame.enabled = true;
+        frame.color = selectedColor;
         transform.localScale *= scaleMultiplier;
-        TowerRangeDisplayManager.instance.ShowTowerRange(TowerManager.instance.GetSelectedBuildPointPosition(), towerScript.GetTowerRange());
+        TowerRangeDisplayManager.instance.ShowTowerRange(TowerManager.instance.GetSelectedBuildPointPosition(), towerScript.GetTowerRange(), false);
         TowerManager.instance.UpdateTowerInfo(towerScript.GetPrice(), towerScript.GetTargetedEnemyTypes());
     }
 
     public void NormalVisual()
     {
-        highlightedFrame.enabled = false;
+        frame.color = startColor;
         transform.localScale = startScale;
 
     }
