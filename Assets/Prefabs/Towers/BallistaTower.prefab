@@ -629,6 +629,7 @@ MonoBehaviour:
   upgradeTime: 3
   upgradeTimeIncrese: 1
   maxLevel: 5
+  levelUpVolume: 0.3
   rangeUpgradeMultiplier: 1.1
   damageUpgradeMultiplier: 1.3
   fireRateUpgradeMultiplier: 1

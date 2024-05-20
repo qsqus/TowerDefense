@@ -16,6 +16,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] private float upgradeTime = 40f;
     [SerializeField] private float upgradeTimeIncrese = 10f;
     [SerializeField] private int maxLevel = 5;
+    [SerializeField] private float levelUpVolume = 0.3f;
 
     [Header("Upgraded stats")]
     [SerializeField] private float rangeUpgradeMultiplier = 1f;
@@ -251,6 +252,8 @@ public abstract class Tower : MonoBehaviour
         {
             return;
         }
+
+        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.towerUpgrade, transform, levelUpVolume);
 
         upgradeTime += upgradeTimeIncrese;
         upgradeProgress = 0f;

@@ -7,6 +7,7 @@ public class Collectible : MonoBehaviour
     [SerializeField] private int worth  = 10;
     [SerializeField] private float maxLifeSpan = 15f;
     [SerializeField] private float flashWhenTimeLeft = 3f;
+    [SerializeField] private float soundVolume = 0.5f;
 
     [Header("Tags")]
     [SerializeField] private string playerTag = "Player";
@@ -55,12 +56,12 @@ public class Collectible : MonoBehaviour
             {
                 if(gameObject.CompareTag(coinTag))
                 {
-                    // TO DO: Add coin collected effect
+                    SoundEffectsManager.instance.PlayRandomSoundEffectClip(SoundEffectsManager.instance.coinPickup, transform, soundVolume);
                     LevelManager.instance.ChangeCoinsByAmount(worth);
                 }
                 else if(gameObject.CompareTag(diamondTag))
                 {
-                    // TO DO: Add diamond collected effect
+                    SoundEffectsManager.instance.PlayRandomSoundEffectClip(SoundEffectsManager.instance.diamondPickup, transform, soundVolume);
                     LevelManager.instance.ChangeDiamondsByAmount(worth);
 
                 }

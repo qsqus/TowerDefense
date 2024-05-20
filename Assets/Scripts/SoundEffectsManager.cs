@@ -12,6 +12,10 @@ public class SoundEffectsManager : MonoBehaviour
     [SerializeField] public AudioClip[] playerHurt;
     [SerializeField] public AudioClip[] playerWalk;
 
+    [Header("Collectibles")]
+    [SerializeField] public AudioClip[] coinPickup;
+    [SerializeField] public AudioClip[] diamondPickup;
+
     [Header("Enemy audio clips")]
     [SerializeField] public AudioClip[] enemyHit;
     [SerializeField] public AudioClip[] enemyWalk;
@@ -30,7 +34,7 @@ public class SoundEffectsManager : MonoBehaviour
     [SerializeField] public AudioClip towerMenuOpened;
     [SerializeField] public AudioClip towerMenuSwitched;
     [SerializeField] public AudioClip towerToBuildSelected;
-
+    [SerializeField] public AudioClip towerUpgrade;
 
     [Header("UI audio clips")]
     [SerializeField] public AudioClip buttonHover;
