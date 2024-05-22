@@ -49,6 +49,7 @@ public abstract class Tower : MonoBehaviour
     private int currentLevel = 1;
     private int resellPrice;
     private bool isDestroyed = false;
+    private bool isSelected = false;
     
     private PlayerBuild playerBuild;
 
@@ -275,7 +276,10 @@ public abstract class Tower : MonoBehaviour
                 Debug.Log("Level 3 reached");
                 range *= rangeUpgradeMultiplier;
 
-                TowerRangeDisplayManager.instance.ShowTowerRange(transform.position, range);
+                if(isSelected)
+                {
+                    TowerRangeDisplayManager.instance.ShowTowerRange(transform.position, range);
+                }
 
                 break;
             case 4:
@@ -354,6 +358,11 @@ public abstract class Tower : MonoBehaviour
     public EnemyType[] GetTargetedEnemyTypes()
     {
         return targetedEnemyTypes;
+    }
+
+    public void ToggleIsSelected(bool isSelected)
+    {
+        this.isSelected = isSelected;
     }
 
     protected abstract void SetRotation();

@@ -8,5 +8,6 @@ public class SubWave
     public int amount;
     public float rate;
     public float afterwardsAwaitTime;
+    public EnemyPath enemyPath = null;
 
 }

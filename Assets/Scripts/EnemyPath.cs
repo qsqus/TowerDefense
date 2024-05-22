@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyPath : MonoBehaviour
 {
-    private static Transform[] enemyPathElements;
+    private Transform[] enemyPathElements;
 
     private void Awake()
     {
@@ -14,7 +14,7 @@ public class EnemyPath : MonoBehaviour
         }
     }
 
-    static public Transform GetEnemyPathElement(int idx)
+    public Transform GetEnemyPathElement(int idx)
     {
         if(idx < enemyPathElements.Length)
         {

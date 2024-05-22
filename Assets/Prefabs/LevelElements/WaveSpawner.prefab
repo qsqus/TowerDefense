@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: WaveSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6807933390191999844}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.73, y: 0, z: 8.56}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,13 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - enemy: {fileID: 4209530578042695879, guid: efa34008bf486794e8ba9b35086f72fa, type: 3}
-    count: 3
-    rate: 2
-  - enemy: {fileID: 4209530578042695879, guid: efa34008bf486794e8ba9b35086f72fa, type: 3}
-    count: 5
-    rate: 1
-  - enemy: {fileID: 4209530578042695879, guid: efa34008bf486794e8ba9b35086f72fa, type: 3}
-    count: 5
-    rate: 1
+  - subWaves: []
+  - subWaves: []
+  - subWaves: []
   timeBetweenWaves: 5
+  enemyPath: {fileID: 0}

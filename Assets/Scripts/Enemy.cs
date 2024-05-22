@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     private DropCollectibles dropCollectibles;
     public bool IsDead { get; private set; } = false;
 
+    private EnemyPath enemyPath;
 
     private void Awake()
     {
@@ -51,8 +52,6 @@ public class Enemy : MonoBehaviour
         healthBar.gameObject.SetActive(false);
 
         SetTarget();
-        // Sets initial rotation
-        transform.rotation = Quaternion.LookRotation(target.position - transform.position);
         
         animator.speed = animatorSpeed;
 
@@ -80,9 +79,13 @@ public class Enemy : MonoBehaviour
 
         Vector3 direction = target.position - transform.position;
 
-        // Rotates towards target
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        if(direction != Vector3.zero)
+        {
+            // Rotates towards target
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
+
 
         // Moves towards target
         transform.Translate(direction.normalized * moveSpeed * Time.deltaTime, Space.World);
@@ -98,7 +101,7 @@ public class Enemy : MonoBehaviour
     // Sets target
     private void SetTarget()
     {
-        target = EnemyPath.GetEnemyPathElement(pathElementIdx);
+        target = enemyPath.GetEnemyPathElement(pathElementIdx);
     }
 
     // Takes damage
@@ -227,5 +230,10 @@ public class Enemy : MonoBehaviour
     {
         return body;
     }
+
+    public void SetEnemyPath(EnemyPath enemyPath)
+    {
+        this.enemyPath = enemyPath;
+    }    
 
 }

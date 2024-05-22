@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTowardsPlayerSpeed: 10
-  worth: 5
+  worth: 1
   maxLifeSpan: 15
   flashWhenTimeLeft: 3
+  soundVolume: 0.5
   playerTag: Player
   coinTag: Coin
   diamondTag: Diamond

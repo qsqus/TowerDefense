@@ -5,6 +5,7 @@ public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private Wave[] waves;
     [SerializeField] private float timeBetweenWaves = 5f;
+    [SerializeField] private EnemyPath defaultEnemyPath;
 
     public static int EnemiesAlive;
 
@@ -54,7 +55,16 @@ public class WaveSpawner : MonoBehaviour
 
             for (int j = 0; j < subWave.amount; j++)
             {
-                SpawnEnemy(subWave.enemy);
+                EnemyPath spawnPath = subWave.enemyPath;
+
+                if(spawnPath != null)
+                {
+                    SpawnEnemy(subWave.enemy, spawnPath);
+                }
+                else
+                {
+                    SpawnEnemy(subWave.enemy, defaultEnemyPath);
+                }
                 yield return new WaitForSeconds(1f / subWave.rate);
             }
 
@@ -76,10 +86,11 @@ public class WaveSpawner : MonoBehaviour
     }
 
 
-    // Spawns enemy as its child
-    void SpawnEnemy(GameObject enemy)
+    // Spawns enemy as its child on a path
+    private void SpawnEnemy(GameObject enemy, EnemyPath enemyPath)
     {
-        Instantiate(enemy, transform.position, transform.rotation, transform);
+        Enemy enemyInstance = Instantiate(enemy, enemyPath.GetEnemyPathElement(0).position, transform.rotation, transform).GetComponent<Enemy>();
+        enemyInstance.SetEnemyPath(enemyPath);
     }
 
 

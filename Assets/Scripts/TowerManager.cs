@@ -1,14 +1,20 @@
 using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
+    [Header("Tower Select")]
     [SerializeField] private float displayHeight = 6f;
     [SerializeField] private float radius = 5f;
     [SerializeField] private float wheelRotationSpeed = 10f;
     [SerializeField] private int rotationDirection = 1;
+    [SerializeField] private float zMaxPosition = 5f;
+    [SerializeField] private float zMinPosition = -5f;
+    [SerializeField] private float xMaxPosition = 10f;
+    [SerializeField] private float xMinPosition = -10f;
+    [SerializeField] private float offScreenOffset = 3f;
     [SerializeField] private Transform buttonContainer;
     [SerializeField] private TMP_Text priceDisplay;
     [SerializeField] private TMP_Text targetedEnemyTypeDisplay;
@@ -27,6 +33,7 @@ public class TowerManager : MonoBehaviour
     private float angle;
     private RectTransform buttonContainerRect;
     private float targetRotation;
+
 
     private void Awake()
     {
@@ -193,9 +200,32 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
+        // Move the menu so that it fits on screen
+        Vector3 displayPosition = buildPoint.transform.position + new Vector3(0, displayHeight, 0);
 
-        transform.position = buildPoint.transform.position + new Vector3(0, displayHeight, 0); 
-        
+        if (displayPosition.x < xMinPosition)
+        {
+            displayPosition.x = xMinPosition;
+        }
+        else if(displayPosition.x > xMaxPosition)
+        {
+            displayPosition.x = xMaxPosition;
+        }
+
+        if (displayPosition.z < zMinPosition)
+        {
+            displayPosition.z = zMinPosition;
+        }
+        else if (displayPosition.z > zMaxPosition)
+        {
+            displayPosition.z = zMaxPosition;
+        }
+
+        //transform.position = buildPoint.transform.position + new Vector3(0, displayHeight, 0); 
+        transform.position = displayPosition;
+
+        Debug.Log(transform.position);
+
         // Looks at camera
         transform.LookAt(transform.position + cam.transform.forward);
 

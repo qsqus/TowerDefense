@@ -44,5 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b56d8a594afff4ebdb321769320156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  livesAmount: 10
+  coinsAmount: 400
+  diamondsAmount: 0
   coin: {fileID: 7575831786288409675, guid: 050a4cba8d4368b40b217d7f1806d63c, type: 3}
   diamond: {fileID: 8982039313061057306, guid: cfda08478a3246548908f4231176b117, type: 3}

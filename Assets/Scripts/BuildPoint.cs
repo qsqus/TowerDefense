@@ -18,6 +18,9 @@ public class BuildPoint : MonoBehaviour
     [SerializeField] private Transform modelTransform;
     [SerializeField] private DropCollectibles dropCollectibles;
 
+    [Header("To remove on awake")]
+    [SerializeField] private GameObject towerAligner;
+
     private Material[] selectedMaterials;
     private Material[] selectedMaterials3;
 
@@ -31,17 +34,20 @@ public class BuildPoint : MonoBehaviour
 
     private int instanceID;
 
-
-    void Start()
+    private void Awake()
+    {
+        Destroy(towerAligner.gameObject);
+    }
+    private void Start()
     {
         modelTransform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
         modelTransform.localScale *= Random.Range(0.9f, 1.1f);
 
-        buildPointMeshFilter.mesh = Instantiate(BuildPointVisualManager.instance.GetRandomMesh());
+        buildPointMeshFilter.mesh = Instantiate(EnvironmentVisualManager.instance.GetRandomBuildPointMesh());
 
-        Material[] randomMaterials = BuildPointVisualManager.instance.GetRandomMaterials();
+        Material[] randomMaterials = EnvironmentVisualManager.instance.GetRandomBuildPointMaterials();
 
-        if (BuildPointVisualManager.instance.IsReversedMesh(buildPointMeshFilter.mesh.name))
+        if (EnvironmentVisualManager.instance.IsReversedMesh(buildPointMeshFilter.mesh.name))
         {
             Material temp = randomMaterials[0];
             randomMaterials[0] = randomMaterials[1];
@@ -153,6 +159,7 @@ public class BuildPoint : MonoBehaviour
             }
             tower.StartUpgrading();
             tower.ToggleProgressBar(true);
+            tower.ToggleIsSelected(true);
 
             SoundEffectsManager.instance.PlayRandomSoundEffectClip(SoundEffectsManager.instance.towerEntered, transform);
 
@@ -183,6 +190,7 @@ public class BuildPoint : MonoBehaviour
             }
             tower.StopUpgrading();
             tower.ToggleProgressBar(false);
+            tower.ToggleIsSelected(false);
 
             TowerRangeDisplayManager.instance.HideTowerRange();
 

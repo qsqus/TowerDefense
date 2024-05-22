@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1501990159304135050, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.881
+      value: 2.2940001
       objectReference: {fileID: 0}
     - target: {fileID: 1884122356521777195, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.792
+      value: 1.2049999
       objectReference: {fileID: 0}
     - target: {fileID: 4209530578042695879, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: m_Name
@@ -61,12 +61,20 @@ PrefabInstance:
       value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
+      propertyPath: maxCoinDrop
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
+      propertyPath: minCoinDrop
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: animatorSpeed
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: enemyGroundLevel
-      value: -0.2
+      value: -0.613
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: deathAnimationName
@@ -167,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 833854997431449644, guid: dadecae318be19749ac4fbd62bd9a632, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 0.613
       objectReference: {fileID: 0}
     - target: {fileID: 833854997431449644, guid: dadecae318be19749ac4fbd62bd9a632, type: 3}
       propertyPath: m_LocalPosition.z

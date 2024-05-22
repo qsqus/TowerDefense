@@ -193,7 +193,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 0.81, y: 0.81, z: 0.81}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3487250956618299712}
@@ -223,6 +223,7 @@ MonoBehaviour:
   upgradeTime: 3
   upgradeTimeIncrese: 1
   maxLevel: 5
+  levelUpVolume: 0.3
   rangeUpgradeMultiplier: 1.1
   damageUpgradeMultiplier: 1.1
   fireRateUpgradeMultiplier: 1
