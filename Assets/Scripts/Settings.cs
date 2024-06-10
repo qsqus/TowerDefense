@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour
+public class Settings : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 {
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private GameObject settingsUI;
@@ -28,7 +29,6 @@ public class Settings : MonoBehaviour
 
     public void SetSoundEffectsVolume(float level)
     {
-        Debug.Log(level);
         PlayerPrefs.SetFloat("SfxVolume", level);
         audioMixer.SetFloat("soundEffectsVolume", Mathf.Log10(level) * 20f);
     }
@@ -38,12 +38,11 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", level);
         audioMixer.SetFloat("musicVolume", Mathf.Log10(level) * 20f);
     }
-
-    //SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonHover, transform);
-    //SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonClick, transform);
     
     public void SetFullscreen(bool isFullScreen)
     {
+        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonClick, transform);
+
         if (isFullScreen)
         {
             PlayerPrefs.SetInt("IsFullScreen", 1);
@@ -65,4 +64,17 @@ public class Settings : MonoBehaviour
         objectToHide.SetActive(!isVisible);
         settingsUI.SetActive(isVisible);
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonHover, transform);
+
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonClick, transform);
+
+    }
+
 }

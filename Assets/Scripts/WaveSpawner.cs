@@ -55,7 +55,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     // Spawns wave
-    IEnumerator SpawnWave()
+    private IEnumerator SpawnWave()
     {
         Wave wave = waves[waveIndex];
 

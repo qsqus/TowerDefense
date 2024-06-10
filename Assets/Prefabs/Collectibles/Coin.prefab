@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTowardsPlayerSpeed: 10
-  worth: 1
+  worth: 5
   maxLifeSpan: 15
   flashWhenTimeLeft: 3
   soundVolume: 0.5

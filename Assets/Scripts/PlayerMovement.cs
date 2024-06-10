@@ -144,14 +144,16 @@ public class PlayerMovement : MonoBehaviour
         materialFlash.StartFlashing(immobileTime);
         StartCoroutine(ImmobilizePlayer(immobileTime));
 
+        int coinWorth = LevelManager.instance.GetCoinWorth();
+
         int coinsAmount = LevelManager.instance.GetCoinsAmount();
         int coinsToDrop = (int)(coinsAmount * Random.Range(0.4f, 0.6f));
-        coinsToDrop -= coinsToDrop % 5;
+        coinsToDrop -= coinsToDrop % coinWorth;
 
         StartCoroutine(WaitAMoment(0.1f));
 
         LevelManager.instance.ChangeCoinsByAmount(-coinsToDrop);
-        dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsToDrop / LevelManager.instance.GetCoinWorth());
+        dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsToDrop / coinWorth);
 
         rb.AddForce(pushbackDirection.normalized * pushbackForce, ForceMode.Impulse);
 

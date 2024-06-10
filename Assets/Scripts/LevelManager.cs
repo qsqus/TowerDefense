@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
 
     private int coinWorth;
     private int currentLivesAmount;
+    private int totalCoinsCollected;
+    private int totalCoinsSpent = 0;
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         coinWorth = coin.GetComponent<Collectible>().GetWorth();
+        totalCoinsCollected = coinsAmount;
 
         OnCoinsAmountChanged?.Invoke(coinsAmount);
         OnDiamondsAmountChanged?.Invoke(diamondsAmount);
@@ -45,6 +48,15 @@ public class LevelManager : MonoBehaviour
     
     public void ChangeCoinsByAmount(int amount)
     {
+        if(amount > 0)
+        {
+            totalCoinsCollected += amount;
+        }
+        else
+        {
+            totalCoinsSpent += -amount;
+        }
+
         coinsAmount += amount;
         OnCoinsAmountChanged?.Invoke(coinsAmount);
 
@@ -88,7 +100,7 @@ public class LevelManager : MonoBehaviour
     public void ShowLevelFinishedScreen(string result)
     {
         TowerManager.instance.AttemptHideTowerBuildMenu();
-        LevelFinished.instance.InitializeLevelFinished(result, currentLivesAmount, startLivesAmount);
+        LevelFinished.instance.InitializeLevelFinished(result, currentLivesAmount, startLivesAmount, totalCoinsCollected, totalCoinsSpent);
     }
 
 

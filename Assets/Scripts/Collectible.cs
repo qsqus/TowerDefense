@@ -4,7 +4,7 @@ public class Collectible : MonoBehaviour
 {
     [Header("Collectible stats")]
     [SerializeField] private float moveTowardsPlayerSpeed = 10f;
-    [SerializeField] private int worth  = 10;
+    [SerializeField] private int worth = 10;
     [SerializeField] private float maxLifeSpan = 15f;
     [SerializeField] private float flashWhenTimeLeft = 3f;
     [SerializeField] private float soundVolume = 0.5f;

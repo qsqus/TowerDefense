@@ -4224,7 +4224,7 @@ GameObject:
   - component: {fileID: 1123302412}
   - component: {fileID: 1123302413}
   m_Layer: 0
-  m_Name: Map1
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9998,11 +9998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1845008660502868181, guid: 913caee163beea34db4a1eb0ffb6c78e, type: 3}
       propertyPath: waves.Array.data[0].subWaves.Array.data[0].afterwardsAwaitTime
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1845008660502868181, guid: 913caee163beea34db4a1eb0ffb6c78e, type: 3}
       propertyPath: waves.Array.data[0].subWaves.Array.data[1].afterwardsAwaitTime
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1845008660502868181, guid: 913caee163beea34db4a1eb0ffb6c78e, type: 3}
       propertyPath: waves.Array.data[0].subWaves.Array.data[2].afterwardsAwaitTime

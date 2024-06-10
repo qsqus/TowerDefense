@@ -20,7 +20,7 @@ public class LevelStatsDisplay : MonoBehaviour
 
     private void LevelManager_OnNewWaveStarted(int currentWave, int totalWaves)
     {
-        waveProgress.text = $"Wave {currentWave} {totalWaves}";
+        waveProgress.text = $"Wave {currentWave}/{totalWaves}";
         waveProgressAnimator.SetTrigger("NewWaveTrigger");
     }
 

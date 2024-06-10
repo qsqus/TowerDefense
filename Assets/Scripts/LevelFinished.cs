@@ -6,6 +6,8 @@ public class LevelFinished : MonoBehaviour
 {
     [SerializeField] TMP_Text levelResult;
     [SerializeField] TMP_Text livesResult;
+    [SerializeField] TMP_Text coinsResult;
+    [SerializeField] TMP_Text coinsSpent;
     [SerializeField] GameObject resultsScreen;
 
     public static LevelFinished instance { get; private set; }
@@ -25,7 +27,7 @@ public class LevelFinished : MonoBehaviour
         instance = this;
     }
 
-    public void InitializeLevelFinished(string result, int lives, int startLives)
+    public void InitializeLevelFinished(string result, int lives, int startLives, int totalCoinsCollected, int totalCoinsSpent)
     {
         if (!wasInitialized)
         {
@@ -34,7 +36,9 @@ public class LevelFinished : MonoBehaviour
             resultsScreen.SetActive(true);
 
             levelResult.text = result;
-            livesResult.text = lives.ToString() + " out of " + startLives.ToString();
+            livesResult.text = $"{lives}/{startLives}";
+            coinsResult.text = totalCoinsCollected.ToString();
+            coinsSpent.text = totalCoinsSpent.ToString();
 
             wasInitialized = true;
         }
