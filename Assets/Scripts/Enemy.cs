@@ -41,6 +41,10 @@ public class Enemy : MonoBehaviour
 
     private EnemyPath enemyPath;
 
+    private float slowFactor;
+    private float slowDuration;
+    private bool isSlowedDown = false;
+
     private void Awake()
     {
         dropCollectibles = GetComponent<DropCollectibles>();
@@ -96,6 +100,32 @@ public class Enemy : MonoBehaviour
             pathElementIdx += 1;
             SetTarget();
         }
+    }
+    
+
+    public void SlowDownEnemy(float slowFactor, float slowDuration)
+    {
+        this.slowFactor = slowFactor;
+        this.slowDuration = slowDuration;
+
+        if(!isSlowedDown)
+        {
+            isSlowedDown = true;
+            StartCoroutine(SlowDownEnemy());
+        }
+    }
+
+    private IEnumerator SlowDownEnemy()
+    {
+        moveSpeed *= slowFactor;
+
+        if(!IsDead)
+        {
+            yield return new WaitForSeconds(slowDuration);
+        }
+
+        isSlowedDown = false;
+        moveSpeed /= slowFactor;
     }
 
     // Sets target

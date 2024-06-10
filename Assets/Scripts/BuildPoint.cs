@@ -96,6 +96,7 @@ public class BuildPoint : MonoBehaviour
 
                 Debug.Log("Edit");
 
+                tower.ShowBuildEffect();
                 tower.DestroyTower();
                 towerObject = null;
                 tower = null;

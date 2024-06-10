@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Search;
 using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
@@ -38,6 +39,9 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] protected GameObject projectile;
     [SerializeField] protected GameObject projectileImpactEffet;
     [SerializeField] protected GameObject shootEffect;
+    [SerializeField] protected GameObject buildEffect;
+    
+
     [SerializeField] protected float shootEffectScale = 1f;
 
     protected Transform target;
@@ -69,6 +73,9 @@ public abstract class Tower : MonoBehaviour
 
         progressBar.SetMaxValue(upgradeTime);
         progressBar.SetValue(upgradeProgress);
+
+
+        ShowBuildEffect();
 
     }
 
@@ -301,6 +308,13 @@ public abstract class Tower : MonoBehaviour
 
     }
     
+    public void ShowBuildEffect()
+    {
+        GameObject buildEffectGO = Instantiate(buildEffect, transform.position, transform.rotation);
+
+        Destroy(buildEffectGO, 2f);
+    }
+
     public int GetResellPrice()
     {
         return resellPrice;

@@ -31,6 +31,16 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
+        if (waveIndex == amountOfWaves)
+        {
+            Debug.Log("Level finished");
+            LevelManager.instance.ShowLevelFinishedScreen("You win");
+
+            // Disables this script
+            this.enabled = false;
+            return;
+        }
+
         if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
@@ -78,10 +88,7 @@ public class WaveSpawner : MonoBehaviour
 
         if (waveIndex == amountOfWaves)
         {
-            Debug.Log("Level finished");
-            
-            // Disables this script
-            this.enabled = false;
+            Debug.Log("All waves finished");
         }
     }
 

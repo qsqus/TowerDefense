@@ -5,32 +5,42 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private ButtonTextVisual[] buttons;
+    [SerializeField] private Settings settings;
+    [SerializeField] private ButtonTextVisual settingsButton;
 
     public static bool IsPaused = false;
+    public static bool IsLevelOver = false;
 
     private void Awake()
     {
         IsPaused = false;
+        IsLevelOver = false;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(IsPaused)
+            if(!IsLevelOver)
             {
-                Resume();
+                if (IsPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
             }
-            else
-            {
-                Pause();
-            }
+
         }
 
     }
 
     public void Resume()
     {
+        settings.ToggleSettingsVisible(false);
+
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         IsPaused = false;
@@ -57,8 +67,9 @@ public class PauseMenu : MonoBehaviour
 
     public void OnSettingsButtonPressed()
     {
+        settings.ToggleSettingsVisible(true);
+        settingsButton.OnPointerExit();
         Debug.Log("Settings");
-
     }
 
 

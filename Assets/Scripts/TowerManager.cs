@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TowerManager : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public class TowerManager : MonoBehaviour
     private GameObject selectedBuildPoint;
     private GameObject cam;
     private TowerMenuButton[] buttons;
-    private int currentButtonIdx;
+    private int currentButtonIdx = 0;
 
     private float angle;
     private RectTransform buttonContainerRect;
@@ -137,6 +136,7 @@ public class TowerManager : MonoBehaviour
             buttons[i] = buttonContainer.GetChild(i).GetComponent<TowerMenuButton>();
 
             float newAngle = (i + 1) * angle;
+
             RectTransform buttonRect = buttons[i].GetComponent<RectTransform>();
             buttonRect.anchoredPosition = new Vector2(radius * Mathf.Cos(newAngle), radius * (float)Math.Sin(newAngle));
 

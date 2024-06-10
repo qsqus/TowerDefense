@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
+    [SerializeField] private Settings settings;
+    [SerializeField] private ButtonTextVisual settingsButton;
+
     public void OnPlayButtonPressed()
     {
         Debug.Log("Play");
@@ -17,8 +20,9 @@ public class StartMenu : MonoBehaviour
 
     public void OnSettingsButtonPressed()
     {
+        settings.ToggleSettingsVisible(true);
+        settingsButton.OnPointerExit();
         Debug.Log("Settings");
-        Application.Quit();
     }
 
 }

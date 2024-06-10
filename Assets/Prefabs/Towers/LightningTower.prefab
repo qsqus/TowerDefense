@@ -249,6 +249,8 @@ MonoBehaviour:
   projectile: {fileID: 7415981401416784767, guid: 7aa0a282074ecd5438b1389239980051, type: 3}
   projectileImpactEffet: {fileID: 7413168252054154561, guid: 37215c2631df658439b0aacfbe914fe0, type: 3}
   shootEffect: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
+  buildEffect: {fileID: 1025285306637258, guid: f6640acb96f6b0d41b637bcec8a916d6, type: 3}
+  buildEffectScale: 3
   shootEffectScale: 1
   weaponTransform: {fileID: 2304886542029057316}
 --- !u!1 &1304059262305688599

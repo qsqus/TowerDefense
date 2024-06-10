@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   borderWidth: 0.15
-  borderColor: {r: 1, g: 0, b: 0, a: 0}
-  borderColorNotBuilt: {r: 1, g: 1, b: 1, a: 0}
+  borderColor: {r: 1, g: 1, b: 1, a: 0}
+  borderColorNotBuilt: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0}
   groundRenderers:
   - {fileID: 0}
   - {fileID: 0}

@@ -1135,6 +1135,8 @@ MonoBehaviour:
   - {fileID: 2294302662335539301}
   - {fileID: 537649631511109520}
   - {fileID: 6122215139019787253}
+  settings: {fileID: 0}
+  settingsButton: {fileID: 2294302662335539301}
 --- !u!1 &6563666171740828993
 GameObject:
   m_ObjectHideFlags: 0

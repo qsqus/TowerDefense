@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int livesAmount = 20;
+    [SerializeField] private int startLivesAmount = 20;
     [SerializeField] private int coinsAmount = 400;
     [SerializeField] private int diamondsAmount = 0;
 
@@ -20,6 +18,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance { get; private set; }
 
     private int coinWorth;
+    private int currentLivesAmount;
 
     private void Awake()
     {
@@ -31,6 +30,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
         instance = this;
+        currentLivesAmount = startLivesAmount;
     }
 
     void Start()
@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
 
         OnCoinsAmountChanged?.Invoke(coinsAmount);
         OnDiamondsAmountChanged?.Invoke(diamondsAmount);
-        OnLivesAmountChanged?.Invoke(livesAmount);
+        OnLivesAmountChanged?.Invoke(currentLivesAmount);
     }
     
     public void ChangeCoinsByAmount(int amount)
@@ -73,14 +73,21 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeLivesByAmount(int amount)
     {
-        livesAmount += amount;
-        OnLivesAmountChanged?.Invoke(livesAmount);
+        currentLivesAmount += amount;
+        OnLivesAmountChanged?.Invoke(currentLivesAmount);
 
-        if(livesAmount <= 0)
+        if(currentLivesAmount <= 0)
         {
             Debug.Log("Game over");
+            ShowLevelFinishedScreen("You lose");
         }
 
+    }
+
+    public void ShowLevelFinishedScreen(string result)
+    {
+        TowerManager.instance.AttemptHideTowerBuildMenu();
+        LevelFinished.instance.InitializeLevelFinished(result, currentLivesAmount, startLivesAmount);
     }
 
 }

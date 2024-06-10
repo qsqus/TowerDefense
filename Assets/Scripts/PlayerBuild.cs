@@ -73,7 +73,7 @@ public class PlayerBuild : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (canEdit && canBuild)
+            if (canEdit && canBuild && !PauseMenu.IsLevelOver)
             {
                 OnInteractPressed?.Invoke(selectedBuildPoint.GetInstanceID());
             }

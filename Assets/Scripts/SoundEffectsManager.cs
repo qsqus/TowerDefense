@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -67,8 +68,23 @@ public class SoundEffectsManager : MonoBehaviour
         audioSource.Play();
 
         float clipLength = audioSource.clip.length;
+        
+        if(PauseMenu.IsPaused)
+        {
+            StartCoroutine(DestroyAfterRealTimeSeconds(clipLength, audioSource));
+        }
+        else
+        {
+            Destroy(audioSource.gameObject, clipLength);
+        }
+    }
+    IEnumerator DestroyAfterRealTimeSeconds(float seconds, AudioSource audioSource)
+    {
+        // Wait for the specified amount of real-time seconds
+        yield return new WaitForSecondsRealtime(seconds);
 
-        Destroy(audioSource.gameObject, clipLength);
+        // Destroy the GameObject
+        Destroy(audioSource.gameObject);
     }
 
     public void PlayRandomSoundEffectClip(AudioClip[] audioClips, Transform spawnTransform, float volume = 1f)

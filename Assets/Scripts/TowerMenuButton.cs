@@ -8,26 +8,26 @@ public class TowerMenuButton : MonoBehaviour
     [SerializeField] private Image frame;
     [SerializeField] private TMP_Text towerPrice;
     [SerializeField] private Color selectedColor;
+    [SerializeField] private Color startColor;
     [SerializeField] private float scaleMultiplier = 1.1f;
-
+    [SerializeField] private Vector3 startScale = new Vector3(1.6f, 1.6f, 1.6f);
 
     private RectTransform rectTransform;
     private Tower towerScript;
-    private Vector3 startScale;
-    private Color startColor;
+
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         towerScript = tower.GetComponent<Tower>();
-
     }
 
     private void Start()
     {
         towerPrice.text = towerScript.GetPrice().ToString();
-        startScale = transform.localScale;
-        startColor = frame.color;
+        frame.color = startColor;
+        Debug.Log("Button start");
+        //NormalVisual();
     }
 
     // Returns selected tower
@@ -44,13 +44,13 @@ public class TowerMenuButton : MonoBehaviour
         transform.localScale *= scaleMultiplier;
         TowerRangeDisplayManager.instance.ShowTowerRange(TowerManager.instance.GetSelectedBuildPointPosition(), towerScript.GetTowerRange(), false);
         TowerManager.instance.UpdateTowerInfo(towerScript.GetPrice(), towerScript.GetTargetedEnemyTypes());
+
     }
 
     public void NormalVisual()
     {
         frame.color = startColor;
         transform.localScale = startScale;
-
     }
 
     public void RotateByAngle(float angle)

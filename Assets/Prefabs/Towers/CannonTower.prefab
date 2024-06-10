@@ -567,7 +567,9 @@ MonoBehaviour:
   projectile: {fileID: 5060073923792895785, guid: b965f57d44e44db4a9a9dc5c2115b3f3, type: 3}
   projectileImpactEffet: {fileID: 1025285306637258, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
   shootEffect: {fileID: 1337198075554910, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
-  shootEffectScale: 1
+  buildEffect: {fileID: 1025285306637258, guid: f6640acb96f6b0d41b637bcec8a916d6, type: 3}
+  buildEffectScale: 3
+  shootEffectScale: 0.75
   projectileExplosionRadius: 2.5
 --- !u!1001 &5383885160216335858
 PrefabInstance:

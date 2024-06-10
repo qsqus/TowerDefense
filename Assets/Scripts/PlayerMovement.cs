@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Move the player based on input
-        if(canMove)
+        if(canMove && !PauseMenu.IsLevelOver)
         {
             Move(moveDirection);
         }
