@@ -12,33 +12,30 @@ public class Settings : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Toggle fullscreenToggle;
 
-    private static float SoundEffectsVolume = 0.7f;
-    private static float MusicVolume = 0.7f;
-    private static bool IsFullscreen = true;
-
     private void Start()
     {
-        Debug.Log("Start settings");
-        sfxSlider.value = SoundEffectsVolume;
-        musicSlider.value = MusicVolume;
-        fullscreenToggle.isOn = IsFullscreen;
-    }
-
-    private void SetMaterVolume(float level)
-    {
-        audioMixer.SetFloat("masterVolume", Mathf.Log10(level) * 20f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SfxVolume");
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        if (PlayerPrefs.GetInt("IsFullScreen") == 1)
+        {
+            fullscreenToggle.isOn = true;
+        }
+        else
+        {
+            fullscreenToggle.isOn = false;
+        }
     }
 
     public void SetSoundEffectsVolume(float level)
     {
         Debug.Log(level);
-        SoundEffectsVolume = level;
+        PlayerPrefs.SetFloat("SfxVolume", level);
         audioMixer.SetFloat("soundEffectsVolume", Mathf.Log10(level) * 20f);
     }
 
     public void SetMusicVolume(float level)
     {
-        MusicVolume = level;
+        PlayerPrefs.SetFloat("MusicVolume", level);
         audioMixer.SetFloat("musicVolume", Mathf.Log10(level) * 20f);
     }
 
@@ -47,7 +44,14 @@ public class Settings : MonoBehaviour
     
     public void SetFullscreen(bool isFullScreen)
     {
-        IsFullscreen = isFullScreen;
+        if (isFullScreen)
+        {
+            PlayerPrefs.SetInt("IsFullScreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("IsFullScreen", 0);
+        }
         Screen.fullScreen = isFullScreen;
     }
 

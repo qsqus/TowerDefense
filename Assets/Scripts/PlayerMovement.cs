@@ -1,5 +1,7 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkSoundInterval = 0.5f;
     [SerializeField] private MaterialFlash materialFlash;
     [SerializeField] private Animator animator;
+    [SerializeField] private float maxYViewport = 0.96f;
 
     private Rigidbody rb;
     private PlayerBuild playerBuild;
@@ -19,12 +22,14 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     private bool isInvincible = false;
     private float walkSoundTimer = 0f;
+    private Camera mainCamera;
 
     void Start()
     { 
         rb = GetComponent<Rigidbody>();
         playerBuild = GetComponent<PlayerBuild>();
         dropCollectibles = GetComponent<DropCollectibles>();
+        mainCamera = Camera.main;
     }
 
     void Update()
@@ -58,15 +63,56 @@ public class PlayerMovement : MonoBehaviour
 
         // Calculate movement direction
         moveDirection = new Vector3(moveX, 0f, moveY).normalized;
+        KeepPlayerInFrame();
+
+    }
+
+    // Prevents player from leaving the camera
+    private void KeepPlayerInFrame()
+    {
+        Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
+
+        if (viewportPosition.y > maxYViewport || viewportPosition.y < 0f || viewportPosition.x < 0f || viewportPosition.x > maxYViewport)
+        {
+            Vector3 newDirection = Vector3.zero;
+
+            if (viewportPosition.y > maxYViewport && moveDirection.z < 0f)
+            {
+                newDirection.z = moveDirection.z;
+            }
+            else if (viewportPosition.y < 0f && moveDirection.z > 0f)
+            {
+                newDirection.z = moveDirection.z;
+            }
+            else if (viewportPosition.y > 0f && viewportPosition.y < maxYViewport)
+            {
+                newDirection.z = moveDirection.z;
+            }
+
+            if (viewportPosition.x > 1f && moveDirection.x < 0f)
+            {
+                newDirection.x = moveDirection.x;
+            }
+            else if (viewportPosition.x < 0f && moveDirection.x > 0f)
+            {
+                newDirection.x = moveDirection.x;
+            }
+            else if(viewportPosition.x > 0f && viewportPosition.x < 1f)
+            {
+                newDirection.x = moveDirection.x;
+            }
+
+            moveDirection = newDirection.normalized;
+        }
     }
 
     // Moves player
     private void Move(Vector3 direction)
     {
-        // Apply movement to rigidbody
+        
         rb.MovePosition(transform.position + direction * moveSpeed * Time.fixedDeltaTime);
 
-        if(direction != Vector3.zero)
+        if (direction != Vector3.zero)
         {
             TowerManager.instance.AttemptHideTowerBuildMenu();
 
@@ -102,6 +148,8 @@ public class PlayerMovement : MonoBehaviour
         int coinsToDrop = (int)(coinsAmount * Random.Range(0.4f, 0.6f));
         coinsToDrop -= coinsToDrop % 5;
 
+        StartCoroutine(WaitAMoment(0.1f));
+
         LevelManager.instance.ChangeCoinsByAmount(-coinsToDrop);
         dropCollectibles.DropAmountOfCollectibles(LevelManager.instance.coin, coinsToDrop / LevelManager.instance.GetCoinWorth());
 
@@ -109,20 +157,28 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("IsStunned", true);
 
+
+    }
+
+    private IEnumerator WaitAMoment(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        // Take damage when colliding with enemy
+        LevelManager.instance.ChangeLivesByAmount(-1);
     }
 
     private IEnumerator ImmobilizePlayer(float duration)
     {
-        // Set the boolean variable to false
         canCollect = false;
         canMove = false;
         isInvincible = true;
         playerBuild.SetCanBuild(false);
 
-        // Wait for the specified duration
+        // Wait for given duration
         yield return new WaitForSeconds(duration);
 
-        // After waiting, set the boolean variable back to true
+        // After waiting variables back to true
         canCollect = true;
         canMove = true;
         isInvincible = false;

@@ -69,7 +69,7 @@ public class SoundEffectsManager : MonoBehaviour
 
         float clipLength = audioSource.clip.length;
         
-        if(PauseMenu.IsPaused)
+        if(PauseMenu.IsPaused || PauseMenu.IsLevelOver)
         {
             StartCoroutine(DestroyAfterRealTimeSeconds(clipLength, audioSource));
         }

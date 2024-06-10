@@ -43,6 +43,8 @@ public class WaveSpawner : MonoBehaviour
 
         if (countdown <= 0f)
         {
+            LevelManager.instance.ShowWaveProgress(waveIndex+1, amountOfWaves);
+
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
             return;

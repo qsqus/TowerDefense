@@ -22,11 +22,11 @@ public class TowerMenuButton : MonoBehaviour
         towerScript = tower.GetComponent<Tower>();
     }
 
-    private void Start()
+    // private void Start()
+    private void OnEnable()
     {
         towerPrice.text = towerScript.GetPrice().ToString();
         frame.color = startColor;
-        Debug.Log("Button start");
         //NormalVisual();
     }
 

@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public event Action<int> OnCoinsAmountChanged;
     public event Action<int> OnDiamondsAmountChanged;
     public event Action<int> OnLivesAmountChanged;
+    public event Action<int, int> OnNewWaveStarted;
 
     public static LevelManager instance { get; private set; }
 
@@ -88,6 +89,13 @@ public class LevelManager : MonoBehaviour
     {
         TowerManager.instance.AttemptHideTowerBuildMenu();
         LevelFinished.instance.InitializeLevelFinished(result, currentLivesAmount, startLivesAmount);
+    }
+
+
+    public void ShowWaveProgress(int currentWave, int totalWaves)
+    {
+        Debug.Log($"Wave {currentWave}/{totalWaves}");
+        OnNewWaveStarted?.Invoke(currentWave, totalWaves);
     }
 
 }
