@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -33,6 +34,7 @@ public abstract class Tower : MonoBehaviour
     [Header("References")]
     [SerializeField] private Renderer[] renderers;
     [SerializeField] private ProgressBar progressBar;
+    [SerializeField] protected TMP_Text levelDisplay;
     [SerializeField] protected Transform rotationPoint;
     [SerializeField] protected Transform xAxisRotationPoint;
     [SerializeField] protected Transform firePoint;
@@ -267,6 +269,8 @@ public abstract class Tower : MonoBehaviour
         upgradeProgress = 0f;
         currentLevel += 1;
 
+        levelDisplay.text = $"Lvl {currentLevel}";
+
         resellPrice += resellPriceIncrease;
 
         progressBar.SetMaxValue(upgradeTime);
@@ -283,20 +287,18 @@ public abstract class Tower : MonoBehaviour
                 Debug.Log("Level 3 reached");
                 range *= rangeUpgradeMultiplier;
 
-                if(isSelected)
-                {
-                    TowerRangeDisplayManager.instance.ShowTowerRange(transform.position, range);
-                }
-
                 break;
             case 4:
                 Debug.Log("Level 4 reached");
                 damage *= damageUpgradeMultiplier;
+                fireRate *= fireRateUpgradeMultiplier;
 
                 break;
             case 5:
                 Debug.Log("Level 5 reached");
                 damage *= damageUpgradeMultiplier;
+                range *= rangeUpgradeMultiplier;
+
                 ToggleProgressBar(false);
 
                 isUpgrading = false;
@@ -304,6 +306,11 @@ public abstract class Tower : MonoBehaviour
 
                 break;
 
+        }
+
+        if (isSelected)
+        {
+            TowerRangeDisplayManager.instance.ShowTowerRange(transform.position, range);
         }
 
     }
@@ -325,12 +332,16 @@ public abstract class Tower : MonoBehaviour
         return range;
     }
 
+    public void ToggleLevelDisplay(bool isActive)
+    {
+        levelDisplay.gameObject.SetActive(isActive);
+    }
+
     public void ToggleProgressBar(bool isActive)
     {
         isActive = (currentLevel < maxLevel) ? isActive : false;
 
         progressBar.gameObject.SetActive(isActive);
-        
     }
 
     public void DestroyTower()

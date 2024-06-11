@@ -398,20 +398,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517793a3e4e25ee409b81e01f3363861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5.5
-  damage: 23
-  fireRate: 0.7
+  range: 4
+  damage: 25
+  fireRate: 0.9
   projectileSpeed: 40
   rotationSpeed: 7
-  price: 150
+  price: 180
   resellPriceMultiplier: 0.8
   upgradeTime: 3
   upgradeTimeIncrese: 1
   maxLevel: 5
   levelUpVolume: 0.3
-  rangeUpgradeMultiplier: 1.1
-  damageUpgradeMultiplier: 1.1
-  fireRateUpgradeMultiplier: 1.1
+  rangeUpgradeMultiplier: 1.15
+  damageUpgradeMultiplier: 1.15
+  fireRateUpgradeMultiplier: 1.2
   resellPriceIncrease: 20
   enemyTag: Enemy
   playerTag: Player
@@ -422,6 +422,7 @@ MonoBehaviour:
   - {fileID: 7950619445141130543}
   - {fileID: 6554423117293024521}
   progressBar: {fileID: 7826627679558307203}
+  levelDisplay: {fileID: 8349807064911198612}
   rotationPoint: {fileID: 675442359912625502}
   xAxisRotationPoint: {fileID: 0}
   firePoint: {fileID: 7313407564256474176}
@@ -429,7 +430,6 @@ MonoBehaviour:
   projectileImpactEffet: {fileID: 4006418781942204646, guid: 0bd4678697149f540a0723083f214e51, type: 3}
   shootEffect: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
   buildEffect: {fileID: 1025285306637258, guid: f6640acb96f6b0d41b637bcec8a916d6, type: 3}
-  buildEffectScale: 3
   shootEffectScale: 0.9
   bulletsInBurst: 3
   burstFireRate: 8
@@ -646,5 +646,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f417064703169f74d9fa1dee24874d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8349807064911198612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3976261079344712838, guid: c27949a4a49887f4ba057c8d3655e46b, type: 3}
+  m_PrefabInstance: {fileID: 4958178601973953810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

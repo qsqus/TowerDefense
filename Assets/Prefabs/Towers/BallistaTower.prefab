@@ -619,20 +619,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8f372731728a44280c50dadea86703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 7
+  range: 4.5
   damage: 25
-  fireRate: 1
+  fireRate: 0.8
   projectileSpeed: 35
   rotationSpeed: 20
-  price: 90
+  price: 120
   resellPriceMultiplier: 0.7
   upgradeTime: 3
   upgradeTimeIncrese: 1
   maxLevel: 5
   levelUpVolume: 0.3
-  rangeUpgradeMultiplier: 1.1
-  damageUpgradeMultiplier: 1.3
-  fireRateUpgradeMultiplier: 1
+  rangeUpgradeMultiplier: 1.2
+  damageUpgradeMultiplier: 1.1
+  fireRateUpgradeMultiplier: 1.1
   resellPriceIncrease: 20
   enemyTag: Enemy
   playerTag: Player
@@ -645,6 +645,7 @@ MonoBehaviour:
   - {fileID: 7947992990729473603}
   - {fileID: 8172021567982920807}
   progressBar: {fileID: 7826627679558307203}
+  levelDisplay: {fileID: 8349807064911198612}
   rotationPoint: {fileID: 3502322197591749438}
   xAxisRotationPoint: {fileID: 1361358977700178949}
   firePoint: {fileID: 6410190516823278308}
@@ -652,7 +653,6 @@ MonoBehaviour:
   projectileImpactEffet: {fileID: 4006418781942204646, guid: 0bd4678697149f540a0723083f214e51, type: 3}
   shootEffect: {fileID: 0}
   buildEffect: {fileID: 1025285306637258, guid: f6640acb96f6b0d41b637bcec8a916d6, type: 3}
-  buildEffectScale: 2
   shootEffectScale: 1
 --- !u!1001 &4958178601973953810
 PrefabInstance:
@@ -781,5 +781,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f417064703169f74d9fa1dee24874d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8349807064911198612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3976261079344712838, guid: c27949a4a49887f4ba057c8d3655e46b, type: 3}
+  m_PrefabInstance: {fileID: 4958178601973953810}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

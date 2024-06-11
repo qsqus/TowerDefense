@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: health
-      value: 130
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: animator
@@ -58,15 +58,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: moveSpeed
-      value: 2.3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: maxCoinDrop
-      value: 14
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: minCoinDrop
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: animatorSpeed

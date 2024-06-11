@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ public class LevelFinished : MonoBehaviour
     [SerializeField] GameObject resultsScreen;
 
     public static LevelFinished instance { get; private set; }
+
+    public event Action OnLevelFinished;
 
     private bool wasInitialized = false;
 
@@ -31,6 +34,8 @@ public class LevelFinished : MonoBehaviour
     {
         if (!wasInitialized)
         {
+            OnLevelFinished?.Invoke();
+
             PauseMenu.IsLevelOver = true;
             PauseMenu.ToggleCursorVisibility(true);
 

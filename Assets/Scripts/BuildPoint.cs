@@ -160,6 +160,7 @@ public class BuildPoint : MonoBehaviour
             }
             tower.StartUpgrading();
             tower.ToggleProgressBar(true);
+            tower.ToggleLevelDisplay(true);
             tower.ToggleIsSelected(true);
 
             SoundEffectsManager.instance.PlayRandomSoundEffectClip(SoundEffectsManager.instance.towerEntered, transform);
@@ -191,6 +192,7 @@ public class BuildPoint : MonoBehaviour
             }
             tower.StopUpgrading();
             tower.ToggleProgressBar(false);
+            tower.ToggleLevelDisplay(false);
             tower.ToggleIsSelected(false);
 
             TowerRangeDisplayManager.instance.HideTowerRange();

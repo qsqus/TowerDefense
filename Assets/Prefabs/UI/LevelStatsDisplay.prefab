@@ -893,6 +893,10 @@ MonoBehaviour:
   lives: {fileID: 6065997109647150902}
   waveProgress: {fileID: 126605560619198976}
   waveProgressAnimator: {fileID: 7994231683875511921}
+  levelStats:
+  - {fileID: 5954695524705470179}
+  - {fileID: 1664754854371037910}
+  - {fileID: 2748718711600665474}
 --- !u!114 &3811957468072834345
 MonoBehaviour:
   m_ObjectHideFlags: 0

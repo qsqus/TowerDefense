@@ -536,12 +536,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df1b6c80ffeeef49aaeb415046e2a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
+  range: 3
   damage: 40
   fireRate: 0.5
   projectileSpeed: 30
   rotationSpeed: 10
-  price: 120
+  price: 150
   resellPriceMultiplier: 0.7
   upgradeTime: 3
   upgradeTimeIncrese: 1
@@ -549,7 +549,7 @@ MonoBehaviour:
   levelUpVolume: 0.3
   rangeUpgradeMultiplier: 1.1
   damageUpgradeMultiplier: 1.2
-  fireRateUpgradeMultiplier: 1
+  fireRateUpgradeMultiplier: 1.1
   resellPriceIncrease: 20
   enemyTag: Enemy
   playerTag: Player
@@ -561,6 +561,7 @@ MonoBehaviour:
   - {fileID: 3879862389892556387}
   - {fileID: 6812344614735023559}
   progressBar: {fileID: 7125924157849120099}
+  levelDisplay: {fileID: 9050514950295689588}
   rotationPoint: {fileID: 2288750800368812017}
   xAxisRotationPoint: {fileID: 0}
   firePoint: {fileID: 3685754724096363717}
@@ -568,9 +569,8 @@ MonoBehaviour:
   projectileImpactEffet: {fileID: 1025285306637258, guid: d8f0099df63275647a8bcf646df1ca00, type: 3}
   shootEffect: {fileID: 1337198075554910, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
   buildEffect: {fileID: 1025285306637258, guid: f6640acb96f6b0d41b637bcec8a916d6, type: 3}
-  buildEffectScale: 3
   shootEffectScale: 0.75
-  projectileExplosionRadius: 2.5
+  projectileExplosionRadius: 1.4
 --- !u!1001 &5383885160216335858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -698,5 +698,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f417064703169f74d9fa1dee24874d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9050514950295689588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3976261079344712838, guid: c27949a4a49887f4ba057c8d3655e46b, type: 3}
+  m_PrefabInstance: {fileID: 5383885160216335858}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
