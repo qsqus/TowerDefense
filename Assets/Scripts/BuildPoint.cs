@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BuildPoint : MonoBehaviour
@@ -43,19 +44,11 @@ public class BuildPoint : MonoBehaviour
         modelTransform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
         modelTransform.localScale *= Random.Range(0.9f, 1.1f);
 
-        buildPointMeshFilter.mesh = Instantiate(EnvironmentVisualManager.instance.GetRandomBuildPointMesh());
+        buildPointMeshFilter.mesh = EnvironmentVisualManager.instance.GetRandomBuildPointMesh();
 
         Material[] randomMaterials = EnvironmentVisualManager.instance.GetRandomBuildPointMaterials();
 
-        if (EnvironmentVisualManager.instance.IsReversedMesh(buildPointMeshFilter.mesh.name))
-        {
-            Material temp = randomMaterials[0];
-            randomMaterials[0] = randomMaterials[1];
-            randomMaterials[1] = temp;
-        }
-
         buildPointRenderer.materials = randomMaterials;
-
 
         playerBuild = GameObject.FindGameObjectWithTag(playerTag).GetComponent<PlayerBuild>();
         playerBuild.OnInteractPressed += PlayerBuild_OnInteractPressed;

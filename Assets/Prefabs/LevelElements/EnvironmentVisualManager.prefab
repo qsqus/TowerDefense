@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildPointMeshes:
-  - {fileID: 8686322683334853813, guid: 8ae22425e40800c44b21d84520128c0e, type: 3}
   - {fileID: -8862029377377273872, guid: 22b3aaa1f9f302b499617039b97cdeca, type: 3}
   - {fileID: 2033622204986509768, guid: 0dd5b5a2d176ae448a98b86a2854800d, type: 3}
   - {fileID: -1703776738577441313, guid: 42c4db3969f16354e9ed3b0fe17aa07a, type: 3}
@@ -55,10 +54,10 @@ MonoBehaviour:
   - {fileID: -798613621640728851, guid: 6e6afbec410dd5e4f87a5e4a7954eb23, type: 3}
   - {fileID: 6371176417835483425, guid: fcca08ed22760ea4fb7f8142b1651f5a, type: 3}
   - {fileID: -7518990948026303695, guid: 60ddad4849e25e5468bdea4298b6a3dc, type: 3}
-  - {fileID: 6809829068606448028, guid: 6e83399a0c9d3df4abec9478fc9aa7a4, type: 3}
-  - {fileID: -2894791406429237724, guid: 3e9b20303c93be24d9daac41f6c210a6, type: 3}
   - {fileID: 7116689091534007176, guid: 2953d6be550e8bc49aaed5792609aaa8, type: 3}
   - {fileID: 3324290279596203714, guid: 9dd3336c75f180849b27aa8c52b19c54, type: 3}
+  - {fileID: -4204025313595810674, guid: 6e58a30f1bc622749ac7a191859c97f5, type: 3}
+  - {fileID: -8672258856033842154, guid: 1be8fc30fe547a14b8eb5a3e509a9b61, type: 3}
   leavesMaterials:
   - {fileID: 2100000, guid: c31e2a5a814adb842b0082ef76a7bb21, type: 2}
   - {fileID: 2100000, guid: c31e2a5a814adb842b0082ef76a7bb21, type: 2}
@@ -79,10 +78,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: f06405dece990c6428217cff360c00db, type: 2}
   - {fileID: 2100000, guid: d52890c04bcea904d921e438b5a22f81, type: 2}
   - {fileID: 2100000, guid: b1a701cb262abcc45821260e4b63f73c, type: 2}
-  reversedMeshNames:
-  - tree_pineRoundA
-  - tree_pineRoundB
-  - tree_small
+  reversedMeshNames: []
   flowerMeshes:
   - {fileID: -1237372815667132225, guid: a2ac0cab34c570143b8c79700b66fbad, type: 3}
   - {fileID: -2451050284989685210, guid: cba1a49faaf9c9448a9094345bfa36ab, type: 3}

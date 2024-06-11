@@ -1,7 +1,5 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Video;
 
 public class PlayerMovement : MonoBehaviour
 {

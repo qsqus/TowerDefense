@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Settings : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
+public class Settings : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private GameObject settingsUI;
@@ -12,6 +11,7 @@ public class Settings : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Toggle fullscreenToggle;
+    [SerializeField] private Vector2 windowedResolution;
 
     private void Start()
     {
@@ -41,17 +41,19 @@ public class Settings : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     
     public void SetFullscreen(bool isFullScreen)
     {
-        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonClick, transform);
+        Screen.fullScreen = isFullScreen;
 
         if (isFullScreen)
         {
+            Resolution currRes = Screen.currentResolution;
+            Screen.SetResolution(currRes.width, currRes.height, true);
             PlayerPrefs.SetInt("IsFullScreen", 1);
         }
         else
         {
             PlayerPrefs.SetInt("IsFullScreen", 0);
+            Screen.SetResolution((int)windowedResolution.x, (int)windowedResolution.y, false);
         }
-        Screen.fullScreen = isFullScreen;
     }
 
     public void ToggleSettingsVisible(bool isVisible)
@@ -63,18 +65,6 @@ public class Settings : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 
         objectToHide.SetActive(!isVisible);
         settingsUI.SetActive(isVisible);
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonHover, transform);
-
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.buttonClick, transform);
-
     }
 
 }

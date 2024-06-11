@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class EnvironmentVisualManager : MonoBehaviour
@@ -6,7 +7,6 @@ public class EnvironmentVisualManager : MonoBehaviour
     [SerializeField] private Mesh[] buildPointMeshes;
     [SerializeField] private Material[] leavesMaterials;
     [SerializeField] private Material[] barkMaterials;
-    [SerializeField] private string[] reversedMeshNames;
 
     [Header("Grass and flowers")]
     [SerializeField] private Mesh[] flowerMeshes;
@@ -27,6 +27,7 @@ public class EnvironmentVisualManager : MonoBehaviour
             return;
         }
         instance = this;
+
     }
 
     public Mesh GetRandomBuildPointMesh()
@@ -42,19 +43,6 @@ public class EnvironmentVisualManager : MonoBehaviour
         materials[1] = barkMaterials[Random.Range(0, barkMaterials.Length)];
 
         return materials;
-    }
-
-    // Checks if build point mesh has reversed order of materials
-    public bool IsReversedMesh(string name)
-    {
-        foreach (string rname in reversedMeshNames)
-        {
-            if(rname + "(Clone) Instance"== name)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     public Mesh GetRandomFlowerMesh()

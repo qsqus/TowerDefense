@@ -16,12 +16,12 @@ public class GrassFlower : MonoBehaviour
 
         if(isFlower)
         {
-            meshFilter.mesh = Instantiate(EnvironmentVisualManager.instance.GetRandomFlowerMesh());
+            meshFilter.mesh = EnvironmentVisualManager.instance.GetRandomFlowerMesh();
             rend.materials = EnvironmentVisualManager.instance.GetRandomFlowerMaterials();
         }
         else
         {
-            meshFilter.mesh = Instantiate(EnvironmentVisualManager.instance.GetRandomGrassFlowerMesh());
+            meshFilter.mesh = EnvironmentVisualManager.instance.GetRandomGrassFlowerMesh();
             rend.material = EnvironmentVisualManager.instance.GetRandomGrassMaterial();
         }
     }

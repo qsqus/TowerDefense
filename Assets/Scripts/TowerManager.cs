@@ -13,7 +13,6 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private float zMinPosition = -5f;
     [SerializeField] private float xMaxPosition = 10f;
     [SerializeField] private float xMinPosition = -10f;
-    [SerializeField] private float offScreenOffset = 3f;
     [SerializeField] private Transform buttonContainer;
     [SerializeField] private TMP_Text priceDisplay;
     [SerializeField] private TMP_Text targetedEnemyTypeDisplay;

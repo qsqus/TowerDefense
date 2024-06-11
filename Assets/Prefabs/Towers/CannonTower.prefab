@@ -543,8 +543,8 @@ MonoBehaviour:
   rotationSpeed: 10
   price: 150
   resellPriceMultiplier: 0.7
-  upgradeTime: 3
-  upgradeTimeIncrese: 1
+  upgradeTime: 15
+  upgradeTimeIncrese: 5
   maxLevel: 5
   levelUpVolume: 0.3
   rangeUpgradeMultiplier: 1.1
