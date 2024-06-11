@@ -6,7 +6,8 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private string levelDisplayedNumber = "1";
     [SerializeField] private int levelBuildNumber = 0;
-    [SerializeField] TMP_Text levelName;
+    [SerializeField] private TMP_Text levelName;
+    [SerializeField] private bool destroyMusicManager = true;
 
     private void Awake()
     {
@@ -15,6 +16,11 @@ public class Level : MonoBehaviour
 
     public void OnLevelSelected()
     {
+        if(destroyMusicManager)
+        {
+            MusicManager.instance.DestroyMusicManager();
+        }
+
         SceneManager.LoadScene(levelBuildNumber);
     }
 

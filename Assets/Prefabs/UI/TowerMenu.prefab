@@ -1457,6 +1457,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5401943957391130999}
     m_Modifications:
+    - target: {fileID: 2592652753600343012, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592652753600343012, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2732669206666976808, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1556,7 +1564,7 @@ PrefabInstance:
     - target: {fileID: 2769933428440810218, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9e7a9ebd8e91a7d47a987851616b5c68, type: 3}
+      objectReference: {fileID: 21300000, guid: 124eb815e93c50640b1734d647979ca3, type: 3}
     - target: {fileID: 5330554347393271999, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Name
       value: TowerMenuButton (4)
@@ -1599,6 +1607,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5401943957391130999}
     m_Modifications:
+    - target: {fileID: 2592652753600343012, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592652753600343012, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2732669206666976808, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1698,7 +1714,7 @@ PrefabInstance:
     - target: {fileID: 2769933428440810218, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 93630cfc703893b4c8eb0d7f78e569e4, type: 3}
+      objectReference: {fileID: 21300000, guid: 38543dbf735714641b4bb04c149a0d48, type: 3}
     - target: {fileID: 5330554347393271999, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Name
       value: TowerMenuButton
@@ -1741,6 +1757,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5401943957391130999}
     m_Modifications:
+    - target: {fileID: 2592652753600343012, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592652753600343012, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 2732669206666976808, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1840,7 +1864,7 @@ PrefabInstance:
     - target: {fileID: 2769933428440810218, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7a9747af5fd29254181fd651c925f2cd, type: 3}
+      objectReference: {fileID: 21300000, guid: 1496836586533a44d94486c33e6bf2ad, type: 3}
     - target: {fileID: 5330554347393271999, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Name
       value: TowerMenuButton (1)
@@ -1883,6 +1907,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5401943957391130999}
     m_Modifications:
+    - target: {fileID: 2592652753600343012, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2592652753600343012, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.9
+      objectReference: {fileID: 0}
     - target: {fileID: 2732669206666976808, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1982,7 +2014,7 @@ PrefabInstance:
     - target: {fileID: 2769933428440810218, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 81d405347d2649845a0d430fa861c330, type: 3}
+      objectReference: {fileID: 21300000, guid: ddaf6cc4c23dac84b90bfd50d411cb2c, type: 3}
     - target: {fileID: 5330554347393271999, guid: 67086431487884a4cbe2c5873b4ec1a9, type: 3}
       propertyPath: m_Name
       value: TowerMenuButton (3)

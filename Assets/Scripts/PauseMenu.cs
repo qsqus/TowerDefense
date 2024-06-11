@@ -17,6 +17,11 @@ public class PauseMenu : MonoBehaviour
         IsLevelOver = false;
     }
 
+    private void Start()
+    {
+        ToggleCursorVisibility(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -39,6 +44,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        ToggleCursorVisibility(false);
+
         settings.ToggleSettingsVisible(false);
 
         pauseMenuUI.SetActive(false);
@@ -57,6 +64,7 @@ public class PauseMenu : MonoBehaviour
         {
             button.SetNormalColor();
         }
+        ToggleCursorVisibility(true);
 
         TowerManager.instance.AttemptHideTowerBuildMenu();
 
@@ -85,6 +93,21 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Exit");
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
+    }
+
+    public static void ToggleCursorVisibility(bool isVisible)
+    {
+        Cursor.visible = isVisible;
+
+        if (isVisible)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
     }
 
 }

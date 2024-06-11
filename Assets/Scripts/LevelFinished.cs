@@ -32,6 +32,8 @@ public class LevelFinished : MonoBehaviour
         if (!wasInitialized)
         {
             PauseMenu.IsLevelOver = true;
+            PauseMenu.ToggleCursorVisibility(true);
+
             Time.timeScale = 0f;
             resultsScreen.SetActive(true);
 
