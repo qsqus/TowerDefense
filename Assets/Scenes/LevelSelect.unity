@@ -1177,6 +1177,10 @@ PrefabInstance:
       value: BackButton
       objectReference: {fileID: 0}
     - target: {fileID: 5271159350542394699, guid: d5b4a37787bc8ec488941abb9e1c0ebb, type: 3}
+      propertyPath: destroyMusicManager
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271159350542394699, guid: d5b4a37787bc8ec488941abb9e1c0ebb, type: 3}
       propertyPath: levelDisplayedNumber
       value: 
       objectReference: {fileID: 0}

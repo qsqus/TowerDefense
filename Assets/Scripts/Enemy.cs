@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Transform body;
     [SerializeField] private GameObject hitEffect;
+    [SerializeField] private CapsuleCollider capsuleCollider;
 
     private Transform target;
     private int pathElementIdx = 0;
@@ -265,5 +266,10 @@ public class Enemy : MonoBehaviour
     {
         this.enemyPath = enemyPath;
     }    
+
+    public float GetEnemyRadius()
+    {
+        return capsuleCollider.radius;
+    }
 
 }

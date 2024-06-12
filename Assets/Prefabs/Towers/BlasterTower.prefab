@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 4
-  damage: 25
+  damage: 23
   fireRate: 0.9
   projectileSpeed: 40
   rotationSpeed: 7

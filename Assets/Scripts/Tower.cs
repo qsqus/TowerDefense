@@ -121,7 +121,7 @@ public abstract class Tower : MonoBehaviour
                 continue;
             }
 
-            float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(enemy.transform.position.x, enemy.transform.position.z));
+            float distance = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(enemy.transform.position.x, enemy.transform.position.z)) - enemyScript.GetEnemyRadius();
 
             if (distance < shortestDistance)
             {
@@ -356,16 +356,16 @@ public abstract class Tower : MonoBehaviour
         Destroy(shootEffectSO, 2f);
     }
 
-    // Checks if firePoint is kinda facing the target
+    // Checks if firePoint is facing the target
     protected bool IsFacingTarget()
     {
         // Calculate the direction vector from this GameObject to the target
         Vector3 directionToTarget = targetBody.position - firePoint.position;
 
-        // Project direction onto the plane ignoring the y-axis to only consider the x and z axes
+        // Project direction onto the plane ignoring the y axis to only consider the x and z axes
         Vector3 directionToTargetXZ = new Vector3(directionToTarget.x, 0, directionToTarget.z).normalized;
 
-        // Calculate the forward direction of this GameObject, ignoring the y-axis
+        // Calculate the forward direction of this GameObject, ignoring the y axis
         Vector3 forwardXZ = new Vector3(firePoint.forward.x, 0, firePoint.forward.z).normalized;
 
         // Calculate the angle between the forward vector and the direction vector

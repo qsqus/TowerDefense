@@ -101,6 +101,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   body: {fileID: 1884122356521777195}
   hitEffect: {fileID: 4006418781942204646, guid: 0bd4678697149f540a0723083f214e51, type: 3}
+  capsuleCollider: {fileID: 5626912795023275020}
 --- !u!114 &4256636567926016406
 MonoBehaviour:
   m_ObjectHideFlags: 0
