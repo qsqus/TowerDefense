@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Coins collected:'
+  m_text: 'Coins earned:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73386938869677645a2f940cc794ce61, type: 2}
   m_sharedMaterial: {fileID: -6604774360072419568, guid: 73386938869677645a2f940cc794ce61, type: 2}
@@ -518,9 +518,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelResult: {fileID: 207705131965779053}
-  livesResult: {fileID: 1425418807466346010}
-  coinsResult: {fileID: 4521080393868933381}
-  coinsSpent: {fileID: 1016399590793155135}
+  livesResult: {fileID: 7886344333552199077}
+  coinsResult: {fileID: 7910368667289690570}
+  coinsSpent: {fileID: 3366914121586776433}
   resultsScreen: {fileID: 8249202060131208734}
 --- !u!1 &1395694272849868850
 GameObject:

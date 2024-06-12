@@ -46,13 +46,13 @@ public class LevelManager : MonoBehaviour
         OnLivesAmountChanged?.Invoke(currentLivesAmount);
     }
     
-    public void ChangeCoinsByAmount(int amount)
+    public void ChangeCoinsByAmount(int amount, bool isSpent=false)
     {
         if(amount > 0)
         {
             totalCoinsCollected += amount;
         }
-        else
+        else if(isSpent)
         {
             totalCoinsSpent += -amount;
         }

@@ -154,7 +154,7 @@ public class TowerManager : MonoBehaviour
 
                 SoundEffectsManager.instance.PlaySoundEffectClip(SoundEffectsManager.instance.towerToBuildSelected, selectedBuildPoint.transform);
 
-                LevelManager.instance.ChangeCoinsByAmount(-towerPrice);
+                LevelManager.instance.ChangeCoinsByAmount(-towerPrice, true);
                 OnTowerToBuildSelected?.Invoke(tower, selectedBuildPoint.GetInstanceID());
                 HideTowerBuildMenu();
             }

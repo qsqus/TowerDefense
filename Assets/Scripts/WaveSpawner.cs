@@ -77,7 +77,9 @@ public class WaveSpawner : MonoBehaviour
                 {
                     SpawnEnemy(subWave.enemy, defaultEnemyPath);
                 }
-                yield return new WaitForSeconds(1f / subWave.rate);
+                float spawnRate = subWave.rate > 0 ? subWave.rate : 0.5f;
+
+                yield return new WaitForSeconds(1f / spawnRate);
             }
 
             if (subWave.afterwardsAwaitTime != 0 && i != wave.subWaves.Length - 1)
