@@ -331,11 +331,6 @@ public abstract class Tower : MonoBehaviour
         return range;
     }
 
-    public void ToggleLevelDisplay(bool isActive)
-    {
-        levelDisplay.gameObject.SetActive(isActive);
-    }
-
     public void ToggleProgressBar(bool isActive)
     {
         isActive = (currentLevel < maxLevel) ? isActive : false;
