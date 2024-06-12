@@ -83,7 +83,7 @@ MonoBehaviour:
   rotationSpeed: 7
   health: 100
   damage: 1
-  towerExperienceAmount: 0.4
+  towerExperienceAmount: 0.6
   afterDeathSinkDepth: 2
   sinkingDuration: 35
   deadBodyLifespan: 2
@@ -91,9 +91,9 @@ MonoBehaviour:
   enemyGroundLevel: 0
   minCoinDrop: 3
   maxCoinDrop: 6
-  minDiamondDrop: 1
-  maxDiamondDrop: 1
-  chanceOfDiamondDrop: 0.15
+  minDiamondDrop: 0
+  maxDiamondDrop: 0
+  chanceOfDiamondDrop: 0
   playerTag: Player
   deathAnimationName: Die
   enemyType: 0

@@ -164,6 +164,10 @@ PrefabInstance:
       value: Die
       objectReference: {fileID: 0}
     - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
+      propertyPath: towerExperienceAmount
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408581148060075732, guid: 5bb9232d85ae8db4cb0464253441f0b4, type: 3}
       propertyPath: walkingAnimationSpeed
       value: 0.5
       objectReference: {fileID: 0}

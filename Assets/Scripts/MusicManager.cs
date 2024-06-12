@@ -3,7 +3,7 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     public static MusicManager instance;
-
+    
     void Awake()
     {
         if (instance == null)
@@ -11,7 +11,7 @@ public class MusicManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if(instance != this)
         {
             Destroy(gameObject);
         }
